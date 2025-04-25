@@ -1,6 +1,7 @@
 ---
 import "../index.css";
 const { title } = Astro.props;
+import Footer from "../components/Footer.astro";
 ---
 
 <!doctype html>
@@ -12,7 +13,8 @@ const { title } = Astro.props;
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
   </head>
-  <body class="no-scrollbar w-screen overflow-x-hidden">
+  <body class="no-scrollbar w-screen overflow-x-hidden bg-[#040243]">
     <slot />
   </body>
+  <Footer />
 </html>

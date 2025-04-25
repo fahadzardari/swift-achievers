@@ -1,3 +1,69 @@
 /* fonts before tailwindcss */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
 
 @import "tailwindcss";
+
+body {
+  font-family: "Poppins", sans-serif;
+}
+
+@theme {
+  --breakpoint-3xl: 1920px;
+  --color-gradient-start: #fd34fc;
+  --color-gradient-end: #3135f6;
+}
+
+.bg-gradient {
+  background: linear-gradient(
+    90deg,
+    var(--color-gradient-start),
+    var(--color-gradient-end)
+  );
+}
+
+.border-gradient {
+  position: relative;
+  background: transparent;
+  border: none;
+  z-index: 1;
+  transition: all 0.3s ease;
+}
+
+.border-gradient::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: inherit;
+  padding: 2px; /* Border width */
+  background: linear-gradient(
+    90deg,
+    var(--color-gradient-start),
+    var(--color-gradient-end)
+  );
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  z-index: -1;
+}
+
+/* Mobile */
+.container {
+  padding-inline: 3.5dvw;
+  margin-inline: auto;
+}
+
+/* Small Laptop */
+@media screen and (min-width: 1024px) {
+  .container {
+    padding-inline: 6.4dvw;
+    margin-inline: auto;
+  }
+}

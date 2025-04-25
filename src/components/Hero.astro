@@ -1,0 +1,32 @@
+---
+import DefaultHero from "../assets/hero/home.png";
+import Image from "astro/components/Image.astro";
+import Navbar from "./Navbar.astro";
+const {
+  backgroundImage = DefaultHero,
+  title = "Welcome to Swift Achievers",
+  subtitle = "Your path to success starts here",
+} = Astro.props;
+---
+
+<header class="relative flex min-h-screen items-center pt-7">
+  <div class="absolute inset-0 -z-50">
+    <Image
+      src={backgroundImage}
+      alt="Hero background"
+      class="h-full w-full object-cover"
+      width={1920}
+      height={1080}
+    />
+    <div
+      class="absolute inset-0 top-auto bottom-0 bg-linear-to-b from-transparent from-90% to-[#040243]"
+    >
+    </div>
+  </div>
+  <div class="absolute top-2 w-full md:top-7">
+    <Navbar />
+  </div>
+  <div class="content container">
+    <slot />
+  </div>
+</header>

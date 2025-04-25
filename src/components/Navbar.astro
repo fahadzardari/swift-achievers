@@ -1,0 +1,151 @@
+---
+import Image from "astro/components/Image.astro";
+import Logo from "../assets/logo.svg";
+const links = [
+  { name: "Home", href: "/" },
+  { name: "Services", href: "/services" },
+  { name: "Amazon FBA Automation", href: "/amazon-fba-automation" },
+  { name: "About Us", href: "/about-us" },
+  { name: "Contact Us", href: "/contact-us" },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<div class="container">
+  <nav
+    class="flex items-center justify-between rounded-lg border border-white/30 bg-[#bababa]/25 px-7 py-4 backdrop-blur-xs"
+  >
+    <Image
+      src={Logo}
+      alt="Swift Achievers Logo"
+      class="max-h-[56px] max-w-[150px] cursor-pointer"
+    />
+
+    <!-- Desktop Navigation -->
+    <ul class="hidden gap-x-2 md:flex lg:gap-x-4">
+      {
+        links.map((link) => (
+          <li
+            class={`3xl:text-base cursor-pointer text-[10px] text-white md:text-[10px] xl:text-sm ${currentPath === link.href ? "font-semibold" : ""}`}
+          >
+            <a href={link.href}>{link.name}</a>
+          </li>
+        ))
+      }
+    </ul>
+
+    <!-- Desktop CTA Button -->
+    <button
+      class="bg-gradient hidden rounded-full px-3 py-1 text-center font-semibold text-white md:block md:py-[10px] md:text-xs lg:px-6 lg:text-sm xl:text-base"
+    >
+      Get A Quote Now
+    </button>
+
+    <!-- Mobile Hamburger Button -->
+    <button id="menuBtn" class="block text-white md:hidden" aria-label="Menu">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-6 w-6"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M4 6h16M4 12h16M4 18h16"></path>
+      </svg>
+    </button>
+  </nav>
+</div>
+
+<!-- Mobile Sidebar -->
+<div
+  id="mobileSidebar"
+  class="fixed top-0 right-0 z-50 h-full w-64 translate-x-full transform overflow-y-auto bg-[#040243] transition-transform duration-300 ease-in-out"
+>
+  <div class="p-5">
+    <button id="closeBtn" class="float-right text-white">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-6 w-6"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M6 18L18 6M6 6l12 12"></path>
+      </svg>
+    </button>
+
+    <div class="mt-12">
+      <ul class="space-y-4">
+        {
+          links.map((link) => (
+            <li class="py-2">
+              <a
+                href={link.href}
+                class={`block rounded-md px-3 py-2 text-lg text-white hover:bg-white/10 ${currentPath === link.href ? "bg-white/10 font-semibold" : ""}`}
+              >
+                {link.name}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+
+      <div class="mt-8">
+        <button
+          class="bg-gradient w-full rounded-full px-6 py-[10px] text-center font-semibold text-white"
+        >
+          Get A Quote Now
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Overlay for sidebar -->
+<div
+  id="overlay"
+  class="pointer-events-none fixed inset-0 z-40 bg-black opacity-0 transition-opacity duration-300 ease-in-out"
+>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const menuBtn = document.getElementById("menuBtn");
+    const closeBtn = document.getElementById("closeBtn");
+    const sidebar = document.getElementById("mobileSidebar");
+    const overlay = document.getElementById("overlay");
+
+    const openSidebar = () => {
+      sidebar.classList.remove("translate-x-full");
+      overlay.classList.add("opacity-50");
+      overlay.classList.remove("pointer-events-none");
+      document.body.classList.add("overflow-hidden");
+    };
+
+    const closeSidebar = () => {
+      sidebar.classList.add("translate-x-full");
+      overlay.classList.remove("opacity-50");
+      overlay.classList.add("pointer-events-none");
+      document.body.classList.remove("overflow-hidden");
+    };
+
+    menuBtn.addEventListener("click", openSidebar);
+    closeBtn.addEventListener("click", closeSidebar);
+    overlay.addEventListener("click", closeSidebar);
+
+    // Close sidebar when clicking on a link
+    const mobileLinks = sidebar.querySelectorAll("a");
+    mobileLinks.forEach((link) => {
+      link.addEventListener("click", closeSidebar);
+    });
+  });
+</script>
