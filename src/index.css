@@ -39,7 +39,7 @@ body {
   border-radius: inherit;
   padding: 2px; /* Border width */
   background: linear-gradient(
-    90deg,
+    180deg,
     var(--color-gradient-start),
     var(--color-gradient-end)
   );

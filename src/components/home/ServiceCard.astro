@@ -1,0 +1,29 @@
+---
+const {
+  title = "title",
+  description = "description",
+  link = "/",
+  id = "default-card",
+} = Astro.props;
+---
+
+<div
+  class="border-gradient flex flex-col items-center justify-center gap-y-7 rounded-lg p-7"
+>
+  <h1
+    class="text-center text-sm font-semibold  text-white lg:text-base xl:text-lg 2xl:text-xl"
+  >
+    {title}
+  </h1>
+  <p
+    class="text-center text-xs text-[#ffffff] md:text-xs lg:text-xs 2xl:text-sm"
+  >
+    {description}
+  </p>
+  <a
+    href={link}
+    class="bg-gradient cursor-pointer w-full text-center rounded-full  py-1 lg:py-2 text-[11px] text-white md:text-xs xl:text-sm 2xl:text-base"
+  >
+    Learn More
+  </a>
+</div>
