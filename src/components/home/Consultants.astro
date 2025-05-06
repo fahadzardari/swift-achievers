@@ -1,0 +1,154 @@
+---
+import Adidas from "../../assets/home/consultants/adidas.png";
+import Ideo from "../../assets/home/consultants/ideo.png";
+import Netflix from "../../assets/home/consultants/netflix.png";
+import Stanford from "../../assets/home/consultants/stanford.png";
+import Volkswagen from "../../assets/home/consultants/volkswagen.png";
+import Ikea from "../../assets/home/consultants/ikea.png";
+import Image from "astro/components/Image.astro";
+---
+
+<section id="consultants-section" class="bg-gradient my-12">
+  <div class="container py-6 text-center text-white lg:py-10">
+    <h2 id="consultants-heading" class="text-xl font-semibold md:text-2xl lg:text-3xl 2xl:text-4xl">
+      Amazon Advertising Adding Value to Your Business Cycle
+    </h2>
+    <p
+      id="consultants-paragraph"
+      class="mx-auto mt-3 w-[90%] text-[11px] md:text-xs lg:text-sm 2xl:text-base"
+    >
+      Speak with one of our consultants to evaluate your brand or product
+      in-depth and discover how to sell it to the ideal buyers!
+    </p>
+
+    <div
+      id="consultants-brands"
+      class="mt-10 flex flex-wrap items-center justify-between gap-x-4 md:mt-14"
+    >
+      <Image src={Adidas} alt="Adidas" class="h-auto w-20 brand-logo" />
+      <Image src={Ideo} alt="Ideo" class="h-auto w-20 brand-logo" />
+      <Image src={Stanford} alt="Stanford" class="h-auto w-20 brand-logo" />
+      <Image src={Volkswagen} alt="Volkswagen" class="h-auto w-20 brand-logo" />
+      <Image src={Netflix} alt="Netflix" class="h-auto w-20 brand-logo" />
+      <Image src={Ikea} alt="Ikea" class="h-auto w-20 brand-logo" />
+    </div>
+  </div>
+</section>
+
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/all";
+  import SplitType from "split-type";
+
+  // Register the ScrollTrigger plugin
+  gsap.registerPlugin(ScrollTrigger);
+
+  // Wait for the DOM to be fully loaded
+  document.addEventListener("DOMContentLoaded", () => {
+    // Initialize SplitType for heading and paragraph text
+    const headingText = new SplitType("#consultants-heading", { types: "words,chars" });
+    const paragraphText = new SplitType("#consultants-paragraph", { types: "lines" });
+    
+    // Create the heading animation timeline
+    const headingTl = gsap.timeline({
+      scrollTrigger: {
+        trigger: "#consultants-section",
+        start: "top 80%",
+        end: "top 40%",
+        scrub: 0.6,
+        toggleActions: "play none none reverse",
+      }
+    });
+    
+    // Add heading animation to the timeline
+    headingTl
+      .fromTo(
+        headingText.chars, 
+        { 
+          opacity: 0.1,
+          y: 20
+        },
+        { 
+          opacity: 1,
+          y: 0,
+          stagger: 0.02,
+          duration: 0.5
+        }
+      );
+    
+    // Create the paragraph animation timeline
+    const paragraphTl = gsap.timeline({
+      scrollTrigger: {
+        trigger: "#consultants-section",
+        start: "top 70%",
+        end: "top 30%",
+        scrub: 0.6,
+        toggleActions: "play none none reverse",
+      }
+    });
+    
+    // Add paragraph animation to the timeline
+    paragraphTl.fromTo(
+      paragraphText.lines, 
+      { 
+        opacity: 0,
+        y: 15
+      },
+      { 
+        opacity: 1,
+        y: 0,
+        stagger: 0.1,
+        duration: 0.5
+      }
+    );
+    
+    // Create the brands animation timeline
+    const brandLogos = document.querySelectorAll("#consultants-brands .brand-logo");
+    const brandsTl = gsap.timeline({
+      scrollTrigger: {
+        trigger: "#consultants-brands",
+        start: "top 80%",
+        end: "top 50%",
+        scrub: 0.8,
+        toggleActions: "play none none reverse",
+      }
+    });
+    
+    // Add brand logos animation to the timeline
+    brandsTl.fromTo(
+      brandLogos, 
+      { 
+        opacity: 0,
+        scale: 0.8,
+        y: 30
+      },
+      { 
+        opacity: 1,
+        scale: 1,
+        y: 0,
+        stagger: 0.08,
+        duration: 0.6,
+        ease: "power2.out"
+      }
+    );
+
+    // Add a subtle pulse animation to the section background
+    gsap.fromTo(
+      "#consultants-section", 
+      { 
+        backgroundPosition: "0% 0%" 
+      },
+      { 
+        backgroundPosition: "100% 100%",
+        ease: "none",
+        scrollTrigger: {
+          trigger: "#consultants-section",
+          start: "top bottom",
+          end: "bottom top",
+          scrub: true
+        }
+      }
+    );
+  });
+</script>

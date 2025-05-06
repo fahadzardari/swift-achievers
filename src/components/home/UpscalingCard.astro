@@ -1,0 +1,22 @@
+---
+import defaultImage from "../../assets/home/upscaling/data-push.png";
+const {
+  title = "Data Push",
+  description = "With our Amazon Marketing Services, we assist brands in establishing a growing business cycle through a flexible strategy to advertise on Amazon.",
+  image = defaultImage,
+} = Astro.props;
+import Image from "astro/components/Image.astro";
+---
+
+<article class="flex flex-col max-w-[330px] items-center justify-center space-y-3 rounded-4xl bg-linear-120 from-gradient-start  to-gradient-end px-8 py-8 text-white">
+  <Image
+    src={image}
+    alt="Upscaling Image"
+    class="h-24 w-24 -mt-20 rounded-full object-cover"
+    width={96}
+    height={96}
+  />
+  <h3 class="text-lg font-bold">{title}</h3>
+  <p class="text-sm text-center">{description}</p>
+
+</article>
