@@ -1,11 +1,10 @@
 ---
-
-const {
-  title,
-  id = "default-heading",
-} = Astro.props;
+const { title, id = "default-heading" } = Astro.props;
 ---
 
-<h1 id={id} class="text-white font-semibold lg:text-4xl xl:text-5xl 2xl:text-[56px]">
-{title}
+<h1
+  id={id}
+  class="leading-[1.2] font-semibold text-white text-3xl md:text-4xl xl:text-5xl 2xl:text-[56px]"
+>
+  {title}
 </h1>
