@@ -16,11 +16,13 @@ const currentPath = Astro.url.pathname;
   <nav
     class="flex items-center justify-between rounded-lg border border-white/30 bg-[#bababa]/25 px-7 py-4 backdrop-blur-xs"
   >
-    <Image
-      src={Logo}
-      alt="Swift Achievers Logo"
-      class="max-h-[56px] max-w-[150px] cursor-pointer"
-    />
+    <a href="/">
+      <Image
+        src={Logo}
+        alt="Swift Achievers Logo"
+        class="max-h-[56px] max-w-[150px] cursor-pointer"
+      />
+    </a>
 
     <!-- Desktop Navigation -->
     <ul class="hidden gap-x-2 md:flex lg:gap-x-4">
