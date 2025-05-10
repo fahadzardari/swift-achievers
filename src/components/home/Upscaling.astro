@@ -4,28 +4,182 @@ import UpscalingCard from "./UpscalingCard.astro";
 ---
 
 <section
+  id="upscaling-section"
   class="container my-12 flex flex-col items-center space-y-8 text-center text-white lg:my-24 xl:space-y-[38px]"
 >
   <Heading
     title="Swift Achievers making upscaling easy"
     id="upscaling-heading"
   />
-  <p class="mx-auto max-w-[80%] text-center text-xs lg:text-sm 2xl:text-base">
+  <p
+    id="upscaling-paragraph"
+    class="mx-auto max-w-[80%] text-center text-xs lg:text-sm 2xl:text-base"
+  >
     We have the experience required to accomplish explosive e-commerce growth in
     the United States. We employ our best skills in the following strategies:
   </p>
 
   <button
+    id="upscaling-button"
     class="bg-gradient cursor-pointer rounded-full px-6 py-1 text-center text-[11px] text-white md:text-xs lg:py-2 xl:text-sm 2xl:text-base"
   >
     Get In Touch
   </button>
 
   <div
+    id="upscaling-cards"
     class="mt-12 flex flex-wrap items-center justify-center gap-x-4 gap-y-20"
   >
-    <UpscalingCard />
-    <UpscalingCard />
-    <UpscalingCard />
+    <UpscalingCard id="upscale-card-1" />
+    <UpscalingCard id="upscale-card-2" />
+    <UpscalingCard id="upscale-card-3" />
   </div>
 </section>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/all";
+  import SplitType from "split-type";
+
+  // Register the ScrollTrigger plugin
+  gsap.registerPlugin(ScrollTrigger);
+
+  // Wait for the DOM to be fully loaded
+  document.addEventListener("DOMContentLoaded", () => {
+    // Initialize SplitType for heading and paragraph text
+    const headingText = new SplitType("#upscaling-heading", {
+      types: "words,chars",
+    });
+    const paragraphText = new SplitType("#upscaling-paragraph", {
+      types: "lines",
+    });
+
+    // Create the heading animation timeline
+    const headingTl = gsap.timeline({
+      scrollTrigger: {
+        trigger: "#upscaling-section",
+        start: "top 80%",
+        end: "top 40%",
+        scrub: 0.6,
+        toggleActions: "play none none reverse",
+      },
+    });
+
+    // Add heading animation to the timeline
+    headingTl.fromTo(
+      headingText.chars,
+      {
+        opacity: 0.1,
+        y: 20,
+      },
+      {
+        opacity: 1,
+        y: 0,
+        stagger: 0.02,
+        duration: 0.5,
+      },
+    );
+
+    // Create the paragraph animation timeline
+    const paragraphTl = gsap.timeline({
+      scrollTrigger: {
+        trigger: "#upscaling-section",
+        start: "top 70%",
+        end: "top 30%",
+        scrub: 0.6,
+        toggleActions: "play none none reverse",
+      },
+    });
+
+    // Add paragraph animation to the timeline
+    paragraphTl.fromTo(
+      paragraphText.lines,
+      {
+        opacity: 0,
+        y: 15,
+      },
+      {
+        opacity: 1,
+        y: 0,
+        stagger: 0.1,
+        duration: 0.5,
+      },
+    );
+
+    // Create the button animation timeline
+    const buttonTl = gsap.timeline({
+      scrollTrigger: {
+        trigger: "#upscaling-paragraph",
+        start: "top 60%",
+        end: "top 20%",
+        scrub: 0.8,
+        toggleActions: "play none none reverse",
+      },
+    });
+
+    // Add button animation to the timeline
+    buttonTl.fromTo(
+      "#upscaling-button",
+      {
+        opacity: 0,
+        scale: 0.8,
+        y: 15,
+      },
+      {
+        opacity: 1,
+        scale: 1,
+        y: 0,
+        duration: 0.4,
+        ease: "power2.out",
+      },
+    );
+
+    // Create the cards animation timeline
+    const cards = document.querySelectorAll("[id^='upscale-card-']");
+    const cardsTl = gsap.timeline({
+      scrollTrigger: {
+        trigger: "#upscaling-cards",
+        start: "top 85%",
+        end: "top 40%",
+        scrub: 1,
+        toggleActions: "play none none reverse",
+      },
+    });
+
+    // Add cards animation to the timeline
+    cardsTl.fromTo(
+      cards,
+      {
+        opacity: 0,
+        y: 60,
+        scale: 0.9,
+      },
+      {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        stagger: 0.15,
+        duration: 0.7,
+        ease: "power2.out",
+      },
+    );
+
+    // Add subtle background movement
+    gsap.fromTo(
+      "#upscaling-section",
+      {
+        backgroundPosition: "0% 50%",
+      },
+      {
+        backgroundPosition: "100% 50%",
+        ease: "none",
+        scrollTrigger: {
+          trigger: "#upscaling-section",
+          start: "top bottom",
+          end: "bottom top",
+          scrub: true,
+        },
+      },
+    );
+  });
+</script>

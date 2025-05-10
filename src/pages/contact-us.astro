@@ -1,0 +1,19 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Hero from "../components/Hero.astro";
+import Testimonials from "../components/home/Testimonials.astro";
+import HeroBG from "../assets/hero/contact-us.png";
+import ScalingProducts from "../components/common/ScalingProducts.astro";
+import ContactInfo from "../components/common/ContactInfo.astro";
+---
+
+<Layout title="Contact Us | Swift Achievers">
+  <Hero
+    backgroundImage={HeroBG}
+    title="Contact Us to Unlock Amazon & E-commerce Success!"
+    description="Are you looking for top-of-the-line eCommerce and Amazon services? You're at the right place. Talk to our expert consultants today to hire our services amnd for all your concerns."
+  />
+  <ContactInfo />
+  <ScalingProducts />
+  <Testimonials />
+</Layout>

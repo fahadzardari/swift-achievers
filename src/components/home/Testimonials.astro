@@ -1,3 +1,43 @@
-<section>
-  Feedback
+---
+import Heading from "../common/Heading.astro";
+import TestimonialCard from "./TestimonialCard.astro";
+---
+
+<section class="container flex flex-col gap-y-6 py-12">
+  <div class="max-w-[1024px]">
+    <Heading
+      id="testimonials-heading"
+      title="Looking For More Information About Swift Achievers?"
+    />
+    <p class="mt-4 text-xs text-white lg:text-sm 2xl:text-base">
+      Learning from others’ experiences will help you make better decisions for
+      your business online. Here are our value-driven customers’ feedbacks.
+    </p>
+  </div>
+
+  <div
+    class="mx-auto mt-12 grid grid-cols-1 gap-x-12 gap-y-8 md:grid-cols-2 xl:grid-cols-3"
+  >
+    <TestimonialCard
+      id="testimonials-card-1"
+      name="John Doe"
+      country="USA"
+      description=" I'm glad you had a positive experience with their services. Thorough understanding, cooperation, and high-quality work made it a worthwhile investment. Delighted with their job and the results achieved."
+      stars={5}
+    />
+    <TestimonialCard
+      id="testimonials-card-2"
+      name="Jane Smith"
+      country="Canada"
+      description=" I'm glad you had a positive experience with their services. Thorough understanding, cooperation, and high-quality work made it a worthwhile investment. Delighted with their job and the results achieved."
+      stars={4}
+    />
+    <TestimonialCard
+      id="testimonials-card-3"
+      name="Alice Johnson"
+      country="UK"
+      description=" I'm glad you had a positive experience with their services. Thorough understanding, cooperation, and high-quality work made it a worthwhile investment. Delighted with their job and the results achieved."
+      stars={5}
+    />
+  </div>
 </section>

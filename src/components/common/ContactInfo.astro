@@ -1,0 +1,110 @@
+---
+import Phone from "../../assets/contact-us/phone.png";
+import Mail from "../../assets/contact-us/mail.png";
+import Address from "../../assets/contact-us/address.png";
+import Art from "../../assets/contact-us/art.png";
+import Image from "astro/components/Image.astro";
+---
+
+<section class="container my-12">
+  <div class="flex flex-col bg-[#bababa]/25 md:flex-row">
+    <div
+      class="bg-gradient flex flex-col justify-between px-6 pb-0 text-white md:w-[40%]"
+    >
+      <div class="flex flex-col gap-y-4 py-10 md:mb-40">
+        <div>
+          <h1 class="text-3xl font-semibold">Contact Information</h1>
+          <p class="mt-2 text-xs lg:text-sm 2xl:text-base">
+            Call us now to talk to our experts or leave us an email for a quick
+            response
+          </p>
+        </div>
+        <div class="mt-8 flex items-center gap-x-5">
+          <Image src={Address} alt="Address" class="h-5 w-5" loading="lazy" />
+          <span class="3xl:text-xl text-xs md:text-sm lg:text-base xl:text-lg"
+            >236 W Monroe St Chicago, IL 60607</span
+          >
+        </div>
+        <div class="flex items-center gap-x-5">
+          <Image src={Phone} alt="Phone" class="h-5 w-[14px]" loading="lazy" />
+          <span class="3xl:text-xl text-xs md:text-sm lg:text-base xl:text-lg"
+            >+1 (123) 456 7890</span
+          >
+        </div>
+        <div class="flex items-center gap-x-5">
+          <Image src={Mail} alt="Mail" class="h-5 w-5" loading="lazy" />
+          <a
+            href="mailto:query@amzinventor.com"
+            class="3xl:text-xl text-xs md:text-sm lg:text-base xl:text-lg"
+            >query@amzinventor.com</a
+          >
+        </div>
+      </div>
+
+      <Image
+        src={Art}
+        alt="Contact Us"
+        class="hidden w-full md:block"
+        loading="lazy"
+      />
+    </div>
+    <div class="flex flex-col justify-center px-12 py-10 md:w-[60%]">
+      <h1 class="text-3xl font-semibold text-white">Get In Touch</h1>
+      <form class="mt-8 flex w-full flex-col gap-y-4">
+        <div>
+          <label for="name" class="text-xs text-white lg:text-sm 2xl:text-base">
+            Name
+          </label>
+          <input
+            type="text"
+            class="mt-1 w-full rounded-md bg-white px-4 py-3 text-xs text-black focus:outline-none lg:text-sm 2xl:text-base"
+            name="name"
+          />
+        </div>
+        <div>
+          <label
+            for="email"
+            class="text-xs text-white lg:text-sm 2xl:text-base"
+          >
+            Email
+          </label>
+          <input
+            type="email"
+            class="mt-1 w-full rounded-md bg-white px-4 py-3 text-xs text-black focus:outline-none lg:text-sm 2xl:text-base"
+            name="email"
+          />
+        </div>
+        <div>
+          <label
+            for="message"
+            class="text-xs text-white lg:text-sm 2xl:text-base"
+          >
+            Phone
+          </label>
+          <input
+            type="text"
+            class="mt-1 w-full rounded-md bg-white px-4 py-3 text-xs text-black focus:outline-none lg:text-sm 2xl:text-base"
+            name="phone"
+          />
+        </div>
+        <div>
+          <label
+            for="message"
+            class="text-xs text-white lg:text-sm 2xl:text-base"
+          >
+            Message
+          </label>
+          <textarea
+            rows="8"
+            class="mt-1 w-full rounded-md bg-white px-4 py-3 text-xs text-black focus:outline-none lg:text-sm 2xl:text-base"
+            name="message"></textarea>
+        </div>
+        <button
+          class="bg-gradient w-fit cursor-pointer rounded-full px-6 py-2 text-[11px] text-white md:text-xs lg:text-sm xl:text-base"
+        >
+          Get a Quote
+        </button>
+      </form>
+    </div>
+  </div>
+</section>

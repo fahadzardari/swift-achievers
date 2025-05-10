@@ -1,0 +1,94 @@
+---
+const {
+  id = "testimonials-card",
+  name = "John Doe",
+  country = "USA",
+  description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+  stars = 5,
+  image = defaultImage,
+} = Astro.props;
+import defaultImage from "../../assets/home/testimonials/1.png";
+import Image from "astro/components/Image.astro";
+import ClutchLogo from "../../assets/home/testimonials/clutch.png";
+---
+
+<article
+  id={id}
+  class="flex max-w-[400px] flex-col items-center justify-center rounded-lg bg-[#7880DD] px-6 py-8 text-white"
+>
+  <Image
+    src={image}
+    alt="Testimonial Image"
+    class="h-24 w-24 rounded-full object-cover"
+    width={96}
+    height={96}
+  />
+  <h3 class="mt-2 text-base font-bold xl:text-lg">{name}</h3>
+  <p class="mb-5 text-xs lg:text-sm">{country}</p>
+  <p class="mb-4 px-2 text-center text-xs lg:text-sm">{description}</p>
+  <div
+    class="flex w-full items-center justify-between border-t border-t-white pt-4"
+  >
+    <div class="flex items-center gap-x-2">
+      <Image src={ClutchLogo} alt="Clutch Image" class="" />
+      <span> 5.0 </span>
+    </div>
+    <div class="flex items-center justify-center gap-x-2">
+      <svg
+        width="24"
+        height="22"
+        viewBox="0 0 24 22"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M12 0L14.6942 8.2918H23.4127L16.3593 13.4164L19.0534 21.7082L12 16.5836L4.94658 21.7082L7.64074 13.4164L0.587322 8.2918H9.30583L12 0Z"
+          fill="#FCBF1E"></path>
+      </svg>
+      <svg
+        width="24"
+        height="22"
+        viewBox="0 0 24 22"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M12 0L14.6942 8.2918H23.4127L16.3593 13.4164L19.0534 21.7082L12 16.5836L4.94658 21.7082L7.64074 13.4164L0.587322 8.2918H9.30583L12 0Z"
+          fill="#FCBF1E"></path>
+      </svg>
+      <svg
+        width="24"
+        height="22"
+        viewBox="0 0 24 22"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M12 0L14.6942 8.2918H23.4127L16.3593 13.4164L19.0534 21.7082L12 16.5836L4.94658 21.7082L7.64074 13.4164L0.587322 8.2918H9.30583L12 0Z"
+          fill="#FCBF1E"></path>
+      </svg>
+      <svg
+        width="24"
+        height="22"
+        viewBox="0 0 24 22"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M12 0L14.6942 8.2918H23.4127L16.3593 13.4164L19.0534 21.7082L12 16.5836L4.94658 21.7082L7.64074 13.4164L0.587322 8.2918H9.30583L12 0Z"
+          fill="#FCBF1E"></path>
+      </svg>
+      <svg
+        width="24"
+        height="22"
+        viewBox="0 0 24 22"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M12 0L14.6942 8.2918H23.4127L16.3593 13.4164L19.0534 21.7082L12 16.5836L4.94658 21.7082L7.64074 13.4164L0.587322 8.2918H9.30583L12 0Z"
+          fill="#FCBF1E"></path>
+      </svg>
+    </div>
+  </div>
+</article>

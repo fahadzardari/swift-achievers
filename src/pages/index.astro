@@ -2,18 +2,26 @@
 import Layout from "../layouts/Layout.astro";
 import Hero from "../components/Hero.astro";
 import Services from "../components/home/Services.astro";
+import WhyUs from "../components/home/WhyUs.astro";
 import Upscaling from "../components/home/Upscaling.astro";
 import Consultants from "../components/home/Consultants.astro";
 import Testimonials from "../components/home/Testimonials.astro";
 import GetQuote from "../components/home/GetQuote.astro";
+import FAQ from "../components/home/FAQ.astro";
 ---
 
 <Layout title="Home | Swift Achievers">
-  <Hero>
-  </Hero>
+  <Hero 
+      title = "Seize The Traffic With Amazon Marketing Services."
+      subheading="Optimize Functionality."
+      descriptionHeading = "Amazon Store Set-up & Management"
+      description="We are an Amazon marketing service agency that combines cutting-edge e-commerce technologies with innovative marketing methods. We detect loopholes and strategically place brands in the congested and competitive e-commerce industry to provide the best Amazon marketing services."
+  />
   <Services />
+  <WhyUs />
   <Upscaling />
   <Consultants />
   <Testimonials />
   <GetQuote />
+  <FAQ />
 </Layout>

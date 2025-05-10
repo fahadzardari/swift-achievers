@@ -1,0 +1,20 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Hero from "../components/Hero.astro";
+import Consultants from "../components/home/Consultants.astro";
+import Testimonials from "../components/home/Testimonials.astro";
+import HeroBG from "../assets/hero/about-us.png";
+import ScalingProducts from "../components/common/ScalingProducts.astro";
+---
+
+<Layout title="About Us | Swift Achievers">
+  <Hero
+    backgroundImage={HeroBG}
+    title="MAKING SALES EASY FOR BRANDS!"
+    description="AMZ Inventor has tamed the clutter of e-commerce to create forward-thinking amazon outsourcing services, with effective marketing and brand building plans. We cater brands of all sizes and niches, and use our module to automate their reach and sales."
+  />
+
+  <Consultants />
+  <ScalingProducts />
+  <Testimonials />
+</Layout>

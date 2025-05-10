@@ -1,0 +1,39 @@
+---
+const {
+  image,
+  title = "Amazon SEO",
+  description = "To upscale your amazon stores by enhancing product visibility",
+  id = "why-us-tag",
+} = Astro.props;
+import DefaultImage from "../../assets/home/why-us/amazon.png";
+import Image from "astro/components/Image.astro";
+---
+
+<article class="flex flex-col gap-y-6">
+  <div
+    class="why-us-tag-heading-clip flex items-center gap-x-4 rounded-md bg-[#040243] px-2 py-1"
+  >
+    <Image
+      src={image || DefaultImage}
+      alt="Why Us Image"
+      class="h-9 w-9 object-cover"
+      width={36}
+      height={36}
+    />
+
+    <h3
+      class="text-center text-sm font-semibold text-white lg:text-base xl:text-lg 2xl:text-xl"
+    >
+      {title}
+    </h3>
+  </div>
+  <p class="max-w-[90%] text-xs text-white lg:text-sm 2xl:text-base">
+    {description}
+  </p>
+</article>
+
+<style>
+  .why-us-tag-heading-clip {
+    clip-path: polygon(85% 0, 90% 50%, 85% 100%, 0 100%, 0 0);
+  }
+</style>

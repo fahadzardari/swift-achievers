@@ -1,0 +1,24 @@
+---
+import Heading from "../common/Heading.astro";
+import QuestionFAQ from "./QuestionFAQ.astro";
+---
+
+<section class="container flex flex-col gap-y-6 py-12">
+  <div class="max-w-[900px]">
+    <Heading id="faqs-heading" title="Frequently Asked Questions" />
+    <p class="mt-4 text-xs text-white lg:text-sm 2xl:text-base">
+      We aim to aid your progress online. However, if there's a query not
+      addressed on our site, don't hesitate to contact our customer
+      representative.
+    </p>
+  </div>
+  <div class="my-4 flex flex-col">
+    <QuestionFAQ />
+    <QuestionFAQ />
+    <QuestionFAQ />
+    <QuestionFAQ />
+    <QuestionFAQ />
+    <QuestionFAQ />
+    <QuestionFAQ />
+  </div>
+</section>

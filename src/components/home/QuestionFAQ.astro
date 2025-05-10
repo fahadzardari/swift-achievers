@@ -1,0 +1,124 @@
+---
+const {
+  question = "What is your Best Approach to selling products on amanzon?",
+  answer = "We aim to aid your progress online. However, if there's a query not addressed on our site, don't hesitate to contact our customer representative. We aim to aid your progress online. However, if there's a query not addressed on our site, don't hesitate to contact our customer representative. We aim to aid your progress online. However, if there's a query not addressed on our site, don't hesitate to contact our customer representative.",
+  id = "faqs-question-1",
+} = Astro.props;
+---
+
+<article
+  id={id}
+  class="faq-article my-2 flex flex-col gap-y-4 rounded-lg px-6 py-5 transition-all duration-300"
+>
+  <div
+    class="faq-header flex cursor-pointer items-center justify-between gap-x-4"
+  >
+    <h3
+      class="3xl:text-xl faq-question text-xs font-semibold text-white md:text-sm lg:text-base xl:text-lg"
+    >
+      {question}
+    </h3>
+    <svg
+      class="faq-icon-closed"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M9 18L15 12L9 6"
+        stroke="white"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"></path>
+    </svg>
+
+    <svg
+      class="faq-icon-open hidden"
+      width="14"
+      height="8"
+      viewBox="0 0 14 8"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M1 1L7 7L13 1"
+        stroke="#040243"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"></path>
+    </svg>
+  </div>
+  <p
+    class="faq-answer hidden text-xs text-white transition-colors duration-300 lg:text-sm 2xl:text-base"
+  >
+    {answer}
+  </p>
+</article>
+
+<script define:vars={{ id }}>
+  document.addEventListener("DOMContentLoaded", () => {
+    const faqArticle = document.getElementById(id);
+    const faqHeader = faqArticle.querySelector(".faq-header");
+    const faqQuestion = faqArticle.querySelector(".faq-question");
+    const faqAnswer = faqArticle.querySelector(".faq-answer");
+    const iconClosed = faqArticle.querySelector(".faq-icon-closed");
+    const iconOpen = faqArticle.querySelector(".faq-icon-open");
+
+    faqHeader.addEventListener("click", () => {
+      const isOpen = faqArticle.classList.contains("faq-open");
+
+      // Toggle open class
+      if (!isOpen) {
+        faqArticle.classList.add("faq-open");
+
+        faqArticle.style.backgroundColor = "white";
+        faqQuestion.style.color = "#040243";
+        faqAnswer.style.color = "#040243";
+        faqAnswer.classList.remove("hidden");
+        iconClosed.classList.add("hidden");
+        iconOpen.classList.remove("hidden");
+      } else {
+        faqArticle.classList.remove("faq-open");
+        faqArticle.style.backgroundColor = "transparent";
+        faqQuestion.style.color = "white";
+        faqAnswer.classList.add("hidden");
+        iconClosed.classList.remove("hidden");
+        iconOpen.classList.add("hidden");
+      }
+
+      // Animation for smooth transition
+      if (!isOpen) {
+        faqAnswer.style.maxHeight = "0";
+        faqAnswer.style.opacity = "0";
+
+        // Use setTimeout to create a delayed animation effect
+        setTimeout(() => {
+          faqAnswer.style.maxHeight = "500px";
+          faqAnswer.style.opacity = "1";
+        }, 10);
+      }
+    });
+  });
+</script>
+
+<style>
+  .faq-article {
+    transition: background-color 0.3s ease-in-out;
+  }
+
+  .faq-answer {
+    max-height: 0;
+    opacity: 0;
+    transition:
+      max-height 0.5s ease-in-out,
+      opacity 0.5s ease-in-out;
+    overflow: hidden;
+  }
+
+  .faq-open .faq-answer {
+    max-height: 500px;
+    opacity: 1;
+  }
+</style>
