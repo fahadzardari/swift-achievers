@@ -3,7 +3,16 @@ import Image from "astro/components/Image.astro";
 import Logo from "../assets/logo.svg";
 const links = [
   { name: "Home", href: "/" },
-  { name: "Services", href: "/services" },
+  { 
+    name: "Services", 
+    href: "/services",
+    dropdown: [
+      { name: "Amazon Store Creation", href: "/services/amazon-store-creation" },
+      { name: "Amazon Marketing Services", href: "/services/marketing" },
+      { name: "Amazon Product Inventory", href: "/services/inventory" },
+      { name: "Amazon SEO Services", href: "/services/seo" }
+    ]
+  },
   { name: "Amazon FBA Automation", href: "/amazon-fba-automation" },
   { name: "About Us", href: "/about-us" },
   { name: "Contact Us", href: "/contact-us" },
@@ -29,9 +38,47 @@ const currentPath = Astro.url.pathname;
       {
         links.map((link) => (
           <li
-            class={`3xl:text-base cursor-pointer text-[10px] text-white md:text-[10px] xl:text-sm ${currentPath === link.href ? "font-semibold" : ""}`}
+            class={`3xl:text-base cursor-pointer text-[10px] text-white md:text-[10px] xl:text-sm ${
+              currentPath === link.href || (link.dropdown && link.dropdown.some(item => currentPath === item.href)) 
+                ? "font-semibold" 
+                : ""
+            }`}
           >
-            <a href={link.href}>{link.name}</a>
+            {link.dropdown ? (
+              <div class="group relative">
+                <button class="inline-flex items-center">
+                  {link.name}
+                  <svg 
+                    xmlns="http://www.w3.org/2000/svg" 
+                    class="ml-1 h-3 w-3" 
+                    fill="none" 
+                    viewBox="0 0 24 24" 
+                    stroke="currentColor"
+                  >
+                    <path 
+                      stroke-linecap="round" 
+                      stroke-linejoin="round" 
+                      stroke-width="2" 
+                      d="M19 9l-7 7-7-7" 
+                    />
+                  </svg>
+                </button>
+                <div class="absolute left-0 top-full z-10 mt-2 hidden min-w-[200px] rounded-md border border-white/30 bg-[#040243]/90 py-2 shadow-lg backdrop-blur-sm group-hover:block">
+                  {link.dropdown.map((dropdownItem) => (
+                    <a 
+                      href={dropdownItem.href}
+                      class={`block px-4 py-2 text-[10px] hover:bg-white/10 xl:text-xs ${
+                        currentPath === dropdownItem.href ? "font-semibold" : ""
+                      }`}
+                    >
+                      {dropdownItem.name}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            ) : (
+              <a href={link.href}>{link.name}</a>
+            )}
           </li>
         ))
       }
@@ -90,12 +137,49 @@ const currentPath = Astro.url.pathname;
         {
           links.map((link) => (
             <li class="py-2">
-              <a
-                href={link.href}
-                class={`block rounded-md px-3 py-2 text-lg text-white hover:bg-white/10 ${currentPath === link.href ? "bg-white/10 font-semibold" : ""}`}
-              >
-                {link.name}
-              </a>
+              {link.dropdown ? (
+                <div>
+                  <button 
+                    class="flex w-full items-center justify-between rounded-md px-3 py-2 text-lg text-white hover:bg-white/10"
+                    data-dropdown-toggle
+                  >
+                    {link.name}
+                    <svg 
+                      xmlns="http://www.w3.org/2000/svg" 
+                      class="dropdown-icon h-4 w-4 transition-transform" 
+                      fill="none" 
+                      viewBox="0 0 24 24" 
+                      stroke="currentColor"
+                    >
+                      <path 
+                        stroke-linecap="round" 
+                        stroke-linejoin="round" 
+                        stroke-width="2" 
+                        d="M19 9l-7 7-7-7" 
+                      />
+                    </svg>
+                  </button>
+                  <div class="mobile-dropdown mt-1 hidden pl-4">
+                    {link.dropdown.map((dropdownItem) => (
+                      <a
+                        href={dropdownItem.href}
+                        class={`block rounded-md px-3 py-2 text-base text-white hover:bg-white/10 ${
+                          currentPath === dropdownItem.href ? "bg-white/10 font-semibold" : ""
+                        }`}
+                      >
+                        {dropdownItem.name}
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              ) : (
+                <a
+                  href={link.href}
+                  class={`block rounded-md px-3 py-2 text-lg text-white hover:bg-white/10 ${currentPath === link.href ? "bg-white/10 font-semibold" : ""}`}
+                >
+                  {link.name}
+                </a>
+              )}
             </li>
           ))
         }
@@ -149,5 +233,29 @@ const currentPath = Astro.url.pathname;
     mobileLinks.forEach((link) => {
       link.addEventListener("click", closeSidebar);
     });
+    
+    // Handle mobile dropdown toggles
+    const dropdownToggles = document.querySelectorAll("[data-dropdown-toggle]");
+    dropdownToggles.forEach((toggle) => {
+      toggle.addEventListener("click", () => {
+        const dropdown = toggle.nextElementSibling;
+        const icon = toggle.querySelector(".dropdown-icon");
+        
+        dropdown.classList.toggle("hidden");
+        icon.classList.toggle("rotate-180");
+      });
+    });
   });
 </script>
+
+<style>
+  /* Smooth transitions for dropdown */
+  .mobile-dropdown {
+    transition: all 0.3s ease;
+  }
+  
+  /* Ensure dropdown items have pointer cursor */
+  .group:hover {
+    cursor: pointer;
+  }
+</style>

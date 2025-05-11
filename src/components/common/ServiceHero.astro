@@ -1,0 +1,139 @@
+---
+import DefaultHero from "../../assets/hero/home.png";
+import Image from "astro/components/Image.astro";
+const {
+  backgroundImage = DefaultHero,
+  title = "",
+  subheading = "",
+  descriptionHeading = "",
+  description = "",
+  bulletPoints = [],
+} = Astro.props;
+---
+
+<header class="relative flex min-h-screen items-center pt-7">
+  <div class="absolute inset-0 -z-50">
+    <Image
+      src={backgroundImage}
+      alt="Hero background"
+      class="h-full w-full object-cover"
+      width={1920}
+      height={1080}
+    />
+    <div
+      class="absolute inset-0 top-auto bottom-0 bg-linear-to-b from-transparent from-90% to-[#040243]"
+    >
+    </div>
+  </div>
+  <div class="content container flex justify-between gap-x-4 items-center">
+    <div class="w-full md:w-3/4 xl:w-[65%]">
+      {
+        subheading != "" && (
+          <h3 class="3xl:text-2xl font-semibold text-white md:text-base lg:text-lg xl:text-xl">
+            {subheading}
+          </h3>
+        )
+      }
+      <h1
+        class="3xl:text-[70px] mt-4 text-4xl font-semibold text-white sm:text-5xl lg:text-5xl xl:mt-6 xl:text-6xl xl:leading-[66px] 2xl:text-[64px] 2xl:leading-[74px]"
+      >
+        {title}
+      </h1>
+      {
+        descriptionHeading != "" && (
+          <p class="3xl:text-2xl mt-4 font-semibold text-white md:mt-6 md:text-base lg:text-lg xl:mt-8 xl:text-xl 2xl:mt-10">
+            {descriptionHeading}
+          </p>
+        )
+      }
+      <p
+        class="mt-3 max-w-[714px] text-xs text-[#ffffff] md:text-xs lg:mt-5 lg:text-sm xl:text-base"
+      >
+        {description}
+      </p>
+      {
+        bulletPoints.length > 0 && (
+          <div class="mt-8 mb-16 grid grid-cols-2 gap-4">
+            {bulletPoints.map((point) => (
+              <div class="flex items-center gap-x-2">
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 18 18"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M13.1667 1.78332C14.4236 2.50904 15.4692 3.55043 16.1999 4.80441C16.9307 6.05839 17.3212 7.48147 17.3329 8.93277C17.3447 10.3841 16.9771 11.8133 16.2668 13.0789C15.5564 14.3445 14.5278 15.4027 13.2828 16.1486C12.0378 16.8945 10.6196 17.3023 9.1685 17.3317C7.71744 17.3611 6.28387 17.011 5.00971 16.316C3.73555 15.6211 2.66497 14.6054 1.90397 13.3696C1.14297 12.1337 0.717922 10.7206 0.670915 9.26999L0.666748 8.99999L0.670915 8.72999C0.717584 7.29082 1.13637 5.88829 1.88645 4.65915C2.63652 3.43001 3.69229 2.4162 4.95082 1.71656C6.20936 1.01692 7.6277 0.655322 9.06759 0.667023C10.5075 0.678724 11.9198 1.06332 13.1667 1.78332ZM12.0892 6.74416C11.9458 6.60068 11.7548 6.51449 11.5523 6.50175C11.3498 6.48902 11.1496 6.55062 10.9892 6.67499L10.9109 6.74416L8.16675 9.48749L7.08925 8.41082L7.01091 8.34166C6.85057 8.21737 6.65039 8.15585 6.44792 8.16862C6.24545 8.18139 6.05459 8.26759 5.91113 8.41104C5.76768 8.5545 5.68148 8.74536 5.66871 8.94783C5.65594 9.1503 5.71746 9.35048 5.84175 9.51082L5.91092 9.58916L7.57758 11.2558L7.65592 11.325C7.80206 11.4384 7.98178 11.4999 8.16675 11.4999C8.35172 11.4999 8.53144 11.4384 8.67758 11.325L8.75591 11.2558L12.0892 7.92249L12.1584 7.84416C12.2828 7.68382 12.3444 7.48361 12.3317 7.28109C12.3189 7.07857 12.2327 6.88765 12.0892 6.74416Z"
+                    fill="#FD34FC"
+                  />
+                </svg>
+
+                <span class="text-xs text-[#ffffff] capitalize md:text-xs lg:text-sm xl:text-base">
+                  {point}
+                </span>
+              </div>
+            ))}
+          </div>
+        )
+      }
+      <div class="mt-4 flex gap-x-4">
+        <a
+          class="bg-gradient cursor-pointer rounded-full px-6 py-2 text-[11px] text-white md:text-xs lg:text-sm xl:text-base"
+        >
+          Live Chat
+        </a>
+        <a
+          class="cursor-pointer rounded-full border px-6 py-2 text-[11px] text-white md:text-xs lg:text-sm xl:text-base"
+        >
+          +1 (773) 312 4788
+        </a>
+      </div>
+    </div>
+    <div
+      class=" bg-[#bababa]/25 p-12  rounded-md border-gradient backdrop-blur-3xl"
+    >
+      <form class="mt-8 flex w-full flex-col gap-y-4">
+        <div>
+          <input
+            type="text"
+            class="mt-1 w-full rounded-md bg-white px-4 py-3 text-xs text-black focus:outline-none lg:text-sm "
+            name="name"
+            placeholder="Name"
+          />
+        </div>
+        <div>
+         
+          <input
+            type="email"
+            class="mt-1 w-full rounded-md bg-white px-4 py-3 text-xs text-black focus:outline-none lg:text-sm "
+            name="email"
+            placeholder="Email"
+          />
+        </div>
+        <div>
+       
+          <input
+            type="text"
+            class="mt-1 w-full rounded-md bg-white px-4 py-3 text-xs text-black focus:outline-none lg:text-sm "
+            name="phone"
+            placeholder="Phone"
+          />
+        </div>
+        <div>
+          <textarea
+            rows="8"
+            class="mt-1 w-full rounded-md bg-white px-4 py-3 text-xs text-black focus:outline-none lg:text-sm "
+            name="message"
+            placeholder="Message"
+            ></textarea>
+        </div>
+        <button
+          class="bg-gradient w-full cursor-pointer rounded-full px-6 py-2 text-[11px] text-white md:text-xs lg:text-sm xl:text-base"
+        >
+          Get Free Consultation
+        </button>
+      </form>
+    </div>
+  </div>
+</header>
