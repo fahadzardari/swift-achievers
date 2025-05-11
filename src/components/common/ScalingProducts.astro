@@ -3,6 +3,7 @@ import Heading from "./Heading.astro";
 ---
 
 <section
+  id="scaling-products-section"
   class="container flex flex-col items-center justify-center gap-y-6 py-12 text-white"
 >
   <div class="max-w-[1100px] text-center">
@@ -22,67 +23,198 @@ import Heading from "./Heading.astro";
     </p>
   </div>
   <div
+    id="scaling-products-stats"
     class="flex w-full flex-wrap gap-x-4 gap-y-6 md:justify-between md:gap-x-8 lg:gap-x-10 xl:gap-x-12 xl:gap-y-0"
   >
-    <div class="flex flex-col">
+    <div id="stat-box-1" class="flex flex-col">
       <h1
+        id="stat-number-1"
+        data-value="225"
         class="3xl:text-[70px] text-4xl text-white sm:text-5xl lg:text-5xl xl:mt-6 xl:text-6xl xl:leading-[66px] 2xl:text-[64px] 2xl:leading-[74px]"
       >
-        225 +
+        0
       </h1>
-      <span class="text-xs lg:text-sm 2xl:text-[18px]">
+      <span id="stat-text-1" class="text-xs lg:text-sm 2xl:text-[18px]">
         Dedicated Amazon <br /> Marketing Specialist
       </span>
     </div>
-    <div class="flex flex-col">
+    <div id="stat-box-2" class="flex flex-col">
       <h1
+        id="stat-number-2"
+        data-value="96"
         class="3xl:text-[70px] text-4xl text-white sm:text-5xl lg:text-5xl xl:mt-6 xl:text-6xl xl:leading-[66px] 2xl:text-[64px] 2xl:leading-[74px]"
       >
-        96 %
+        0
       </h1>
-      <span class="text-xs lg:text-sm 2xl:text-[18px]">
+      <span id="stat-text-2" class="text-xs lg:text-sm 2xl:text-[18px]">
         Unmatched Client <br /> Satisfaction
       </span>
     </div>
-    <div class="flex flex-col">
+    <div id="stat-box-3" class="flex flex-col">
       <h1
+        id="stat-number-3"
+        data-value="2500"
         class="3xl:text-[70px] text-4xl text-white sm:text-5xl lg:text-5xl xl:mt-6 xl:text-6xl xl:leading-[66px] 2xl:text-[64px] 2xl:leading-[74px]"
       >
-        2500 +
+        0
       </h1>
-      <span class="text-xs lg:text-sm 2xl:text-[18px]"> Daily Visitors </span>
+      <span id="stat-text-3" class="text-xs lg:text-sm 2xl:text-[18px]">
+        Daily Visitors
+      </span>
     </div>
-    <div class="flex flex-col">
+    <div id="stat-box-4" class="flex flex-col">
       <h1
+        id="stat-number-4"
+        data-value="20"
         class="3xl:text-[70px] text-4xl text-white sm:text-5xl lg:text-5xl xl:mt-6 xl:text-6xl xl:leading-[66px] 2xl:text-[64px] 2xl:leading-[74px]"
       >
-        20 +
+        0
       </h1>
-      <span class="text-xs lg:text-sm 2xl:text-[18px]">
+      <span id="stat-text-4" class="text-xs lg:text-sm 2xl:text-[18px]">
         Years of <br /> Experience
       </span>
     </div>
-    <div class="flex flex-col">
+    <div id="stat-box-5" class="flex flex-col">
       <h1
+        id="stat-number-5"
+        data-value="15"
         class="3xl:text-[70px] text-4xl text-white sm:text-5xl lg:text-5xl xl:mt-6 xl:text-6xl xl:leading-[66px] 2xl:text-[64px] 2xl:leading-[74px]"
       >
-        15 +
+        0
       </h1>
-      <span class="text-xs lg:text-sm 2xl:text-[18px]">
+      <span id="stat-text-5" class="text-xs lg:text-sm 2xl:text-[18px]">
         Data-driven <br /> Strategies
       </span>
     </div>
   </div>
-  <div class="mt-4 flex gap-x-4">
+  <div id="scaling-products-cta" class="mt-4 flex gap-x-4">
     <a
+      id="scaling-products-quote"
       class="bg-gradient cursor-pointer rounded-full px-6 py-2 text-[11px] text-white md:text-xs lg:text-sm xl:text-base"
     >
       Get a Quote
     </a>
     <a
+      id="scaling-products-phone"
       class="cursor-pointer rounded-full border px-6 py-2 text-[11px] text-white md:text-xs lg:text-sm xl:text-base"
     >
       +1 (773) 312 4788
     </a>
   </div>
 </section>
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  import SplitType from "split-type";
+
+  document.addEventListener("DOMContentLoaded", () => {
+    // Register ScrollTrigger plugin
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Initialize SplitType for text elements
+    const scalingHeading = new SplitType("#scaling-products-heading", {
+      types: "words,chars",
+    });
+
+    const scalingParagraph = new SplitType("#scaling-products-paragraph", {
+      types: "lines",
+    });
+
+    // Create a timeline for the text animations with scrub
+    const textTl = gsap.timeline({
+      scrollTrigger: {
+        trigger: "#scaling-products-section",
+        start: "top 80%",
+        end: "center 50%",
+        scrub: 0.6,
+        toggleActions: "play none none reverse",
+      },
+    });
+
+    // Heading animation
+    textTl.fromTo(
+      scalingHeading.chars,
+      {
+        opacity: 0,
+        y: 20,
+      },
+      {
+        opacity: 1,
+        y: 0,
+        stagger: 0.01,
+        duration: 0.5,
+      },
+      0,
+    );
+
+    // Paragraph animation
+    textTl.fromTo(
+      scalingParagraph.lines,
+      {
+        opacity: 0,
+        y: 15,
+      },
+      {
+        opacity: 1,
+        y: 0,
+        stagger: 0.1,
+        duration: 0.5,
+      },
+      0.3,
+    );
+
+    // Counter animation that runs once
+    const statNumbers = document.querySelectorAll('[id^="stat-number-"]');
+
+    statNumbers.forEach((statNumber) => {
+      // Get the target value from data attribute
+      const value = parseInt(statNumber.dataset.value);
+
+      // Determine if there should be a suffix based on the data value
+      // For example, stat-number-2 with data-value="96" might need "%"
+      let suffix = "";
+      if (statNumber.id === "stat-number-2") suffix = "%";
+      if (statNumber.id === "stat-number-1") suffix = "+";
+      if (statNumber.id === "stat-number-3") suffix = "+";
+      if (statNumber.id === "stat-number-4") suffix = "+";
+      if (statNumber.id === "stat-number-5") suffix = "+";
+
+      // Create a separate timeline for each counter that runs only once
+      const counterTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: statNumber,
+          start: "top 80%",
+          toggleActions: "play none none none", // Play once and don't revert
+          once: true, // This ensures it only runs once
+        },
+      });
+
+      // Counter animation
+      counterTl.to(statNumber, {
+        duration: 2,
+        ease: "power2.out",
+        onUpdate: function () {
+          // Calculate the current value based on progress
+          const progress = counterTl.progress();
+          const currentValue = Math.floor(progress * value);
+          statNumber.innerText = currentValue + suffix;
+        },
+        onComplete: function () {
+          // Set the exact final value
+          statNumber.innerText = value + suffix;
+        },
+      });
+    });
+
+    // Rest of the animations...
+  });
+</script>
+
+<style>
+  [id^="stat-box-"] {
+    transition: transform 0.3s ease;
+    cursor: pointer;
+  }
+
+  /* Removed gradient styling to keep numbers white */
+</style>

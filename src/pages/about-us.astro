@@ -5,6 +5,9 @@ import Consultants from "../components/home/Consultants.astro";
 import Testimonials from "../components/home/Testimonials.astro";
 import HeroBG from "../assets/hero/about-us.png";
 import ScalingProducts from "../components/common/ScalingProducts.astro";
+import UpscaleBusiness from "../components/services/UpscaleBusiness.astro";
+import ServiceInfoHorizontal from "../components/services/ServiceInfoHorizontal.astro";
+import Storefront from "../assets/services/amazon-store-creation/storefront.png";
 ---
 
 <Layout title="About Us | Swift Achievers">
@@ -14,6 +17,17 @@ import ScalingProducts from "../components/common/ScalingProducts.astro";
     description="AMZ Inventor has tamed the clutter of e-commerce to create forward-thinking amazon outsourcing services, with effective marketing and brand building plans. We cater brands of all sizes and niches, and use our module to automate their reach and sales."
   />
 
+  <div class="container mx-auto">
+    <ServiceInfoHorizontal
+      image={Storefront}
+      title="Thrive and Grow with AMZ Inventor"
+      titleId="fba-automation-heading"
+      description="Our most successful campaigns always employ both smart decisions and intelligent implementation for brands to take on a journey that keeps giving. We present the strategies that we believe are viable investments for brands who look to dominate the Amazon marketplace. We strategize, manage, and dramatically lower all barriers to entry by keeping current."
+      descriptionId="fba-automation-paragraph"
+    />
+  </div>
+
+  <UpscaleBusiness />
   <Consultants />
   <ScalingProducts />
   <Testimonials />

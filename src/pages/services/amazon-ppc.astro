@@ -1,0 +1,104 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import HeroBG from "../../assets/hero/amazon-store-creation.png";
+import ServiceHero from "../../components/common/ServiceHero.astro";
+import ServiceInfoHorizontal from "../../components/services/ServiceInfoHorizontal.astro";
+import ServiceInfoHorizontalReverse from "../../components/services/ServiceInfoHorizontalReverse.astro";
+import WhyUs from "../../components/home/WhyUs.astro";
+import Testimonials from "../../components/home/Testimonials.astro";
+import UpscaleBusiness from "../../components/services/UpscaleBusiness.astro";
+import BrandStoreEstablished from "../../components/services/BrandStoreEstablished.astro";
+import BrandImage from "../../assets/services/amazon-product-hunting/brand-store.png";
+import PPCImage from "../../assets/services/amazon-ppc/ppc.png";
+---
+
+<Layout title="Amazon PPC | Swift Achievers">
+  <ServiceHero
+    backgroundImage={HeroBG}
+    title="Amazon Ppc Agency Complete Management Scaling For You"
+    subheading="Manage Amazon Ppc"
+    description="The Amazon PPC agency AMZ Inventor keeps firms up-to-date by curbing excessive expenses, reducing competition, and tailoring ads to specific objectives. In order to ensure that our campaigns function at their peak, we design, build, audit, and optimize them as if we were going to get them wrong the first time. Our Amazon PPC agency provides the following:"
+    bulletPoints={[
+      "Sponsored Display ads",
+      "Sponsored Brand ads",
+      "Sponsored Product ads",
+      "Affiliate Marketing",
+      "Amazon Demand Side Platform",
+    ]}
+  />
+  <div class="container mx-auto flex flex-col gap-y-16 py-12">
+    <ServiceInfoHorizontal
+      image={PPCImage}
+      title="Amazon Digital Marketing"
+      titleId="digital-marketing-heading"
+      description="Campaigns change over time, with the prior turning obsolete. Our routine includes keeping track of those developments and adjusting to them. Our Amazon digital marketing experts base their marketing strategies on outcome-driven and data-supported methodologies in order to keep expenses in check and manage bids for the best outcomes."
+      descriptionId="digital-marketing-paragraph"
+      bulletPointHeadings={[""]}
+      bulletPoints={[
+        [
+          "Product keywords",
+          "Ad strategy",
+          "Ad creation",
+          "Campaign set-up",
+          "Campaign management",
+        ],
+      ]}
+    />
+
+    <ServiceInfoHorizontalReverse
+      image={PPCImage}
+      imageAlt="Amazon PPC Management"
+      title="Amazon PPC"
+      titleId="amazon-ppc-heading"
+      description="AMZ Inventor – Among The Leading Amazon PPC Agencies<br/><br/>AMZ Inventor makes sure that organizations achieve their marketing objectives by implementing clever ad placement and strategically utilizing Amazon PPC. We love to see your products appear in the searches of your target market with the help of our Amazon PPC management service. With our PPC Amazon solution, you may get the following:"
+      descriptionId="amazon-ppc-paragraph"
+      bulletPointHeadings={[""]}
+      bulletPoints={[
+        [
+          "Sponsored product ads",
+          "Sponsored brand ads",
+          "Interest-based targeting",
+          "Audience retargeting",
+        ],
+      ]}
+    />
+
+    <ServiceInfoHorizontal
+      image={PPCImage}
+      title="AMAZON SEO"
+      titleId="amazon-seo-heading"
+      description="Another Amazon PPC service is our goal to position brands not just in search results but in the brains of their target market. We do this by installing positive impacts on the products and ultimately reach our goal of visibility and branding by optimizing listings and rankings. A cure for stumped businesses is PPC advertising Amazon ranks."
+      descriptionId="amazon-seo-paragraph"
+      bulletPointHeadings={[""]}
+      bulletPoints={[
+        [
+          "Organic optimization",
+          "Keyword targeting",
+          "Long-term branding results",
+          "Positive conversion rates",
+        ],
+      ]}
+    />
+
+    <ServiceInfoHorizontalReverse
+      image={PPCImage}
+      title="AFFILIATE MARKETING"
+      titleId="affiliate-marketing-heading"
+      description="In many instances, affiliate marketing, which precisely targets the market through a reliable source, is the only method for Amazon PPC agencies to capitalize on growth on e-commerce platforms. AMZ Inventor uses niche influencers to provide quality leads."
+      descriptionId="affiliate-marketing-paragraph"
+      bulletPointHeadings={[""]}
+      bulletPoints={[
+        [
+          "Niche influencers",
+          "Quality lead generation",
+          "Market targeting",
+          "Growth optimization",
+        ],
+      ]}
+    />
+  </div>
+  <WhyUs />
+  <UpscaleBusiness />
+  <BrandStoreEstablished image={BrandImage} />
+  <Testimonials />
+</Layout>

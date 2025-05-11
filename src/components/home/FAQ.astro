@@ -3,16 +3,19 @@ import Heading from "../common/Heading.astro";
 import QuestionFAQ from "./QuestionFAQ.astro";
 ---
 
-<section class="container flex flex-col gap-y-6 py-12">
+<section
+  class="faq-section container flex flex-col gap-y-6 py-12"
+  data-section-id={Math.random().toString(36).substr(2, 9)}
+>
   <div class="max-w-[900px]">
     <Heading id="faqs-heading" title="Frequently Asked Questions" />
-    <p class="mt-4 text-xs text-white lg:text-sm 2xl:text-base">
+    <p class="faq-description mt-4 text-xs text-white lg:text-sm 2xl:text-base">
       We aim to aid your progress online. However, if there's a query not
       addressed on our site, don't hesitate to contact our customer
       representative.
     </p>
   </div>
-  <div class="my-4 flex flex-col">
+  <div class="faq-questions-container my-4 flex flex-col">
     <QuestionFAQ />
     <QuestionFAQ />
     <QuestionFAQ />
@@ -22,3 +25,102 @@ import QuestionFAQ from "./QuestionFAQ.astro";
     <QuestionFAQ />
   </div>
 </section>
+
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  // Register ScrollTrigger plugin
+  gsap.registerPlugin(ScrollTrigger);
+
+  // Select all instances of this component (in case there are multiple)
+  const faqSections = document.querySelectorAll(".faq-section");
+
+  faqSections.forEach((section) => {
+    const sectionId = section.dataset.sectionId;
+
+    // Get elements to animate
+    const heading = section.querySelector("#faqs-heading");
+    const description = section.querySelector(".faq-description");
+    const questions = section.querySelectorAll(
+      ".faq-questions-container > div",
+    );
+
+    // Create timeline with ScrollTrigger
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: section,
+        start: "top bottom", // Start animation when the top of the section hits the bottom of viewport
+        end: "center center", // End animation when the center of the section is at center of viewport
+        scrub: 1, // Smooth scrubbing effect tied to scroll position
+        toggleActions: "restart none none reverse",
+        id: `faq-section-${sectionId}`,
+        // markers: true, // Uncomment for debugging
+        once: false, // Animation plays every time user scrolls to section
+      },
+    });
+
+    // Animate heading
+    if (heading) {
+      tl.fromTo(
+        heading,
+        { y: 30, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.4 },
+        0,
+      );
+    }
+
+    // Animate description
+    if (description) {
+      tl.fromTo(
+        description,
+        { y: 20, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.4 },
+        0.1,
+      );
+    }
+
+    // Animate FAQ items with staggered effect
+    if (questions.length > 0) {
+      tl.fromTo(
+        questions,
+        {
+          y: 40,
+          opacity: 0,
+          scale: 0.97,
+        },
+        {
+          y: 0,
+          opacity: 1,
+          scale: 1,
+          stagger: 0.08, // Stagger each question appearance
+          duration: 0.6,
+          ease: "power2.out",
+        },
+        0.2,
+      );
+
+      // Add click interaction effects independent of scroll animation
+      questions.forEach((question) => {
+        // Get the question header (the clickable part)
+        const header = question.querySelector(".question-header") || question;
+
+        header.addEventListener("click", () => {
+          // Add a subtle pulse animation when clicked
+          gsap.to(question, {
+            scale: 1.02,
+            duration: 0.2,
+            ease: "power1.out",
+            onComplete: () => {
+              gsap.to(question, {
+                scale: 1,
+                duration: 0.3,
+                ease: "power2.out",
+              });
+            },
+          });
+        });
+      });
+    }
+  });
+</script>

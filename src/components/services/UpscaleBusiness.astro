@@ -1,0 +1,187 @@
+---
+import UpscaleBusinessCard from "./UpscaleBusinessCard.astro";
+const {
+  cards = [
+    {
+      title: "Data Push",
+      description:
+        "We want to ensure you reach your full potential, hence why all of our strategic decisions and consultations are backed by data and facts.",
+    },
+    {
+      title: "Growth Approach",
+      description:
+        "Our service ethos is focused on a growth-hacking model, therefore we work on intelligent execution of our amazon management & marketing strategies.",
+    },
+    {
+      title: "Operational Excellence",
+      description:
+        "We love cutting-through the complexities of the e-Commerce ecosystem, and always strive to achieve excellence using our knowledge and creative solutions.",
+    },
+    {
+      title: "STRATEGY INSIGHTS",
+      description:
+        "Our love for data is unending, and we strive to assess our strategy insights very critically to improve their performance and relevancy.",
+    },
+    {
+      title: "COST-EFFICIENCY",
+      description:
+        "We are not only focused; we are also customer-centric. Our services are designed to liberate small and medium-size brands with cost-efficient plans.",
+    },
+    {
+      title: "DREAM-TEAM",
+      description:
+        "We are a team of seasoned amazon marketing specialists and growth hackers, dedicated for one goal – to skyrocket online sales.",
+    },
+  ],
+} = Astro.props;
+---
+
+<section
+  id="upscale-business-section"
+  class="container mx-auto flex flex-col items-center justify-center py-12 text-white"
+>
+  <h1
+    id="upscale-business-heading"
+    class="3xl:text-[46px] text-2xl font-semibold md:text-3xl lg:text-4xl xl:text-[40px]"
+  >
+    Ready To Upscale Your E-Commerce Business?
+  </h1>
+  <p
+    id="upscale-business-description"
+    class="mt-4 max-w-[821px] text-center text-xs lg:text-sm 2xl:text-base"
+  >
+    We have garnered the experience necessary to achieve explosive e-Commerce
+    growth utilizing our best expertise in the tactics mentioned below:
+  </p>
+  <div
+    id="upscale-business-cards"
+    class="mt-16 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3"
+  >
+    {
+      cards.map((card, index) => {
+        return (
+          <div id={`upscale-business-card-${index}`} class="card-wrapper">
+            <UpscaleBusinessCard
+              title={card.title}
+              description={card.description}
+            />
+          </div>
+        );
+      })
+    }
+  </div>
+</section>
+
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  import SplitType from "split-type";
+
+  document.addEventListener("DOMContentLoaded", () => {
+    // Register ScrollTrigger plugin
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Initialize SplitType for text elements
+    const upscaleHeading = new SplitType("#upscale-business-heading", {
+      types: "words,chars",
+    });
+
+    const upscaleDescription = new SplitType("#upscale-business-description", {
+      types: "lines",
+    });
+
+    // Create a timeline for the section
+    const upscaleTl = gsap.timeline({
+      scrollTrigger: {
+        trigger: "#upscale-business-section",
+        start: "top 80%",
+        end: "center 30%",
+        scrub: 0.8,
+        toggleActions: "play none none reverse",
+      },
+    });
+
+    // Animate the heading with staggered characters
+    upscaleTl.fromTo(
+      upscaleHeading.chars,
+      {
+        opacity: 0,
+        y: 35,
+      },
+      {
+        opacity: 1,
+        y: 0,
+        stagger: 0.02,
+        duration: 0.4,
+        ease: "power2.out",
+      },
+      0,
+    );
+
+    // Animate the description lines
+    upscaleTl.fromTo(
+      upscaleDescription.lines,
+      {
+        opacity: 0,
+        y: 20,
+      },
+      {
+        opacity: 1,
+        y: 0,
+        stagger: 0.1,
+        duration: 0.5,
+      },
+      0.3,
+    );
+
+    // Animate the cards with staggered effect
+    const cards = document.querySelectorAll('[id^="upscale-business-card-"]');
+
+    cards.forEach((card, index) => {
+      gsap.fromTo(
+        card,
+        {
+          opacity: 0,
+          y: 50,
+          scale: 0.9,
+        },
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 0.6,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: "#upscale-business-cards",
+            start: "top 75%",
+            end: "bottom 40%",
+            scrub: 0.6,
+            toggleActions: "play none none reverse",
+            id: `card-animation-${index}`,
+          },
+        },
+      );
+    });
+
+    // Add hover animations for cards
+    cards.forEach((card) => {
+      card.addEventListener("mouseenter", () => {
+        gsap.to(card, {
+          y: -10,
+          scale: 1.03,
+          duration: 0.3,
+          ease: "power2.out",
+        });
+      });
+
+      card.addEventListener("mouseleave", () => {
+        gsap.to(card, {
+          y: 0,
+          scale: 1,
+          duration: 0.3,
+          ease: "power2.in",
+        });
+      });
+    });
+  });
+</script>

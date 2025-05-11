@@ -1,0 +1,97 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import HeroBG from "../../assets/hero/amazon-store-creation.png";
+import ServiceHero from "../../components/common/ServiceHero.astro";
+import ServiceInfoHorizontal from "../../components/services/ServiceInfoHorizontal.astro";
+import ServiceInfoHorizontalReverse from "../../components/services/ServiceInfoHorizontalReverse.astro";
+import Testimonials from "../../components/home/Testimonials.astro";
+import UpscaleBusiness from "../../components/services/UpscaleBusiness.astro";
+import NicheImage from "../../assets/services/amazon-product-hunting/niche.png";
+import InventoryManagementImage from "../../assets/services/virtual-assistance/inventory-management.png";
+import BrandRegistryImage from "../../assets/services/virtual-assistance/brand-registry.png";
+---
+
+<Layout title="Virtual Assistance | Swift Achievers">
+  <ServiceHero
+    backgroundImage={HeroBG}
+    title="BEST VIRTUAL ASSISTANT SERVICES"
+    description="Our virtual assistant services help Amazon sellers manage their campaigns for scalable growth by directing their efforts and steering their campaigns. Our Virtual Assistant agency, AMZ Inventor, removes the stumbling hurdles and difficulties of Amazon account management, freeing sellers from operational gaps. Our Amazon VA provides:"
+    descriptionHeading="OFFERING EXCELLENCE"
+    bulletPoints={[
+      "Inventory Management",
+      "Catalog/Product organization",
+      "Pricing Strategy",
+      "Brand Registry",
+      "Case Management",
+      "Listing Management",
+    ]}
+  />
+  <div class="container mx-auto flex flex-col gap-y-16 py-12">
+    <ServiceInfoHorizontal
+      image={InventoryManagementImage}
+      title="Amazon VA; Inventory Management"
+      titleId="inventory-management-heading"
+      description="To automate your inventory, we consider the relevant factors and recommend fulfillment solutions. Amazon's virtual assistant is a great means to gradually scale your business on the world's largest e-commerce platform."
+      descriptionId="inventory-management-paragraph"
+      bulletPointHeadings={[""]}
+      bulletPoints={[
+        [
+          "Inventory level checks",
+          "Inventory sourcing",
+          "Re-order forecasts",
+          "Stock information",
+        ],
+      ]}
+    />
+    <ServiceInfoHorizontalReverse
+      imageAlt="Account Feedback Management"
+      title="Amazon VA; Account Feedback Management"
+      titleId="account-feedback-heading"
+      description="We are one of the virtual assistant agencies that study and monitor Amazon account feedback to aid you in using industry-leading strategies and avoiding mistakes with product placement and listings. There are always momentous changing and detailing made to suit the clients' preferences here at AMZ Inventor."
+      descriptionId="account-feedback-paragraph"
+      bulletPointHeadings={[""]}
+      bulletPoints={[
+        [
+          "Seller & product feedback monitoring",
+          "Product review and monitoring",
+          "Sequence email reviews",
+          "Cataloguing defect trends",
+        ],
+      ]}
+    />
+    <ServiceInfoHorizontal
+      image={BrandRegistryImage}
+      title="Brand Registry"
+      titleId="brand-registry-heading"
+      description="Our Virtual Assistant services alleviate your concern about Amazon brand registration since we have focused our efforts on process management. We meticulously handle paperwork and registry requirements and protect critical info for brands."
+      descriptionId="brand-registry-paragraph"
+      bulletPointHeadings={[""]}
+      bulletPoints={[
+        [
+          "Counterfeiters management",
+          "Launch protection",
+          "Documentation management",
+          "Brand initiation",
+        ],
+      ]}
+    />
+    <ServiceInfoHorizontalReverse
+      image={NicheImage}
+      title="Analytics & Reporting"
+      titleId="analytics-reporting-heading"
+      description="We evaluate and report the performance of accounts, including their listings, categorization information, inventory level checks, content, and central seller accounts, as your dependable Amazon virtual assistant and account manager. We provide useful insight to make decisions taking into consideration account analytics and performance statistics."
+      descriptionId="analytics-reporting-paragraph"
+      bulletPointHeadings={[""]}
+      bulletPoints={[
+        [
+          "Monthly analysis",
+          "Analytics reporting",
+          "Performance & Management",
+          "Case management",
+        ],
+      ]}
+    />
+  </div>
+  <UpscaleBusiness />
+  <Testimonials />
+</Layout>

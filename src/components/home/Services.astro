@@ -3,14 +3,17 @@ import Heading from "../common/Heading.astro";
 import ServiceCard from "./ServiceCard.astro";
 ---
 
-<section class="container my-24 text-white">
+<section
+  class="services-section container my-24 text-white"
+  data-section-id={Math.random().toString(36).substr(2, 9)}
+>
   <Heading title="Our Services" id="services-heading" />
   <div class="mt-2 flex items-center justify-between">
-    <p class="max-w-2/3 text-xs lg:text-sm 2xl:text-base">
+    <p class="services-description max-w-2/3 text-xs lg:text-sm 2xl:text-base">
       With our Amazon Marketing Services, we assist brands in establishing a
       growing business cycle through a flexible strategy to advertise on Amazon.
     </p>
-    <div class="item-center flex gap-x-3">
+    <div class="services-controls item-center flex gap-x-3">
       <button
         id="services-prev-button"
         class="cursor-pointer rounded-md bg-[#bababa]/25 px-1 py-2 opacity-50 disabled:cursor-not-allowed"
@@ -136,8 +139,14 @@ import ServiceCard from "./ServiceCard.astro";
   import Swiper from "swiper";
   import { Navigation } from "swiper/modules";
   import "swiper/css";
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  // Register ScrollTrigger plugin
+  gsap.registerPlugin(ScrollTrigger);
 
   document.addEventListener("DOMContentLoaded", () => {
+    // Initialize swiper
     const swiper = new Swiper("#services-swiper", {
       modules: [Navigation],
       slidesPerView: 1,
@@ -204,6 +213,129 @@ import ServiceCard from "./ServiceCard.astro";
 
     // Initial update
     updateButtonStates();
+
+    // Scroll-based animations
+    const serviceSections = document.querySelectorAll(".services-section");
+
+    serviceSections.forEach((section) => {
+      const sectionId = section.dataset.sectionId;
+
+      // Get elements to animate
+      const heading = section.querySelector("#services-heading");
+      const description = section.querySelector(".services-description");
+      const controls = section.querySelector(".services-controls");
+      const serviceCards = section.querySelectorAll(".swiper-slide");
+
+      // Create timeline with ScrollTrigger
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: section,
+          start: "top bottom", // Start when top of section hits bottom of viewport
+          end: "center center", // End when center of section hits center of viewport
+          scrub: 1, // Smooth scrubbing effect tied to scroll position
+          toggleActions: "restart none none reverse",
+          id: `services-section-${sectionId}`,
+          // markers: true, // Uncomment for debugging
+          once: false, // Animation plays every time
+        },
+      });
+
+      // Animate heading
+      if (heading) {
+        tl.fromTo(
+          heading,
+          { y: 30, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.4 },
+          0,
+        );
+      }
+
+      // Animate description and controls
+      if (description) {
+        tl.fromTo(
+          description,
+          { y: 20, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.4 },
+          0.1,
+        );
+      }
+
+      if (controls) {
+        tl.fromTo(
+          controls,
+          { y: 20, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.4 },
+          0.1,
+        );
+      }
+
+      // Animate service cards with a staggered effect
+      // We need special handling because of the Swiper
+      if (serviceCards.length > 0) {
+        // Initially hide all cards
+        gsap.set(serviceCards, { opacity: 0, y: 30, scale: 0.95 });
+
+        // Create a separate timeline for the cards to ensure they animate properly
+        tl.add(() => {
+          const cardsTl = gsap.timeline();
+
+          cardsTl.to(serviceCards, {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            stagger: 0.1,
+            duration: 0.5,
+            ease: "power2.out",
+            onComplete: () => {
+              // Add hover effects after initial animation
+            },
+          });
+
+          return cardsTl;
+        }, 0.2);
+      }
+
+      // Special animation for navigation buttons
+      const navButtons = [
+        document.getElementById("services-prev-button"),
+        document.getElementById("services-next-button"),
+      ];
+
+      navButtons.forEach((button) => {
+        if (button) {
+          // Add hover effect
+          button.addEventListener("mouseenter", () => {
+            gsap.to(button, {
+              backgroundColor: "rgba(253, 52, 252, 0.2)", // Matches your gradient color
+              scale: 1.05,
+              duration: 0.2,
+            });
+          });
+
+          button.addEventListener("mouseleave", () => {
+            gsap.to(button, {
+              backgroundColor: "rgba(186, 186, 186, 0.25)", // Original color
+              scale: 1,
+              duration: 0.2,
+            });
+          });
+
+          // Add click effect
+          button.addEventListener("click", () => {
+            gsap.to(button, {
+              scale: 0.95,
+              duration: 0.1,
+              onComplete: () => {
+                gsap.to(button, {
+                  scale: 1,
+                  duration: 0.1,
+                });
+              },
+            });
+          });
+        }
+      });
+    });
   });
 </script>
 

@@ -1,6 +1,7 @@
 ---
 import DefaultHero from "../../assets/hero/home.png";
 import Image from "astro/components/Image.astro";
+import FBAImage from "../../assets/hero/fba.png";
 const {
   backgroundImage = DefaultHero,
   title = "",
@@ -8,12 +9,17 @@ const {
   descriptionHeading = "",
   description = "",
   bulletPoints = [],
+  fba = false,
 } = Astro.props;
 ---
 
-<header class="relative flex min-h-screen items-center pt-7">
+<header
+  id="service-hero-section"
+  class="relative flex min-h-screen items-center pt-40 md:pt-9"
+>
   <div class="absolute inset-0 -z-50">
     <Image
+      id="service-hero-bg"
       src={backgroundImage}
       alt="Hero background"
       class="h-full w-full object-cover"
@@ -21,53 +27,71 @@ const {
       height={1080}
     />
     <div
+      id="service-hero-gradient"
       class="absolute inset-0 top-auto bottom-0 bg-linear-to-b from-transparent from-90% to-[#040243]"
     >
     </div>
   </div>
-  <div class="content container flex justify-between gap-x-4 items-center">
-    <div class="w-full md:w-3/4 xl:w-[65%]">
+  <div
+    class="content container flex flex-col gap-x-4 gap-y-8 md:flex-row md:items-center md:justify-between"
+  >
+    <div id="service-hero-content" class="w-full md:w-3/4 xl:w-[65%]">
       {
         subheading != "" && (
-          <h3 class="3xl:text-2xl font-semibold text-white md:text-base lg:text-lg xl:text-xl">
+          <h3
+            id="service-hero-subheading"
+            class="3xl:text-2xl font-semibold text-white md:text-base lg:text-lg xl:text-xl"
+          >
             {subheading}
           </h3>
         )
       }
       <h1
-        class="3xl:text-[70px] mt-4 text-4xl font-semibold text-white sm:text-5xl lg:text-5xl xl:mt-6 xl:text-6xl xl:leading-[66px] 2xl:text-[64px] 2xl:leading-[74px]"
+        id="service-hero-title"
+        class="3xl:text-[70px] text-4xl font-semibold text-white sm:text-5xl lg:text-5xl xl:text-6xl xl:leading-[66px] 2xl:text-[64px] 2xl:leading-[74px]"
       >
         {title}
       </h1>
       {
         descriptionHeading != "" && (
-          <p class="3xl:text-2xl mt-4 font-semibold text-white md:mt-6 md:text-base lg:text-lg xl:mt-8 xl:text-xl 2xl:mt-10">
+          <p
+            id="service-hero-desc-heading"
+            class="3xl:text-2xl mt-4 font-semibold text-white md:mt-6 md:text-base lg:text-lg xl:mt-8 xl:text-xl 2xl:mt-10"
+          >
             {descriptionHeading}
           </p>
         )
       }
       <p
+        id="service-hero-description"
         class="mt-3 max-w-[714px] text-xs text-[#ffffff] md:text-xs lg:mt-5 lg:text-sm xl:text-base"
-      >
-        {description}
-      </p>
+        set:html={description}
+      />
       {
         bulletPoints.length > 0 && (
-          <div class="mt-8 mb-16 grid grid-cols-2 gap-4">
-            {bulletPoints.map((point) => (
-              <div class="flex items-center gap-x-2">
-                <svg
-                  width="18"
-                  height="18"
-                  viewBox="0 0 18 18"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M13.1667 1.78332C14.4236 2.50904 15.4692 3.55043 16.1999 4.80441C16.9307 6.05839 17.3212 7.48147 17.3329 8.93277C17.3447 10.3841 16.9771 11.8133 16.2668 13.0789C15.5564 14.3445 14.5278 15.4027 13.2828 16.1486C12.0378 16.8945 10.6196 17.3023 9.1685 17.3317C7.71744 17.3611 6.28387 17.011 5.00971 16.316C3.73555 15.6211 2.66497 14.6054 1.90397 13.3696C1.14297 12.1337 0.717922 10.7206 0.670915 9.26999L0.666748 8.99999L0.670915 8.72999C0.717584 7.29082 1.13637 5.88829 1.88645 4.65915C2.63652 3.43001 3.69229 2.4162 4.95082 1.71656C6.20936 1.01692 7.6277 0.655322 9.06759 0.667023C10.5075 0.678724 11.9198 1.06332 13.1667 1.78332ZM12.0892 6.74416C11.9458 6.60068 11.7548 6.51449 11.5523 6.50175C11.3498 6.48902 11.1496 6.55062 10.9892 6.67499L10.9109 6.74416L8.16675 9.48749L7.08925 8.41082L7.01091 8.34166C6.85057 8.21737 6.65039 8.15585 6.44792 8.16862C6.24545 8.18139 6.05459 8.26759 5.91113 8.41104C5.76768 8.5545 5.68148 8.74536 5.66871 8.94783C5.65594 9.1503 5.71746 9.35048 5.84175 9.51082L5.91092 9.58916L7.57758 11.2558L7.65592 11.325C7.80206 11.4384 7.98178 11.4999 8.16675 11.4999C8.35172 11.4999 8.53144 11.4384 8.67758 11.325L8.75591 11.2558L12.0892 7.92249L12.1584 7.84416C12.2828 7.68382 12.3444 7.48361 12.3317 7.28109C12.3189 7.07857 12.2327 6.88765 12.0892 6.74416Z"
-                    fill="#FD34FC"
-                  />
-                </svg>
+          <div
+            id="service-hero-bullets"
+            class="mt-8 mb-16 grid grid-cols-2 gap-4"
+          >
+            {bulletPoints.map((point, index) => (
+              <div
+                id={`service-hero-bullet-${index}`}
+                class="flex items-center gap-x-2"
+              >
+                <div class="flex h-[18px] w-[18px] flex-shrink-0 items-center justify-center">
+                  <svg
+                    width="18"
+                    height="18"
+                    viewBox="0 0 18 18"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M13.1667 1.78332C14.4236 2.50904 15.4692 3.55043 16.1999 4.80441C16.9307 6.05839 17.3212 7.48147 17.3329 8.93277C17.3447 10.3841 16.9771 11.8133 16.2668 13.0789C15.5564 14.3445 14.5278 15.4027 13.2828 16.1486C12.0378 16.8945 10.6196 17.3023 9.1685 17.3317C7.71744 17.3611 6.28387 17.011 5.00971 16.316C3.73555 15.6211 2.66497 14.6054 1.90397 13.3696C1.14297 12.1337 0.717922 10.7206 0.670915 9.26999L0.666748 8.99999L0.670915 8.72999C0.717584 7.29082 1.13637 5.88829 1.88645 4.65915C2.63652 3.43001 3.69229 2.4162 4.95082 1.71656C6.20936 1.01692 7.6277 0.655322 9.06759 0.667023C10.5075 0.678724 11.9198 1.06332 13.1667 1.78332ZM12.0892 6.74416C11.9458 6.60068 11.7548 6.51449 11.5523 6.50175C11.3498 6.48902 11.1496 6.55062 10.9892 6.67499L10.9109 6.74416L8.16675 9.48749L7.08925 8.41082L7.01091 8.34166C6.85057 8.21737 6.65039 8.15585 6.44792 8.16862C6.24545 8.18139 6.05459 8.26759 5.91113 8.41104C5.76768 8.5545 5.68148 8.74536 5.66871 8.94783C5.65594 9.1503 5.71746 9.35048 5.84175 9.51082L5.91092 9.58916L7.57758 11.2558L7.65592 11.325C7.80206 11.4384 7.98178 11.4999 8.16675 11.4999C8.35172 11.4999 8.53144 11.4384 8.67758 11.325L8.75591 11.2558L12.0892 7.92249L12.1584 7.84416C12.2828 7.68382 12.3444 7.48361 12.3317 7.28109C12.3189 7.07857 12.2327 6.88765 12.0892 6.74416Z"
+                      fill="#FD34FC"
+                    />
+                  </svg>
+                </div>
 
                 <span class="text-xs text-[#ffffff] capitalize md:text-xs lg:text-sm xl:text-base">
                   {point}
@@ -77,63 +101,265 @@ const {
           </div>
         )
       }
-      <div class="mt-4 flex gap-x-4">
+      <div id="service-hero-cta" class="mt-4 flex gap-x-4">
         <a
+          id="service-hero-chat-btn"
           class="bg-gradient cursor-pointer rounded-full px-6 py-2 text-[11px] text-white md:text-xs lg:text-sm xl:text-base"
         >
           Live Chat
         </a>
         <a
+          id="service-hero-phone-btn"
           class="cursor-pointer rounded-full border px-6 py-2 text-[11px] text-white md:text-xs lg:text-sm xl:text-base"
         >
           +1 (773) 312 4788
         </a>
       </div>
     </div>
-    <div
-      class=" bg-[#bababa]/25 p-12  rounded-md border-gradient backdrop-blur-3xl"
-    >
-      <form class="mt-8 flex w-full flex-col gap-y-4">
-        <div>
-          <input
-            type="text"
-            class="mt-1 w-full rounded-md bg-white px-4 py-3 text-xs text-black focus:outline-none lg:text-sm "
-            name="name"
-            placeholder="Name"
-          />
-        </div>
-        <div>
-         
-          <input
-            type="email"
-            class="mt-1 w-full rounded-md bg-white px-4 py-3 text-xs text-black focus:outline-none lg:text-sm "
-            name="email"
-            placeholder="Email"
-          />
-        </div>
-        <div>
-       
-          <input
-            type="text"
-            class="mt-1 w-full rounded-md bg-white px-4 py-3 text-xs text-black focus:outline-none lg:text-sm "
-            name="phone"
-            placeholder="Phone"
-          />
-        </div>
-        <div>
-          <textarea
-            rows="8"
-            class="mt-1 w-full rounded-md bg-white px-4 py-3 text-xs text-black focus:outline-none lg:text-sm "
-            name="message"
-            placeholder="Message"
-            ></textarea>
-        </div>
-        <button
-          class="bg-gradient w-full cursor-pointer rounded-full px-6 py-2 text-[11px] text-white md:text-xs lg:text-sm xl:text-base"
+    {
+      !fba && (
+        <div
+          id="service-hero-form-container"
+          class="border-gradient max-w-[450px] rounded-md px-4 py-8 backdrop-blur-xl md:p-8"
         >
-          Get Free Consultation
-        </button>
-      </form>
-    </div>
+          <h1 class="mb-2 text-center text-2xl font-semibold text-white lg:text-3xl">
+            Get In Touch
+          </h1>
+          <p class="mb-8 text-center text-sm text-white lg:text-base">
+            Increase your Amazon store sales with our proven marketing
+            strategies.
+          </p>
+          <form id="service-hero-form" class="flex w-full flex-col gap-y-4">
+            <div id="service-hero-form-name-container">
+              <input
+                type="text"
+                id="service-hero-form-name"
+                class="mt-1 w-full rounded-md bg-white px-4 py-3 text-xs text-black focus:outline-none lg:text-sm"
+                name="name"
+                placeholder="Name"
+              />
+            </div>
+            <div id="service-hero-form-email-container">
+              <input
+                type="email"
+                id="service-hero-form-email"
+                class="mt-1 w-full rounded-md bg-white px-4 py-3 text-xs text-black focus:outline-none lg:text-sm"
+                name="email"
+                placeholder="Email"
+              />
+            </div>
+            <div id="service-hero-form-phone-container">
+              <input
+                type="text"
+                id="service-hero-form-phone"
+                class="mt-1 w-full rounded-md bg-white px-4 py-3 text-xs text-black focus:outline-none lg:text-sm"
+                name="phone"
+                placeholder="Phone"
+              />
+            </div>
+            <div id="service-hero-form-message-container">
+              <textarea
+                id="service-hero-form-message"
+                rows="8"
+                class="mt-1 w-full rounded-md bg-white px-4 py-3 text-xs text-black focus:outline-none lg:text-sm"
+                name="message"
+                placeholder="Message"
+              />
+            </div>
+            <button
+              id="service-hero-form-submit"
+              class="bg-gradient w-full cursor-pointer rounded-full px-6 py-2 text-[11px] text-white md:text-xs lg:text-sm xl:text-base"
+            >
+              Get Free Consultation
+            </button>
+          </form>
+        </div>
+      )
+    }
+    {
+      fba && (
+        <Image
+          src={FBAImage}
+          alt={"fba image"}
+          class={"w-auto max-w-[756px] md:w-1/2"}
+        />
+      )
+    }
   </div>
 </header>
+
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  import SplitType from "split-type";
+
+  // Register ScrollTrigger plugin
+  gsap.registerPlugin(ScrollTrigger);
+
+  document.addEventListener("DOMContentLoaded", () => {
+    // Check if we're on mobile
+    const isMobile = window.innerWidth < 768; // 768px is the md breakpoint in Tailwind
+
+    // Initialize SplitType for text elements
+    const heroTitle = new SplitType("#service-hero-title", {
+      types: "words,chars",
+    });
+    const heroSubheading = document.getElementById("service-hero-subheading");
+    const heroDescHeading = document.getElementById(
+      "service-hero-desc-heading",
+    );
+    const heroDescription = new SplitType("#service-hero-description", {
+      types: "lines",
+    });
+
+    // Create main timeline for initial load animations
+    const mainTl = gsap.timeline({ defaults: { ease: "power2.out" } });
+
+    // Add all animations to the main timeline in sequence
+
+    // Start with subheading if it exists
+    if (heroSubheading) {
+      mainTl.fromTo(
+        "#service-hero-subheading",
+        isMobile
+          ? { opacity: 0, y: -10 } // Mobile: vertical motion only
+          : { opacity: 0, x: -30 }, // Desktop: horizontal motion
+        isMobile
+          ? { opacity: 1, y: 0, duration: 0.6 }
+          : { opacity: 1, x: 0, duration: 0.6 },
+        0,
+      );
+    }
+
+    // Animate title with staggered characters
+    mainTl.fromTo(
+      heroTitle.chars,
+      { opacity: 0, y: 50 },
+      { opacity: 1, y: 0, stagger: 0.02, duration: 0.8 },
+      0.3,
+    );
+
+    // Animate description heading if it exists
+    if (heroDescHeading) {
+      mainTl.fromTo(
+        "#service-hero-desc-heading",
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, duration: 0.7 },
+        0.7,
+      );
+    }
+
+    // Animate description lines
+    mainTl.fromTo(
+      heroDescription.lines,
+      { opacity: 0, y: 20 },
+      { opacity: 1, y: 0, stagger: 0.1, duration: 0.7 },
+      0.9,
+    );
+
+    // Animate bullet points (adjusted for mobile)
+    const bulletPoints = document.querySelectorAll(
+      "[id^='service-hero-bullet-']",
+    );
+    mainTl.fromTo(
+      bulletPoints,
+      isMobile
+        ? { opacity: 0, y: 10 } // Mobile: vertical motion only
+        : { opacity: 0, x: -20 }, // Desktop: horizontal motion
+      isMobile
+        ? { opacity: 1, y: 0, stagger: 0.1, duration: 0.5 }
+        : { opacity: 1, x: 0, stagger: 0.1, duration: 0.5 },
+      1.2,
+    );
+
+    // Animate CTA buttons
+    mainTl.fromTo(
+      ["#service-hero-chat-btn", "#service-hero-phone-btn"],
+      { opacity: 0, y: 30, scale: 0.9 },
+      { opacity: 1, y: 0, scale: 1, stagger: 0.15, duration: 0.6 },
+      1.4,
+    );
+
+    // Check if the FBA image exists and animate it
+    const fbaImage = document.querySelector(".content > img");
+    if (fbaImage) {
+      mainTl.fromTo(
+        fbaImage,
+        isMobile
+          ? {
+              opacity: 0,
+              scale: 0.95,
+              // No x-translation or rotation on mobile to prevent layout shift
+            }
+          : {
+              opacity: 0,
+              x: 50,
+              scale: 0.9,
+              rotate: -3,
+            },
+        isMobile
+          ? {
+              opacity: 1,
+              scale: 1,
+              duration: 0.8,
+              ease: "power2.out",
+            }
+          : {
+              opacity: 1,
+              x: 0,
+              scale: 1,
+              rotate: 0,
+              duration: 1,
+              ease: "elastic.out(1, 0.5)",
+            },
+        0.7, // Start slightly after the title animation begins
+      );
+    }
+
+    // Animate form container (only if FBA image is not present)
+    const formContainer = document.getElementById(
+      "service-hero-form-container",
+    );
+    if (formContainer) {
+      mainTl.fromTo(
+        "#service-hero-form-container",
+        isMobile
+          ? { opacity: 0, scale: 0.98 } // Mobile: no x-translation
+          : { opacity: 0, x: 50, scale: 0.95 },
+        isMobile
+          ? { opacity: 1, scale: 1, duration: 0.8 }
+          : { opacity: 1, x: 0, scale: 1, duration: 0.8 },
+        0.5,
+      );
+
+      // Animate form fields
+      mainTl.fromTo(
+        [
+          "#service-hero-form-name-container",
+          "#service-hero-form-email-container",
+          "#service-hero-form-phone-container",
+          "#service-hero-form-message-container",
+          "#service-hero-form-submit",
+        ],
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, stagger: 0.1, duration: 0.5 },
+        1.0,
+      );
+    }
+
+    // Handle resize events
+    window.addEventListener("resize", () => {
+      // Get current mobile status
+      const currentMobile = window.innerWidth < 768;
+
+      // If status changed, reset animations that might cause layout issues
+      if (currentMobile !== isMobile) {
+        if (currentMobile) {
+          // Reset any transforms that might cause layout issues on mobile
+          if (fbaImage) gsap.set(fbaImage, { x: 0, rotate: 0 });
+          if (formContainer) gsap.set(formContainer, { x: 0 });
+        }
+      }
+    });
+  });
+</script>

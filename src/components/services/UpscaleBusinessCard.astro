@@ -1,0 +1,28 @@
+---
+const {
+  title = "title",
+  description = "description",
+  link = "/",
+  id = "upscale-business-card",
+  icon,
+} = Astro.props;
+import IconDefault from "../../assets/services/amazon-store-creation/data-push.png";
+import Image from "astro/components/Image.astro";
+---
+
+<div
+  class="border-gradient flex h-[320px] max-w-[320px] cursor-pointer flex-col items-center justify-center gap-y-7 rounded-lg p-7 transition-all duration-200 hover:scale-105"
+  id={id}
+>
+  <Image src={IconDefault} alt="upscale-business-card" />
+  <h1
+    class="text-center text-sm font-semibold text-white lg:text-base xl:text-lg 2xl:text-xl"
+  >
+    {title}
+  </h1>
+  <p
+    class="text-center text-xs text-[#ffffff] md:text-xs lg:text-xs 2xl:text-sm"
+  >
+    {description}
+  </p>
+</div>

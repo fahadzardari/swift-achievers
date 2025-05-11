@@ -2,6 +2,13 @@
 import Layout from "../../layouts/Layout.astro";
 import HeroBG from "../../assets/hero/amazon-store-creation.png";
 import ServiceHero from "../../components/common/ServiceHero.astro";
+import Storefront from "../../assets/services/amazon-store-creation/storefront.png";
+import ServiceInfoHorizontal from "../../components/services/ServiceInfoHorizontal.astro";
+import ServiceInfoHorizontalReverse from "../../components/services/ServiceInfoHorizontalReverse.astro";
+import WhyUs from "../../components/home/WhyUs.astro";
+import Testimonials from "../../components/home/Testimonials.astro";
+import UpscaleBusiness from "../../components/services/UpscaleBusiness.astro";
+import BrandStoreEstablished from "../../components/services/BrandStoreEstablished.astro";
 ---
 
 <Layout title="Amazon Store Creation | Swift Achievers">
@@ -18,4 +25,46 @@ import ServiceHero from "../../components/common/ServiceHero.astro";
       "Amazon analytics",
     ]}
   />
+  <div class="container mx-auto flex flex-col gap-y-16 py-12">
+    <ServiceInfoHorizontal
+      title="Amazon Listing & Optimization"
+      description="AMZ Inventor taps into the ever-changing ecommerce space and offers brands relevant discoverability, utilizing up-to-date product listing and optimization strategies."
+      titleId="amazon-listing-heading"
+      descriptionId="amazon-listing-paragraph"
+      bulletPointHeadings={["Improving Amazon listings for:"]}
+      bulletPoints={[
+        [
+          "Increased buyer traffic",
+          "Personalized shopping experience",
+          "Easy sales and conversions",
+          "Categorical listing",
+          "Relevant product visibility",
+          "Keyword research and relevancy",
+        ],
+      ]}
+    />
+    <ServiceInfoHorizontalReverse
+      image={Storefront}
+      imageAlt="Storefront"
+      title="Amazon Storefront Design"
+      titleId="amazon-storefront-heading"
+      description="Leverage our listing and storefront designing services for a visually-appealing and navigational store – to simply introduce buyers to your product stories.<br>AMZ Inventor empowers small and medium-sized businesses to build their central shopping destinations on Amazon – the biggest e-commerce store."
+      descriptionId="amazon-listing-paragraph"
+      bulletPointHeadings={["Cut the deal with a storefront:"]}
+      bulletPoints={[
+        [
+          "for a unique brand presence",
+          "for a smooth shopping experience",
+          "to uptick organic Amazon rankings",
+          "for shoppable images",
+          "for Amazon store scheduling",
+          "for a mini brand website",
+        ],
+      ]}
+    />
+  </div>
+  <WhyUs />
+  <UpscaleBusiness />
+  <BrandStoreEstablished />
+  <Testimonials />
 </Layout>

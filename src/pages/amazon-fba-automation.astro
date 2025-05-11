@@ -1,0 +1,54 @@
+---
+import Layout from "../layouts/Layout.astro";
+import HeroBG from "../assets/hero/amazon-store-creation.png";
+import ServiceHero from "../components/common/ServiceHero.astro";
+import ServiceInfoHorizontal from "../components/services/ServiceInfoHorizontal.astro";
+import Testimonials from "../components/home/Testimonials.astro";
+import UpscaleBusiness from "../components/services/UpscaleBusiness.astro";
+import BrandStoreEstablished from "../components/services/BrandStoreEstablished.astro";
+import BrandImage from "../assets/services/amazon-product-hunting/brand-store.png";
+import FBAImage from "../assets/services/amazon-ppc/fba.png";
+import WhyUs from "../components/home/WhyUs.astro";
+---
+
+<Layout title="Amazon FBA Automation | Swift Achievers">
+  <ServiceHero
+    backgroundImage={HeroBG}
+    title="Cut Your Tasks List!"
+    description="With the FBA (Fulfillment by Amazon) program, we ensure delivery of an entirely seamless and hassle-free e-commerce process that is automated for optimal performance. We take care of everything from labeling and packing to product warehousing and shipping."
+    bulletPoints={[
+      "Amazon FBA Setup & Management",
+      "Storefront Customization",
+      "Store Management",
+      "Optimized Product Listing",
+      "Amazon Analytics",
+      "Labeling and Packaging",
+    ]}
+    fba={true}
+  />
+  <div class="container mx-auto flex flex-col gap-y-16 py-12">
+    <ServiceInfoHorizontal
+      image={FBAImage}
+      title="Scale a profitable business with Amazon FBA Automation"
+      titleId="fba-automation-heading"
+      description="It's time to leverage the power of Amazon FBA and make most of your online sales. In simplest terms, you have to send the inventory and watch the show; we'll handle the rest. FBA management incorporates the following areas:"
+      descriptionId="fba-automation-paragraph"
+      bulletPointHeadings={["COMPREHENSIVE FBA MANAGEMENT"]}
+      bulletPoints={[
+        [
+          "Warehousing",
+          "Packing",
+          "Dispatching",
+          "Returns",
+          "Reviews",
+          "Refunds",
+          "and a lot more",
+        ],
+      ]}
+    />
+  </div>
+  <WhyUs />
+  <UpscaleBusiness />
+  <BrandStoreEstablished image={BrandImage} />
+  <Testimonials />
+</Layout>

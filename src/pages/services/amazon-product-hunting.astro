@@ -1,0 +1,120 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import HeroBG from "../../assets/hero/amazon-store-creation.png";
+import ServiceHero from "../../components/common/ServiceHero.astro";
+import Storefront from "../../assets/services/amazon-store-creation/storefront.png";
+import ServiceInfoHorizontal from "../../components/services/ServiceInfoHorizontal.astro";
+import ServiceInfoHorizontalReverse from "../../components/services/ServiceInfoHorizontalReverse.astro";
+import WhyUs from "../../components/home/WhyUs.astro";
+import Testimonials from "../../components/home/Testimonials.astro";
+import UpscaleBusiness from "../../components/services/UpscaleBusiness.astro";
+import BrandStoreEstablished from "../../components/services/BrandStoreEstablished.astro";
+import BrandImage from "../../assets/services/amazon-product-hunting/brand-store.png";
+import ProductResearchImage from "../../assets/services/amazon-product-hunting/product-research.png";
+import NicheImage from "../../assets/services/amazon-product-hunting/niche.png";
+---
+
+<Layout title="Amazon Product Hunting | Swift Achievers">
+  <ServiceHero
+    backgroundImage={HeroBG}
+    title="FIND YOUR ‘WINNING’ PRODUCT"
+    description="Market evaluation is our core focus for product hunting, and there are several tactics we prioritize to find winning products that are both in demand and bankable.<br/>Our amazon product hunting strategy consolidates both manual and automatic methods of search and selection."
+    bulletPoints={[
+      "Sourcing ease",
+      "Competitive analysis",
+      "Demand study",
+      "Current listings optimization",
+      "Niche selection",
+      "Product gaps",
+    ]}
+  />
+  <div class="container mx-auto flex flex-col gap-y-16 py-12">
+    <ServiceInfoHorizontal
+      image={ProductResearchImage}
+      imageAlt="Product Research"
+      title="Product Research"
+      description="At AMZ Inventor, we analyze data to find the most suitable product opportunities on Amazon. We find accurate estimates of demand, study competition, brand restrictions, and search volume before presenting your ‘winning’ product to you."
+      titleId="amazon-listing-heading"
+      descriptionId="amazon-listing-paragraph"
+      bulletPointHeadings={[
+        "PRODUCT RESEARCH & ANALYSIS (FOR 3 PRODUCTS)",
+        "COMPETITIVE RESEARCH & ANALYSIS (TOP 3 SELLERS)",
+        "KEYWORDS RESEARCH & ANALYSIS (FOR 3 PRODUCTS)",
+      ]}
+      bulletPoints={[
+        [
+          "Global Trend",
+          "Demand Gap",
+          "Consumer psyche",
+          "Search Volumne",
+          "Pricing",
+          "Sales Response",
+        ],
+        [
+          "Revenue analysis",
+          "Pricing differentiation",
+          "Monthly sales value",
+          "Review response",
+        ],
+        ["Search Words", "Competetive Analysis", "Search Volume", "Seasonally"],
+      ]}
+    />
+    <ServiceInfoHorizontalReverse
+      image={NicheImage}
+      imageAlt="Niche Analysis"
+      title="Niche Analysis"
+      titleId="amazon-storefront-heading"
+      description="To cut through product competition, AMZ Inventor does a bit of elbow grease to curate the perfect product niche for e-commerce brands. We exploit the big to make small but powerful impacts in the segmented market, with the right niche and product selection."
+      descriptionId="amazon-listing-paragraph"
+      bulletPointHeadings={[""]}
+      bulletPoints={[
+        [
+          "Geographical selection",
+          "Behavioral interests",
+          "Sampling",
+          "Sourcing & Supplier",
+          "Delivery ease",
+          "Price disparity",
+        ],
+      ]}
+    />
+    <ServiceInfoHorizontal
+      title="Profitability Analysis"
+      titleId="profitability-analysis-heading"
+      description="Profit margin analysis is at the forefront of our product hunting strategy to make sure brands capitalize on the right products. We study the margins keeping in check supplier restrictions, logistics costs, BSR, and performance reviews."
+      descriptionId="profitability-analysis-paragraph"
+      bulletPointHeadings={[""]}
+      bulletPoints={[
+        [
+          "Price comparison",
+          "Sustainable demand",
+          "Demand fluctuation",
+          "Sellers saturation",
+          "Logistics restrictions",
+          "Performance analysis",
+        ],
+      ]}
+    />
+    <ServiceInfoHorizontalReverse
+      image={Storefront}
+      imageAlt="Storefront"
+      title="Keyword Research"
+      titleId="keyword-research-heading"
+      description="We are thorough in our Amazon keyword research plans and aim for low-competition and high-opportunity search queries. We think from a buyer's perspective and design keyword listings based on their interests and behaviors.<br/><br/>With AMZ Inventor, you leverage an increased sales volume with better visibility of your product listings on Amazon."
+      descriptionId="keyword-research-paragraph"
+      bulletPointHeadings={[""]}
+      bulletPoints={[
+        [
+          "Long-tail query keywords",
+          "Amazon keywords optimization",
+          "Product & title descriptions",
+          "Image optimization",
+        ],
+      ]}
+    />
+  </div>
+  <WhyUs />
+  <UpscaleBusiness />
+  <BrandStoreEstablished image={BrandImage} />
+  <Testimonials />
+</Layout>
