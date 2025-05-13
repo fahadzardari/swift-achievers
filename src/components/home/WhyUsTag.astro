@@ -17,18 +17,18 @@ import Image from "astro/components/Image.astro";
       <Image
         src={image || DefaultImage}
         alt="Why Us Image"
-        class="h-auto "
+        class="h-auto"
         loading={"lazy"}
       />
     </div>
 
     <h3
-      class="text-center text-sm font-semibold whitespace-nowrap text-white lg:text-sm"
+      class="text-center text-xs font-semibold whitespace-nowrap text-white 2xl:text-sm"
     >
       {title}
     </h3>
   </div>
-  <p class="max-w-[90%] text-xs text-white lg:text-sm">
+  <p class="max-w-[90%] text-xs text-white 2xl:text-sm">
     {description}
   </p>
 </article>
