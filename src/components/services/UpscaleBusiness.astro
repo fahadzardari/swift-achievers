@@ -1,5 +1,10 @@
 ---
 import UpscaleBusinessCard from "./UpscaleBusinessCard.astro";
+import GrowthImage from "../../assets/services/upscaling/growth.png";
+import OperationalImage from "../../assets/services/upscaling/operational.png";
+import StrategyImage from "../../assets/services/upscaling/strategy.png";
+import CostImage from "../../assets/services/upscaling/cost.png";
+import DreamImage from "../../assets/services/upscaling/dream.png";
 const {
   cards = [
     {
@@ -11,26 +16,31 @@ const {
       title: "Growth Approach",
       description:
         "Our service ethos is focused on a growth-hacking model, therefore we work on intelligent execution of our amazon management & marketing strategies.",
+      icon: GrowthImage,
     },
     {
       title: "Operational Excellence",
       description:
         "We love cutting-through the complexities of the e-Commerce ecosystem, and always strive to achieve excellence using our knowledge and creative solutions.",
+      icon: OperationalImage,
     },
     {
       title: "STRATEGY INSIGHTS",
       description:
         "Our love for data is unending, and we strive to assess our strategy insights very critically to improve their performance and relevancy.",
+      icon: StrategyImage,
     },
     {
       title: "COST-EFFICIENCY",
       description:
         "We are not only focused; we are also customer-centric. Our services are designed to liberate small and medium-size brands with cost-efficient plans.",
+      icon: CostImage,
     },
     {
       title: "DREAM-TEAM",
       description:
         "We are a team of seasoned amazon marketing specialists and growth hackers, dedicated for one goal – to skyrocket online sales.",
+      icon: DreamImage,
     },
   ],
 } = Astro.props;
@@ -64,6 +74,7 @@ const {
             <UpscaleBusinessCard
               title={card.title}
               description={card.description}
+              icon={card.icon}
             />
           </div>
         );

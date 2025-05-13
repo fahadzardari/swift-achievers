@@ -10,7 +10,11 @@ const {
   imageAlt,
   bulletPointHeadings = [],
   bulletPoints = [],
+  aboutUs = false,
 } = Astro.props;
+import ConsultationImage from "../../assets/about-us/consultation.png";
+import OperationalImage from "../../assets/about-us/operational.png";
+import ReportingImage from "../../assets/about-us/reporting.png";
 ---
 
 <section
@@ -34,6 +38,26 @@ const {
       id={descriptionId}
       set:html={description}
     />
+    {
+      aboutUs && (
+        <div class="grid grid-cols-2 gap-4 md:grid-cols-3 mt-6">
+          <div class="flex flex-col items-center justify-center gap-y-2">
+            <Image src={ConsultationImage} alt="Consultation" />
+            <h3 class="text-xs lg:text-xs 2xl:text-sm">Expert consultation</h3>
+          </div>
+          <div class="flex flex-col items-center justify-center gap-y-2">
+            <Image src={OperationalImage} alt="Operational Excellence" />
+            <h3 class="text-xs lg:text-xs 2xl:text-sm">Operational help</h3>
+          </div>
+          <div class="flex flex-col items-center justify-center gap-y-2">
+            <Image src={ReportingImage} alt="Reporting" />
+            <h3 class="text-xs lg:text-xs 2xl:text-sm">
+              Tracking and Reporting
+            </h3>
+          </div>
+        </div>
+      )
+    }
     {
       bulletPointHeadings.map((heading, index) => (
         <div>
