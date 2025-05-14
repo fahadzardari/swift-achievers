@@ -178,184 +178,254 @@ import Tag8 from "../../assets/icons/tag8.png";
 <script>
   import gsap from "gsap";
   import { ScrollTrigger } from "gsap/ScrollTrigger";
+  import SplitType from "split-type";
 
-  // Register ScrollTrigger plugin
-  gsap.registerPlugin(ScrollTrigger);
+  document.addEventListener("DOMContentLoaded", () => {
+    // Register ScrollTrigger plugin
+    gsap.registerPlugin(ScrollTrigger);
 
-  // Select section
-  const sections = document.querySelectorAll(".whyus-svg-background");
+    // Initialize SplitType for text elements
+    const whyUsHeading = new SplitType("#why-us-heading h2", {
+      types: "words,chars",
+    });
 
-  sections.forEach((section) => {
-    const sectionId = section.dataset.sectionId;
+    const whyUsSubtitle = new SplitType(".why-us-subtitle", {
+      types: "lines",
+    });
 
-    // Get elements to animate in upper content
-    const mainHeading = section.querySelector("#why-us-heading");
-    const subtitle = section.querySelector(".why-us-subtitle");
-    const description = section.querySelector(".why-us-description");
-    const tags = section.querySelectorAll(".why-us-tags > div");
+    const whyUsDescription = new SplitType(".why-us-description", {
+      types: "lines",
+    });
 
-    // Get elements to animate in bottom content
-    const secondaryHeading = section.querySelector("#why-us-secondary-heading");
-    const ctaSubtitle = section.querySelector(".why-us-cta-subtitle");
-    const buttons = section.querySelectorAll(".why-us-buttons button");
+    const whyUsSecondaryHeading = new SplitType("#why-us-secondary-heading", {
+      types: "words,chars",
+    });
 
-    // Create timeline with ScrollTrigger for upper content
-    const tlUpper = gsap.timeline({
+    const whyUsCtaSubtitle = new SplitType(".why-us-cta-subtitle", {
+      types: "words",
+    });
+
+    // Create timeline for heading section
+    const whyUsTl = gsap.timeline({
       scrollTrigger: {
-        trigger: section.querySelector(".upper-content"),
-        start: "top bottom",
-        end: "bottom 70%",
-        scrub: 1,
-        toggleActions: "restart none none reverse",
-        id: `whyus-upper-${sectionId}`,
-        once: false,
+        trigger: ".whyus-gradient-background",
+        start: "top 85%",
+        end: "top 40%",
+        scrub: 0.8,
+        toggleActions: "play none none reverse",
       },
     });
 
-    // Add animations for upper section elements
-    if (mainHeading)
-      tlUpper.fromTo(
-        mainHeading,
-        { y: 30, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.5 },
-        0,
-      );
-    if (subtitle)
-      tlUpper.fromTo(
-        subtitle,
-        { y: 20, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.5 },
-        0.1,
-      );
-    if (description)
-      tlUpper.fromTo(
-        description,
-        { y: 20, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.5 },
-        0.2,
-      );
+    // Animate the main heading with staggered characters
+    whyUsTl.fromTo(
+      whyUsHeading.chars,
+      {
+        opacity: 0,
+        y: 30,
+      },
+      {
+        opacity: 1,
+        y: 0,
+        stagger: 0.02,
+        duration: 0.4,
+        ease: "power2.out",
+      },
+      0,
+    );
 
-    // Enhanced animations for WhyUsTag components
-    if (tags.length > 0) {
-      // First set initial state for all tags
-      gsap.set(tags, { opacity: 0, y: 40, scale: 0.9 });
+    // Animate the subtitle lines
+    whyUsTl.fromTo(
+      whyUsSubtitle.lines,
+      {
+        opacity: 0,
+        y: 20,
+      },
+      {
+        opacity: 1,
+        y: 0,
+        stagger: 0.1,
+        duration: 0.5,
+      },
+      0.3,
+    );
 
-      // Animate each tag with enhanced effects
-      tags.forEach((tag, index) => {
-        // Get the tag title and description
-        const tagTitle = tag.querySelector("h3");
-        const tagDescription = tag.querySelector("p");
+    // Animate the description lines
+    whyUsTl.fromTo(
+      whyUsDescription.lines,
+      {
+        opacity: 0,
+        y: 15,
+      },
+      {
+        opacity: 1,
+        y: 0,
+        stagger: 0.08,
+        duration: 0.4,
+      },
+      0.5,
+    );
 
-        // Calculate staggered delay based on grid position
-        const row = Math.floor(index / 4); // Assuming 4 columns in xl breakpoint
-        const col = index % 4;
-        const delay = 0.3 + row * 0.05 + col * 0.05;
-
-        // Create a mini-timeline for each tag
-        tlUpper.add(() => {
-          const miniTl = gsap.timeline();
-
-          // Animate the container
-          miniTl.to(
-            tag,
-            {
-              opacity: 1,
-              y: 0,
-              scale: 1,
-              duration: 0.4,
-              ease: "power2.out",
-            },
-            0,
-          );
-
-          // Animate title with slight offset
-          if (tagTitle) {
-            miniTl.fromTo(
-              tagTitle,
-              { opacity: 0, y: 10 },
-              { opacity: 1, y: 0, duration: 0.3 },
-              0.1,
-            );
-          }
-
-          // Animate description with further offset
-          if (tagDescription) {
-            miniTl.fromTo(
-              tagDescription,
-              { opacity: 0, y: 8 },
-              { opacity: 1, y: 0, duration: 0.3 },
-              0.2,
-            );
-          }
-
-          return miniTl;
-        }, delay);
-      });
-
-      // Add hover animations
-      tags.forEach((tag) => {
-        tag.addEventListener("mouseenter", () => {
-          gsap.to(tag, {
-            y: -5,
-            scale: 1.03,
-            boxShadow: "0 10px 20px rgba(0,0,0,0.15)",
-            duration: 0.3,
-          });
-        });
-
-        tag.addEventListener("mouseleave", () => {
-          gsap.to(tag, {
-            y: 0,
-            scale: 1,
-            boxShadow: "0 0 0 rgba(0,0,0,0)",
-            duration: 0.3,
-          });
-        });
-      });
-    }
-
-    // Create timeline with ScrollTrigger for bottom content
-    const tlBottom = gsap.timeline({
+    // Create timeline for the tags
+    const tagsTl = gsap.timeline({
       scrollTrigger: {
-        trigger: section.querySelector(".bottom-content"),
-        start: "top 90%",
-        end: "bottom 70%",
-        scrub: 1,
-        toggleActions: "restart none none reverse",
-        id: `whyus-bottom-${sectionId}`,
-        once: false,
+        trigger: ".why-us-tags",
+        start: "top 75%", // Adjusted to start animation earlier
+        end: "center 40%", // Adjusted to give more time to complete the animation
+        scrub: 0.8,
+        toggleActions: "play none none reverse",
       },
     });
 
-    // Add animations for bottom section elements
-    if (secondaryHeading)
-      tlBottom.fromTo(
-        secondaryHeading,
-        { y: 20, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.5 },
-        0,
-      );
-    if (ctaSubtitle)
-      tlBottom.fromTo(
-        ctaSubtitle,
-        { y: 15, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.5 },
-        0.1,
-      );
-    if (buttons.length > 0) {
-      tlBottom.fromTo(
-        buttons,
-        { y: 20, opacity: 0, scale: 0.9 },
-        {
-          y: 0,
-          opacity: 1,
-          scale: 1,
-          stagger: 0.1,
-          duration: 0.5,
-          ease: "back.out(1.2)",
+    // Make sure to target all tags even if some don't have proper IDs
+    const allTags = document.querySelectorAll(".why-us-tags > div");
+
+    // More visually impressive animation with rotation and better staggering
+    tagsTl.fromTo(
+      allTags,
+      {
+        opacity: 0,
+        y: 60,
+        scale: 0.85,
+        rotationX: 10, // Slight 3D rotation for more dimension
+      },
+      {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        rotationX: 0,
+        stagger: {
+          each: 0.12,
+          from: "start", // Start from the first tag
+          grid: "auto", // Works with grid layouts
         },
-        0.2,
-      );
-    }
+        duration: 0.6,
+        ease: "back.out(1.2)", // More bouncy effect
+      },
+      0,
+    );
+
+    // Enhanced hover effects for tags
+    allTags.forEach((tag) => {
+      tag.addEventListener("mouseenter", () => {
+        gsap.to(tag, {
+          y: -10,
+          scale: 1.05,
+          boxShadow: "0 10px 25px rgba(0,0,0,0.15)", // Add shadow on hover
+          duration: 0.35,
+          ease: "power2.out",
+        });
+      });
+
+      tag.addEventListener("mouseleave", () => {
+        gsap.to(tag, {
+          y: 0,
+          scale: 1,
+          boxShadow: "0 0px 0px rgba(0,0,0,0)",
+          duration: 0.4,
+          ease: "power2.in",
+        });
+      });
+    });
+
+    // Create timeline for bottom content
+    const bottomTl = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".bottom-content",
+        start: "top 75%",
+        end: "top 40%",
+        scrub: 0.8,
+        toggleActions: "play none none reverse",
+      },
+    });
+
+    // Animate the secondary heading
+    bottomTl.fromTo(
+      whyUsSecondaryHeading.chars,
+      {
+        opacity: 0,
+        y: 25,
+      },
+      {
+        opacity: 1,
+        y: 0,
+        stagger: 0.015,
+        duration: 0.4,
+        ease: "power2.out",
+      },
+      0,
+    );
+
+    // Animate the CTA subtitle
+    bottomTl.fromTo(
+      whyUsCtaSubtitle.words,
+      {
+        opacity: 0,
+        y: 15,
+      },
+      {
+        opacity: 1,
+        y: 0,
+        stagger: 0.05,
+        duration: 0.4,
+      },
+      0.3,
+    );
+
+    // Animate buttons
+    bottomTl.fromTo(
+      [".why-us-call-btn", ".why-us-chat-btn"],
+      {
+        opacity: 0,
+        x: 30,
+      },
+      {
+        opacity: 1,
+        x: 0,
+        stagger: 0.15,
+        duration: 0.6,
+        ease: "power2.out",
+      },
+      0.4,
+    );
+
+    // Add hover effects for tags
+    tags.forEach((tag) => {
+      tag.addEventListener("mouseenter", () => {
+        gsap.to(tag, {
+          y: -8,
+          scale: 1.03,
+          duration: 0.3,
+          ease: "power2.out",
+        });
+      });
+
+      tag.addEventListener("mouseleave", () => {
+        gsap.to(tag, {
+          y: 0,
+          scale: 1,
+          duration: 0.3,
+          ease: "power2.in",
+        });
+      });
+    });
+
+    // Add click animation for buttons
+    const buttons = document.querySelectorAll(
+      ".why-us-call-btn, .why-us-chat-btn",
+    );
+    buttons.forEach((button) => {
+      button.addEventListener("click", () => {
+        gsap.to(button, {
+          scale: 0.95,
+          duration: 0.1,
+          onComplete: () => {
+            gsap.to(button, {
+              scale: 1,
+              duration: 0.1,
+            });
+          },
+        });
+      });
+    });
   });
 </script>
