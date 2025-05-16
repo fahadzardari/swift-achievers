@@ -3,6 +3,7 @@ import "../index.css";
 const { title } = Astro.props;
 import Footer from "../components/Footer.astro";
 import Navbar from "../components/Navbar.astro";
+import ContactModal from "../components/common/ContactModal.astro";
 ---
 
 <!doctype html>
@@ -17,6 +18,53 @@ import Navbar from "../components/Navbar.astro";
   <body class="no-scrollbar w-screen overflow-x-hidden bg-[#040243]">
     <Navbar />
     <slot />
+    <ContactModal />
+    <script>
+      // Global initialization for modal triggers
+      document.addEventListener("DOMContentLoaded", () => {
+        // Automatically attach event listeners to any elements with specific classes
+        document
+          .querySelectorAll('.open-contact-modal, [data-modal="contact"]')
+          .forEach((element) => {
+            element.addEventListener("click", () => {
+              // Find and dispatch custom event to open modal
+              const event = new CustomEvent("openContactModal");
+              document.dispatchEvent(event);
+            });
+          });
+      });
+    </script>
+
+    <!--Start of Tawk.to Script-->
+    <script type="text/javascript">
+      var Tawk_API = Tawk_API || {},
+        Tawk_LoadStart = new Date();
+      (function () {
+        var s1 = document.createElement("script"),
+          s0 = document.getElementsByTagName("script")[0];
+        s1.async = true;
+        s1.src = "https://embed.tawk.to/6826ef913aaa97190d877f28/1irc1lmgd";
+        s1.charset = "UTF-8";
+        s1.setAttribute("crossorigin", "*");
+        s0.parentNode.insertBefore(s1, s0);
+      })();
+      document.addEventListener("DOMContentLoaded", () => {
+        // For any elements with class 'open-chat-widget'
+        document.querySelectorAll(".open-chat-widget").forEach((element) => {
+          element.addEventListener("click", (e) => {
+            e.preventDefault();
+
+            // Check if Tawk_API is loaded
+            if (typeof Tawk_API !== "undefined") {
+              Tawk_API.maximize();
+            } else {
+              console.warn("Tawk.to API not loaded yet");
+            }
+          });
+        });
+      });
+    </script>
+    <!--End of Tawk.to Script-->
   </body>
   <Footer />
 </html>

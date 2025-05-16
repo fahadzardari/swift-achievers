@@ -1,6 +1,6 @@
 ---
 import Image from "astro/components/Image.astro";
-import Logo from "../assets/logo.svg";
+import Logo from "../assets/logo.png";
 const links = [
   { name: "Home", href: "/" },
   {
@@ -15,7 +15,7 @@ const links = [
         name: "Amazon Product Hunting",
         href: "/services/amazon-product-hunting",
       },
-      { name: "Virtual Assistance", href: "/services/virtual-assistance" },
+      { name: "Virtual Assistant", href: "/services/virtual-assistant" },
       { name: "Amazon PPC", href: "/services/amazon-ppc" },
     ],
   },
@@ -34,7 +34,7 @@ const currentPath = Astro.url.pathname;
     <a href="/">
       <Image
         src={Logo}
-        alt="Swift Achievers Logo"
+        alt="Swyft Achievers Logo"
         class="max-h-[56px] max-w-[150px] cursor-pointer"
       />
     </a>
@@ -96,7 +96,7 @@ const currentPath = Astro.url.pathname;
 
     <!-- Desktop CTA Button -->
     <button
-      class="bg-gradient hidden rounded-full px-3 py-1 text-center font-semibold text-white md:block md:py-[10px] md:text-xs lg:px-6 lg:text-sm xl:text-base"
+      class="open-contact-modal bg-gradient hidden cursor-pointer rounded-full px-3 py-1 text-center font-semibold text-white md:block md:py-[10px] md:text-xs lg:px-6 lg:text-sm xl:text-base"
     >
       Get A Quote Now
     </button>
@@ -199,7 +199,7 @@ const currentPath = Astro.url.pathname;
 
       <div class="mt-8">
         <button
-          class="bg-gradient w-full rounded-full px-6 py-[10px] text-center font-semibold text-white"
+          class="open-contact-modal bg-gradient w-full cursor-pointer rounded-full px-6 py-[10px] text-center font-semibold text-white"
         >
           Get A Quote Now
         </button>

@@ -1,22 +1,20 @@
 ---
-import Logo from "../assets/logo.svg";
+import Logo from "../assets/logo.png";
 import Image from "astro/components/Image.astro";
 const services = [
-  "Amazon Store Creation",
-  "Amazon Product Hunting",
-  "EBC/A+ Content",
-  "Virtual Assistant",
-  "Amazon PPC",
+  { name: "Amazon Store Creation", href: "/services/amazon-store-creation" },
+  { name: "Amazon Product Hunting", href: "/services/amazon-product-hunting" },
+  { name: "Virtual Assistant", href: "/services/virtual-assistant" },
+  { name: "Amazon PPC", href: "/services/amazon-ppc" },
 ];
 const pages = [
-  "Home",
-  "Amazon FBA Automation",
-  "Shopify Dropshipping",
-  "About",
-  "Contact Us",
+  { name: "Home", href: "/" },
+  { name: "Amazon FBA Automation", href: "/amazon-fba-automation" },
+  { name: "About Us", href: "/about-us" },
+  { name: "Contact Us", href: "/contact-us" },
 ];
 const contactInfo = {
-  email: "query@amzinventor.com",
+  email: "info@swyftachievers.com",
   phone: "+1 (123) 456-7890",
   address: "236 W Monroe St Chicago, IL 60607",
 };
@@ -25,16 +23,16 @@ const contactInfo = {
 <footer class="app-margin w-screen bg-[#0E0128] text-white">
   <div class="container">
     <div
-      class="mx-auto grid grid-cols-2 gap-x-1 gap-y-12 py-10 md:grid-cols-4 md:gap-x-4 lg:w-[95%] 2xl:w-[90%]"
+      class="mx-auto mb-12 grid grid-cols-2 gap-x-1 gap-y-12 py-10 md:grid-cols-4 md:gap-x-4 lg:w-[95%] 2xl:w-[90%]"
     >
       <div class="col-span-2 flex flex-col gap-y-7 md:col-span-1">
         <Image
           src={Logo}
-          alt="Swift Achievers Logo"
+          alt="Swyft Achievers Logo"
           class="mx-auto w-1/2 md:mx-0 md:w-2/3"
         />
         <p class="3xl:text-base text-[10px] md:text-xs xl:text-sm">
-          Leading Amazon outsourcing company Swift Achievers offers mid-sized
+          Leading Amazon outsourcing company Swyft Achievers offers mid-sized
           and large-scale brands solid and well-considered e-commerce solutions.
         </p>
       </div>
@@ -45,9 +43,12 @@ const contactInfo = {
         <ul class="flex flex-col gap-y-4">
           {
             services.map((service) => (
-              <li class="3xl:text-base cursor-pointer text-[10px] text-white md:text-xs xl:text-sm">
-                {service}
-              </li>
+              <a
+                href={service.href}
+                class="3xl:text-base cursor-pointer text-[10px] text-white md:text-xs xl:text-sm"
+              >
+                {service.name}
+              </a>
             ))
           }
         </ul>
@@ -59,9 +60,12 @@ const contactInfo = {
         <ul class="flex flex-col gap-y-4">
           {
             pages.map((page) => (
-              <li class="3xl:text-base cursor-pointer text-[10px] text-white md:text-xs xl:text-sm">
-                {page}
-              </li>
+              <a
+                href={page.href}
+                class="3xl:text-base cursor-pointer text-[10px] text-white md:text-xs xl:text-sm"
+              >
+                {page.name}
+              </a>
             ))
           }
         </ul>
@@ -94,12 +98,12 @@ const contactInfo = {
     <section
       class="3xl:text-base flex items-center justify-between border-t border-t-white py-7 text-[10px] md:text-xs lg:text-sm"
     >
-      <p class="">All Rights Reserved 2025 - Swift Achievers</p>
+      <p class="">All Rights Reserved 2025 - Swyft Achievers</p>
       <section class="flex divide-x">
-        <a href="" class="px-2 lg:px-4">
+        <a href="/privacy-policy" class="px-2 lg:px-4">
           <p class="cursor-pointer text-white">Privacy Policy</p>
         </a>
-        <a href="" class="px-2 lg:px-4">
+        <a href="/terms-of-service" class="px-2 lg:px-4">
           <p class="cursor-pointer text-white">Terms of Service</p>
         </a>
       </section>

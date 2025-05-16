@@ -1,0 +1,245 @@
+---
+const backendURL = import.meta.env.PUBLIC_BACKEND_URL;
+const brandID = import.meta.env.PUBLIC_BRAND_ID;
+---
+
+<style>
+  .modal-content {
+    position: relative;
+    background: rgba(186, 186, 186, 0.25);
+    backdrop-filter: blur(10px);
+    z-index: 50;
+    border-radius: 8px;
+  }
+
+  .modal-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: inherit;
+    padding: 2px; /* Border width */
+    background: linear-gradient(180deg, #fd34fc, #3135f6); /* Removed quotes */
+    mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    z-index: -1;
+  }
+</style>
+
+<div
+  id="contact-modal"
+  class="fixed inset-0 z-50 hidden items-center justify-center"
+  data-brandid={brandID}
+  data-backendurl={backendURL}
+>
+  <div
+    class="bg-opacity-50 fixed inset-0 bg-black/80 transition-opacity"
+    id="modal-overlay"
+  >
+  </div>
+  <div
+    class="modal-content relative z-50 mx-4 w-full max-w-[562px] rounded-lg bg-white px-8 py-6 shadow-xl"
+  >
+    <button
+      id="close-modal"
+      class="bg-gradient absolute -top-3 -right-3 cursor-pointer rounded-md p-1"
+      aria-label="Close modal"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-6 w-6"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="white"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M6 18L18 6M6 6l12 12"></path>
+      </svg>
+    </button>
+
+    <div class="mb-4">
+      <h2 class="text-base text-white md:text-lg lg:text-xl">Get in Touch</h2>
+      <p class="text-lg font-bold text-white md:text-xl lg:text-[26px]">
+        Have a Custom Order?
+      </p>
+      <p class="text-lg font-bold text-white md:text-xl lg:text-[26px]">
+        Need More Information?
+      </p>
+      <p class="text-xs text-white md:text-sm">
+        Fill out the form below and our team will respond within 24 hours.
+      </p>
+    </div>
+
+    <div
+      id="contact-feedback"
+      class="mb-4 hidden rounded bg-green-100 px-4 py-2 text-center text-green-800"
+    >
+    </div>
+
+    <form id="contact-form" class="space-y-4">
+      <div>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          placeholder="Your Name"
+          class="focus:border-primary-red w-full rounded-lg bg-white px-4 py-3 text-sm placeholder:text-black focus:outline-none"
+          required
+        />
+      </div>
+
+      <div>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="Email"
+          class="focus:border-primary-red w-full rounded-lg bg-white px-4 py-3 text-sm placeholder:text-black focus:outline-none"
+          required
+        />
+      </div>
+
+      <div>
+        <input
+          type="tel"
+          id="phone"
+          name="phone"
+          placeholder="Phone Number"
+          class="focus:border-primary-red w-full rounded-lg bg-white px-4 py-3 text-sm placeholder:text-black focus:outline-none"
+          required
+        />
+      </div>
+
+      <div>
+        <textarea
+          id="message"
+          name="message"
+          placeholder="Message"
+          rows="4"
+          class="focus:border-primary-red w-full rounded-lg bg-white px-4 py-3 text-sm placeholder:text-black focus:outline-none"
+          required></textarea>
+      </div>
+      <div class="flex items-center justify-center">
+        <button
+          type="submit"
+          class="bg-gradient hover:bg-opacity-90 mx-auto w-[75%] rounded-full px-8 py-2 text-white focus:outline-none"
+        >
+          Get Free Consultation
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+  // Handle modal functionality
+  document.addEventListener("DOMContentLoaded", () => {
+    const modal = document.getElementById("contact-modal");
+    const overlay = document.getElementById("modal-overlay");
+    const closeButton = document.getElementById("close-modal");
+    const body = document.body;
+    const feedback = document.getElementById("contact-feedback");
+
+    // Function to open modal
+    function openModal() {
+      if (modal) {
+        modal.classList.remove("hidden");
+        modal.classList.add("flex");
+        body.classList.add("overflow-hidden"); // Prevent background scrolling
+      }
+    }
+
+    // Function to close modal
+    function closeModal() {
+      if (modal) {
+        modal.classList.add("hidden");
+        modal.classList.remove("flex");
+        body.classList.remove("overflow-hidden"); // Allow scrolling again
+      }
+    }
+
+    // Register all buttons that should open the modal
+    document.querySelectorAll(".open-contact-modal").forEach((button) => {
+      button.addEventListener("click", openModal);
+    });
+
+    // Close modal when clicking the close button
+    if (closeButton) {
+      closeButton.addEventListener("click", closeModal);
+    }
+
+    // Close modal when clicking outside modal content
+    if (overlay) {
+      overlay.addEventListener("click", closeModal);
+    }
+
+    // Close modal when pressing ESC key
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        closeModal();
+      }
+    });
+
+    // Handle form submission
+    const form = document.getElementById("contact-form");
+    if (form) {
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        const formData = new FormData(form);
+        const data = Object.fromEntries(formData.entries());
+
+        const brandID = modal?.dataset.brandid;
+        const backendURL = modal?.dataset.backendurl;
+
+        data.brandId = brandID;
+
+        fetch(backendURL + `/api/contact-requests`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            // Show feedback to user
+            if (feedback) {
+              feedback.textContent = "Thank you! Your message has been sent.";
+              feedback.classList.remove("hidden");
+            }
+            // Reset form
+            form.reset();
+            // Wait 2 seconds, then close modal and redirect
+            setTimeout(() => {
+              if (feedback) feedback.classList.add("hidden");
+              closeModal();
+              window.location.pathname = "/thank-you";
+            }, 2000);
+          })
+          .catch((error) => {
+            if (feedback) {
+              feedback.textContent =
+                "There was an error submitting the form. Please try again.";
+              feedback.classList.remove("hidden");
+            }
+            setTimeout(() => {
+              if (feedback) feedback.classList.add("hidden");
+            }, 3000);
+            console.error("Error:", error);
+          });
+      });
+    }
+  });
+</script>

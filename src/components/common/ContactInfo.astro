@@ -4,9 +4,16 @@ import Mail from "../../assets/contact-us/mail.png";
 import Address from "../../assets/contact-us/address.png";
 import Art from "../../assets/contact-us/art.png";
 import Image from "astro/components/Image.astro";
+
+const backendURL = import.meta.env.PUBLIC_BACKEND_URL;
+const brandID = import.meta.env.PUBLIC_BRAND_ID;
 ---
 
-<section class="container my-12">
+<section
+  class="container my-12"
+  data-brandid={brandID}
+  data-backendurl={backendURL}
+>
   <div class="flex flex-col bg-[#bababa]/25 md:flex-row">
     <div
       class="bg-gradient flex flex-col justify-between px-6 pb-0 text-white md:w-[40%]"
@@ -34,9 +41,9 @@ import Image from "astro/components/Image.astro";
         <div class="flex items-center gap-x-5">
           <Image src={Mail} alt="Mail" class="h-5 w-5" loading="lazy" />
           <a
-            href="mailto:query@amzinventor.com"
+            href="mailto:info@swyftachievers.com"
             class="3xl:text-xl text-xs md:text-sm lg:text-base xl:text-lg"
-            >query@amzinventor.com</a
+            >info@swyftachievers.com</a
           >
         </div>
       </div>
@@ -50,7 +57,14 @@ import Image from "astro/components/Image.astro";
     </div>
     <div class="flex flex-col justify-center px-6 py-10 md:w-[60%] md:px-12">
       <h1 class="text-3xl font-semibold text-white">Get In Touch</h1>
-      <form class="mt-8 flex w-full flex-col gap-y-4">
+
+      <div
+        id="contact-info-feedback"
+        class="mt-4 mb-2 hidden rounded bg-green-100 px-4 py-2 text-center text-green-800"
+      >
+      </div>
+
+      <form id="contact-info-form" class="mt-8 flex w-full flex-col gap-y-4">
         <div>
           <label for="name" class="text-xs text-white lg:text-sm 2xl:text-base">
             Name
@@ -59,6 +73,7 @@ import Image from "astro/components/Image.astro";
             type="text"
             class="mt-1 w-full rounded-md bg-white px-4 py-3 text-xs text-black focus:outline-none lg:text-sm 2xl:text-base"
             name="name"
+            required
           />
         </div>
         <div>
@@ -72,11 +87,12 @@ import Image from "astro/components/Image.astro";
             type="email"
             class="mt-1 w-full rounded-md bg-white px-4 py-3 text-xs text-black focus:outline-none lg:text-sm 2xl:text-base"
             name="email"
+            required
           />
         </div>
         <div>
           <label
-            for="message"
+            for="phone"
             class="text-xs text-white lg:text-sm 2xl:text-base"
           >
             Phone
@@ -85,6 +101,7 @@ import Image from "astro/components/Image.astro";
             type="text"
             class="mt-1 w-full rounded-md bg-white px-4 py-3 text-xs text-black focus:outline-none lg:text-sm 2xl:text-base"
             name="phone"
+            required
           />
         </div>
         <div>
@@ -97,9 +114,11 @@ import Image from "astro/components/Image.astro";
           <textarea
             rows="8"
             class="mt-1 w-full rounded-md bg-white px-4 py-3 text-xs text-black focus:outline-none lg:text-sm 2xl:text-base"
-            name="message"></textarea>
+            name="message"
+            required></textarea>
         </div>
         <button
+          type="submit"
           class="bg-gradient w-fit cursor-pointer rounded-full px-6 py-2 text-[11px] text-white md:text-xs lg:text-sm xl:text-base"
         >
           Get a Quote
@@ -108,3 +127,89 @@ import Image from "astro/components/Image.astro";
     </div>
   </div>
 </section>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const form = document.getElementById("contact-info-form");
+    const feedbackElement = document.getElementById("contact-info-feedback");
+    const section = document.querySelector("section.container");
+
+    if (form && section) {
+      const brandID = section.dataset.brandid;
+      const backendURL = section.dataset.backendurl;
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const submitButton = form.querySelector("button[type='submit']");
+        if (submitButton) {
+          submitButton.disabled = true;
+          submitButton.textContent = "Sending...";
+        }
+
+        const formData = new FormData(form);
+        const data = Object.fromEntries(formData.entries());
+
+        data.brandId = brandID;
+
+        try {
+          const response = await fetch(`${backendURL}/api/contact-requests`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+          });
+
+          const result = await response.json();
+
+          if (feedbackElement) {
+            feedbackElement.textContent =
+              "Thank you! Your message has been sent.";
+            feedbackElement.classList.remove(
+              "hidden",
+              "bg-red-100",
+              "text-red-800",
+            );
+            feedbackElement.classList.add("bg-green-100", "text-green-800");
+            feedbackElement.classList.remove("hidden");
+          }
+
+          form.reset();
+
+          if (submitButton) {
+            submitButton.disabled = false;
+            submitButton.textContent = "Get a Quote";
+          }
+
+          setTimeout(() => {
+            window.location.pathname = "/thank-you";
+          }, 2000);
+        } catch (error) {
+          console.error("Error submitting form:", error);
+
+          if (feedbackElement) {
+            feedbackElement.textContent =
+              "There was an error submitting the form. Please try again.";
+            feedbackElement.classList.remove(
+              "hidden",
+              "bg-green-100",
+              "text-green-800",
+            );
+            feedbackElement.classList.add("bg-red-100", "text-red-800");
+            feedbackElement.classList.remove("hidden");
+          }
+
+          if (submitButton) {
+            submitButton.disabled = false;
+            submitButton.textContent = "Get a Quote";
+          }
+
+          setTimeout(() => {
+            if (feedbackElement) feedbackElement.classList.add("hidden");
+          }, 5000);
+        }
+      });
+    }
+  });
+</script>

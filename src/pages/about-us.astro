@@ -8,19 +8,44 @@ import ScalingProducts from "../components/common/ScalingProducts.astro";
 import UpscaleBusiness from "../components/services/UpscaleBusiness.astro";
 import ServiceInfoHorizontal from "../components/services/ServiceInfoHorizontal.astro";
 import Storefront from "../assets/services/amazon-store-creation/storefront.png";
+import StrategyImage from "../assets/services/upscaling/strategy.png";
+import CostImage from "../assets/services/upscaling/cost.png";
+import DreamImage from "../assets/services/upscaling/dream.png";
+const {
+  cards = [
+    {
+      title: "Strategy Insights",
+      description:
+        "Our love for data is unending, and we strive to assess our strategy insights very critically to improve their performance and relevancy.",
+      icon: StrategyImage,
+    },
+    {
+      title: "Cost-Effectiency",
+      description:
+        "We are not only focused; we are also customer-centric. Our services are designed to liberate small and medium-size brands with cost-efficient plans.",
+      icon: CostImage,
+    },
+    {
+      title: "Dream-Team",
+      description:
+        "We are a team of seasoned amazon marketing specialists and growth hackers, dedicated for one goal – to skyrocket online sales.",
+      icon: DreamImage,
+    },
+  ],
+} = Astro.props;
 ---
 
-<Layout title="About Us | Swift Achievers">
+<Layout title="About Us | Swyft Achievers">
   <Hero
     backgroundImage={HeroBG}
     title="MAKING SALES EASY FOR BRANDS!"
-    description="AMZ Inventor has tamed the clutter of e-commerce to create forward-thinking amazon outsourcing services, with effective marketing and brand building plans. We cater brands of all sizes and niches, and use our module to automate their reach and sales."
+    description="Swyft Achievers has tamed the clutter of e-commerce to create forward-thinking amazon outsourcing services, with effective marketing and brand building plans. We cater brands of all sizes and niches, and use our module to automate their reach and sales."
   />
 
   <div class="container mx-auto">
     <ServiceInfoHorizontal
       image={Storefront}
-      title="Thrive and Grow with AMZ Inventor"
+      title="Thrive and Grow with Swyft Achievers"
       titleId="fba-automation-heading"
       description="Our most successful campaigns always employ both smart decisions and intelligent implementation for brands to take on a journey that keeps giving. We present the strategies that we believe are viable investments for brands who look to dominate the Amazon marketplace. We strategize, manage, and dramatically lower all barriers to entry by keeping current."
       descriptionId="fba-automation-paragraph"
@@ -28,7 +53,7 @@ import Storefront from "../assets/services/amazon-store-creation/storefront.png"
     />
   </div>
 
-  <UpscaleBusiness />
+  <UpscaleBusiness cards={cards} />
   <Consultants />
   <ScalingProducts />
   <Testimonials />

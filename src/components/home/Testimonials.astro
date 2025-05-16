@@ -1,6 +1,9 @@
 ---
 import Heading from "../common/Heading.astro";
 import TestimonialCard from "./TestimonialCard.astro";
+import client1 from "../../assets/home/testimonials/1.png";
+import client2 from "../../assets/home/testimonials/2.png";
+import client3 from "../../assets/home/testimonials/3.png";
 ---
 
 <section
@@ -10,7 +13,7 @@ import TestimonialCard from "./TestimonialCard.astro";
   <div id="testimonials-content" class="max-w-[1024px]">
     <Heading
       id="testimonials-heading"
-      title="Looking For More Information About Swift Achievers?"
+      title="Looking For More Information About Swyft Achievers?"
     />
     <p
       id="testimonials-description"
@@ -27,17 +30,19 @@ import TestimonialCard from "./TestimonialCard.astro";
   >
     <TestimonialCard
       id="testimonials-card-1"
-      name="John Doe"
-      country="USA"
+      name="Anjie Roberts"
+      country="United States"
       description=" I'm glad you had a positive experience with their services. Thorough understanding, cooperation, and high-quality work made it a worthwhile investment. Delighted with their job and the results achieved."
       stars={5}
+      image={client1}
     />
     <TestimonialCard
       id="testimonials-card-2"
-      name="Jane Smith"
+      name="Joan Smith"
       country="Canada"
       description=" I'm glad you had a positive experience with their services. Thorough understanding, cooperation, and high-quality work made it a worthwhile investment. Delighted with their job and the results achieved."
-      stars={4}
+      stars={5}
+      image={client2}
     />
     <TestimonialCard
       id="testimonials-card-3"
@@ -45,6 +50,7 @@ import TestimonialCard from "./TestimonialCard.astro";
       country="UK"
       description=" I'm glad you had a positive experience with their services. Thorough understanding, cooperation, and high-quality work made it a worthwhile investment. Delighted with their job and the results achieved."
       stars={5}
+      image={client3}
     />
   </div>
 </section>

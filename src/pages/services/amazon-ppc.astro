@@ -10,14 +10,65 @@ import UpscaleBusiness from "../../components/services/UpscaleBusiness.astro";
 import BrandStoreEstablished from "../../components/services/BrandStoreEstablished.astro";
 import BrandImage from "../../assets/services/amazon-product-hunting/brand-store.png";
 import PPCImage from "../../assets/services/amazon-ppc/ppc.png";
+
+import GrowthImage from "../../assets/services/upscaling/growth.png";
+import OperationalImage from "../../assets/services/upscaling/operational.png";
+import StrategyImage from "../../assets/services/upscaling/strategy.png";
+import CostImage from "../../assets/services/upscaling/cost.png";
+import DreamImage from "../../assets/services/upscaling/dream.png";
+
+import PPC1 from "../../assets/services/upscaling/ppc-1.png";
+import PPC2 from "../../assets/services/upscaling/ppc-2.png";
+import PPC3 from "../../assets/services/upscaling/ppc-3.png";
+import PPC4 from "../../assets/services/upscaling/ppc-4.png";
+import PPC5 from "../../assets/services/upscaling/ppc-5.png";
+
+const cards = [
+  {
+    title: "Amazon SEO Marketing",
+    description:
+      "Using Amazon SEO techniques, you may improve the visibility of your product listings and reach a larger market.",
+    icon: PPC1,
+  },
+  {
+    title: "Amazon PPC Marketing",
+    description:
+      "Our PPC specialists create custom strategies with the goal of boosting your ROI and lowering advertising expenditures. Hire our professionals to manage Amazon PPC.",
+    icon: PPC2,
+  },
+  {
+    title: "Amazon Email Marketing",
+    description:
+      "Utilize email marketing to promote your Amazon store products directly to the customers who are most likely to buy.",
+    icon: PPC3,
+  },
+  {
+    title: "Amazon Video Marketing",
+    description:
+      "Through tailored videos that communicate the brand message, marketers may reach customers using our Amazon video marketing.",
+    icon: PPC4,
+  },
+  {
+    title: "Social Media Marketing",
+    description:
+      "Our qualified Amazon marketing consultants provide guidance on how to reach audiences via social media.",
+    icon: PPC5,
+  },
+  {
+    title: "Research & Analysis",
+    description:
+      "We carefully examine the brand and the competition before establishing any marketing strategies.",
+    icon: PPC1,
+  },
+];
 ---
 
-<Layout title="Amazon PPC | Swift Achievers">
+<Layout title="Amazon PPC | Swyft Achievers">
   <ServiceHero
     backgroundImage={HeroBG}
-    title="Amazon Ppc Agency Complete Management Scaling For You"
-    subheading="Manage Amazon Ppc"
-    description="The Amazon PPC agency AMZ Inventor keeps firms up-to-date by curbing excessive expenses, reducing competition, and tailoring ads to specific objectives. In order to ensure that our campaigns function at their peak, we design, build, audit, and optimize them as if we were going to get them wrong the first time. Our Amazon PPC agency provides the following:"
+    title="Amazon PPC Agency Complete Management Scaling For You"
+    subheading="Manage Amazon PPC"
+    description="The Amazon PPC agency Swyft Achievers keeps firms up-to-date by curbing excessive expenses, reducing competition, and tailoring ads to specific objectives. In order to ensure that our campaigns function at their peak, we design, build, audit, and optimize them as if we were going to get them wrong the first time. Our Amazon PPC agency provides the following:"
     bulletPoints={[
       "Sponsored Display ads",
       "Sponsored Brand ads",
@@ -48,9 +99,9 @@ import PPCImage from "../../assets/services/amazon-ppc/ppc.png";
     <ServiceInfoHorizontalReverse
       image={PPCImage}
       imageAlt="Amazon PPC Management"
-      title="Amazon PPC"
+      title="Amazon PPC Swyft Achievers – Among The Leading Amazon PPC Agencies"
       titleId="amazon-ppc-heading"
-      description="AMZ Inventor – Among The Leading Amazon PPC Agencies<br/><br/>AMZ Inventor makes sure that organizations achieve their marketing objectives by implementing clever ad placement and strategically utilizing Amazon PPC. We love to see your products appear in the searches of your target market with the help of our Amazon PPC management service. With our PPC Amazon solution, you may get the following:"
+      description="Swyft Achievers makes sure that organizations achieve their marketing objectives by implementing clever ad placement and strategically utilizing Amazon PPC. We love to see your products appear in the searches of your target market with the help of our Amazon PPC management service. With our PPC Amazon solution, you may get the following:"
       descriptionId="amazon-ppc-paragraph"
       bulletPointHeadings={[""]}
       bulletPoints={[
@@ -82,23 +133,33 @@ import PPCImage from "../../assets/services/amazon-ppc/ppc.png";
 
     <ServiceInfoHorizontalReverse
       image={PPCImage}
-      title="AFFILIATE MARKETING"
-      titleId="affiliate-marketing-heading"
-      description="In many instances, affiliate marketing, which precisely targets the market through a reliable source, is the only method for Amazon PPC agencies to capitalize on growth on e-commerce platforms. AMZ Inventor uses niche influencers to provide quality leads."
-      descriptionId="affiliate-marketing-paragraph"
+      title="AMAZON SMM – Amazon PPC Management and Social Media"
+      titleId="amazon-smm-heading"
+      description="Our Amazon PPC services also include social media management to reach every active and potential customer base. We develop substantial social media marketing strategies for brands in order to fill the gap at the appropriate time and place. We cover the nuts and bolts of everything to position brands for consistent success, from organic marketing to paid targeting."
+      descriptionId="amazon-smm-paragraph"
       bulletPointHeadings={[""]}
       bulletPoints={[
         [
-          "Niche influencers",
-          "Quality lead generation",
-          "Market targeting",
-          "Growth optimization",
+          "Audience Profiling",
+          "Retargeting",
+          "Campaign Optimization",
+          "Social Media Management",
         ],
       ]}
     />
+
+    <ServiceInfoHorizontal
+      image={PPCImage}
+      title="AFFILIATE MARKETING"
+      titleId="affiliate-marketing-heading"
+      description="In many instances, affiliate marketing, which precisely targets the market through a reliable source, is the only method for Amazon PPC agencies to capitalize on growth on e-commerce platforms. Swyft Achievers uses niche influencers to provide quality leads."
+      descriptionId="affiliate-marketing-paragraph"
+      bulletPointHeadings={[]}
+      bulletPoints={[]}
+    />
   </div>
   <WhyUs />
-  <UpscaleBusiness />
+  <UpscaleBusiness cards={cards} />
   <BrandStoreEstablished image={BrandImage} />
   <Testimonials />
 </Layout>
