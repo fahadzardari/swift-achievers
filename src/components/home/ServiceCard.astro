@@ -8,23 +8,25 @@ const {
 ---
 
 <div
-  class="border-gradient flex h-[240px] flex-col items-center justify-center gap-y-7 rounded-lg p-7 md:h-[380px]"
+  class="border-gradient flex h-full py-8 flex-col rounded-lg px-7"
   id={id}
 >
   <h1
-    class="text-center text-sm font-semibold whitespace-nowrap text-white lg:text-base xl:text-lg"
+    class="text-center text-sm font-semibold whitespace-nowrap text-white lg:text-base xl:text-lg min-h-[24px] lg:min-h-[28px] mb-6"
   >
     {title}
   </h1>
   <p
-    class="text-center text-xs text-[#ffffff] md:text-xs lg:text-xs 2xl:text-sm"
+    class="text-center text-xs text-[#ffffff] md:text-xs lg:text-xs 2xl:text-sm flex-grow"
   >
     {description}
   </p>
-  <a
-    href={link}
-    class="bg-gradient w-full cursor-pointer rounded-full py-1 text-center text-[11px] text-white md:text-xs lg:py-2 xl:text-sm 2xl:text-base"
-  >
-    Learn More
-  </a>
+  <div class="mt-8">
+    <a
+      href={link}
+      class="bg-gradient block w-full cursor-pointer rounded-full py-1 text-center text-[11px] text-white md:text-xs lg:py-2 xl:text-sm 2xl:text-base"
+    >
+      Learn More
+    </a>
+  </div>
 </div>
