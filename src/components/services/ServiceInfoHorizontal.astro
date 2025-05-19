@@ -19,17 +19,24 @@ import ReportingImage from "../../assets/about-us/reporting.png";
 
 <section
   class="service-info-section flex flex-col gap-x-16 gap-y-4 md:flex-row md:items-center md:justify-between"
-  data-section-id={Math.random().toString(36).substr(2, 9)}
+  data-anim-scrub="1.2"
+  data-anim-start="top 80%"
+  data-anim-end="bottom 20%"
 >
-  <Image
-    src={image || DefaultImage}
-    alt={imageAlt || "Scaling Products"}
-    class="md:w-1/2"
-  />
-  <div class="flex flex-col gap-y-4 text-white">
+  <div class="md:w-1/2" data-anim="fade-left" data-anim-delay="0.1">
+    <Image
+      src={image || DefaultImage}
+      alt={imageAlt || "Scaling Products"}
+      class="w-full"
+      loading={"lazy"}
+    />
+  </div>
+  <div class="flex flex-col gap-y-4 text-white md:w-1/2">
     <h1
       class="3xl:text-[46px] text-2xl font-semibold md:text-3xl lg:text-4xl xl:text-[40px]"
       id={titleId}
+      data-anim="fade-up"
+      data-anim-delay="0.2"
     >
       {title}
     </h1>
@@ -37,20 +44,44 @@ import ReportingImage from "../../assets/about-us/reporting.png";
       class="text-xs lg:text-sm 2xl:text-base"
       id={descriptionId}
       set:html={description}
+      data-anim="fade-up"
+      data-anim-delay="0.3"
     />
     {
       aboutUs && (
-        <div class="mt-6 grid grid-cols-2 gap-4 md:grid-cols-3">
-          <div class="flex flex-col items-center justify-center gap-y-2">
-            <Image src={ConsultationImage} alt="Consultation" />
+        <div
+          class="mt-6 grid grid-cols-2 gap-y-12 md:grid-cols-3"
+          data-anim-group
+          data-anim-stagger="0.1"
+          data-anim-delay="0.4"
+        >
+          <div
+            class="flex flex-col items-center justify-center gap-y-2"
+            data-anim-item
+          >
+            <Image
+              src={ConsultationImage}
+              alt="Consultation"
+              loading={"lazy"}
+            />
             <h3 class="text-xs lg:text-xs 2xl:text-sm">Expert consultation</h3>
           </div>
-          <div class="flex flex-col items-center justify-center gap-y-2">
-            <Image src={OperationalImage} alt="Operational Excellence" />
+          <div
+            class="flex flex-col items-center justify-center gap-y-2"
+            data-anim-item
+          >
+            <Image
+              src={OperationalImage}
+              alt="Operational Excellence"
+              loading={"lazy"}
+            />
             <h3 class="text-xs lg:text-xs 2xl:text-sm">Operational help</h3>
           </div>
-          <div class="flex flex-col items-center justify-center gap-y-2">
-            <Image src={ReportingImage} alt="Reporting" />
+          <div
+            class="flex flex-col items-center justify-center gap-y-2"
+            data-anim-item
+          >
+            <Image src={ReportingImage} alt="Reporting" loading={"lazy"} />
             <h3 class="text-xs lg:text-xs 2xl:text-sm">
               Tracking and Reporting
             </h3>
@@ -60,13 +91,18 @@ import ReportingImage from "../../assets/about-us/reporting.png";
     }
     {
       bulletPointHeadings.map((heading, index) => (
-        <div>
-          <h3 class="text-lg font-semibold lg:text-xl 2xl:text-2xl" key={index}>
+        <div data-anim="fade-up" data-anim-delay={0.4 + index * 0.1}>
+          <h3 class="text-lg font-semibold lg:text-xl 2xl:text-2xl">
             {heading}
           </h3>
-          <div class="mt-4 grid grid-cols-2 gap-4">
+          <div
+            class="mt-4 grid grid-cols-2 gap-4"
+            data-anim-group
+            data-anim-stagger="0.05"
+            data-anim-delay={0.5 + index * 0.1}
+          >
             {bulletPoints[index].map((point) => (
-              <div class="flex items-center gap-x-2">
+              <div class="flex items-center gap-x-2" data-anim-item>
                 <div class="flex h-[18px] w-[18px] flex-shrink-0 items-center justify-center">
                   <svg
                     width="18"
@@ -91,155 +127,27 @@ import ReportingImage from "../../assets/about-us/reporting.png";
         </div>
       ))
     }
-    <div class="mt-4 flex gap-x-4">
+    <div
+      class="mt-4 flex gap-x-4"
+      data-anim-group
+      data-anim-stagger="0.1"
+      data-anim-scale="0.9"
+      data-anim-y="20"
+      data-anim-delay="0.6"
+    >
       <a
         class="open-contact-modal bg-gradient cursor-pointer rounded-full px-6 py-2 text-[11px] text-white md:text-xs lg:text-sm xl:text-base"
+        data-anim-item
       >
         Get a Quote
       </a>
       <a
         class="cursor-pointer rounded-full border px-6 py-2 text-[11px] text-white md:text-xs lg:text-sm xl:text-base"
         href="tel:+19788502039"
+        data-anim-item
       >
         +1 (978) 850-2039
       </a>
     </div>
   </div>
 </section>
-
-<script>
-  import gsap from "gsap";
-  import { ScrollTrigger } from "gsap/ScrollTrigger";
-  import SplitType from "split-type";
-
-  // Register ScrollTrigger plugin
-  gsap.registerPlugin(ScrollTrigger);
-
-  // Select all instances of this component
-  const sections = document.querySelectorAll(".service-info-section");
-
-  // Create animations for each instance independently
-  sections.forEach((section) => {
-    const sectionId = section.dataset.sectionId;
-
-    // Get elements to animate within this specific section
-    const image = section.querySelector("img");
-    const title = section.querySelector("h1");
-    const description = section.querySelector("p");
-    const bulletPointContainers = Array.from(
-      section.querySelectorAll("div"),
-    ).filter((div) => div.querySelector("h3"));
-    const buttons = section.querySelectorAll(".mt-4.flex.gap-x-4 a");
-
-    // Create timeline with ScrollTrigger
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: section,
-        start: "10% bottom", // Start when top of section hits bottom of viewport
-        end: "bottom 70%", // End when bottom of section hits 70% down viewport
-        scrub: 1, // Smooth scrubbing effect tied to scroll position
-        toggleActions: "restart none none reverse",
-        id: `service-${sectionId}`, // Unique identifier for this ScrollTrigger
-        // markers: true,    // Uncomment for debugging
-        once: false, // Ensure animation plays every time
-      },
-    });
-
-    // Different animation for image based on screen size
-    if (image) {
-      // Check if we're on mobile
-      const isMobile = window.innerWidth < 768; // 768px is the md breakpoint in Tailwind
-
-      if (isMobile) {
-        // For mobile: Use opacity and scale animation that doesn't affect layout
-        tl.fromTo(
-          image,
-          { opacity: 0, scale: 0.95 },
-          { opacity: 1, scale: 1, duration: 0.5 },
-          0,
-        );
-      } else {
-        // For desktop/tablet: Use the horizontal slide animation
-        tl.fromTo(
-          image,
-          { x: -40, opacity: 0 },
-          { x: 0, opacity: 1, duration: 0.5 },
-          0,
-        );
-      }
-    }
-
-    // Animate title fading in from below
-    if (title) {
-      tl.fromTo(
-        title,
-        { y: 30, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.5 },
-        0.1,
-      );
-    }
-
-    // Animate description fading in
-    if (description) {
-      tl.fromTo(
-        description,
-        { y: 20, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.5 },
-        0.2,
-      );
-    }
-
-    // Animate bullet points with staggered effect
-    bulletPointContainers.forEach((container, i) => {
-      const heading = container.querySelector("h3");
-      const bulletPoints = container.querySelectorAll(
-        ".grid div.flex.items-center",
-      );
-
-      if (heading) {
-        tl.fromTo(
-          heading,
-          { y: 15, opacity: 0 },
-          { y: 0, opacity: 1, duration: 0.5 },
-          0.3 + i * 0.05,
-        );
-      }
-
-      if (bulletPoints.length > 0) {
-        tl.fromTo(
-          bulletPoints,
-          { y: 15, opacity: 0 },
-          { y: 0, opacity: 1, stagger: 0.05, duration: 0.5 },
-          0.35 + i * 0.05,
-        );
-      }
-    });
-
-    // Animate buttons appearing with slight bounce
-    if (buttons.length > 0) {
-      tl.fromTo(
-        buttons,
-        { y: 10, opacity: 0 },
-        { y: 0, opacity: 1, stagger: 0.1, duration: 0.5 },
-        0.4,
-      );
-    }
-
-    // Handle resize events to update animations if screen size changes
-    window.addEventListener("resize", () => {
-      // Refresh ScrollTrigger to update positions
-      ScrollTrigger.refresh();
-
-      // Get current mobile status
-      const currentMobile = window.innerWidth < 768;
-
-      // If image exists, update its animation based on new screen size
-      if (image) {
-        if (currentMobile) {
-          // For mobile - reset any X transform and just use opacity/scale
-          gsap.set(image, { x: 0 });
-        }
-      }
-    });
-  });
-</script>

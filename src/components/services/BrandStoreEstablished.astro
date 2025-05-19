@@ -11,18 +11,26 @@ const { image = DefaultImage } = Astro.props;
   <h1
     id="brand-store-heading"
     class="3xl:text-[46px] text-center text-2xl font-semibold md:text-3xl lg:text-4xl xl:text-[40px]"
+    data-anim="fade-up"
   >
     Brand Stores That We Have Established
   </h1>
   <p
     id="brand-store-description"
     class="mt-4 max-w-[821px] text-center text-xs lg:text-sm 2xl:text-base"
+    data-anim="fade-up"
+    data-anim-delay="0.2"
   >
     We have helped empower aspiring brands and businesses through our scalable
     dropshipping fulfillment service.
   </p>
 
-  <div id="brand-store-image-wrapper" class="mt-11">
+  <div
+    id="brand-store-image-wrapper"
+    class="mt-11"
+    data-anim="fade-up"
+    data-anim-delay="0.4"
+  >
     <Image
       id="brand-store-image"
       src={image}
@@ -35,82 +43,17 @@ const { image = DefaultImage } = Astro.props;
 </section>
 
 <script>
-  import gsap from "gsap";
-  import { ScrollTrigger } from "gsap/ScrollTrigger";
-  import SplitType from "split-type";
+  import { gsap } from "gsap";
 
   document.addEventListener("DOMContentLoaded", () => {
-    // Register ScrollTrigger plugin
-    gsap.registerPlugin(ScrollTrigger);
-
-    // Initialize SplitType for text elements (simpler approach)
-    const brandStoreHeading = new SplitType("#brand-store-heading", {
-      types: "lines",
-    });
-
-    // Create main timeline for the section
-    const brandStoreTl = gsap.timeline({
-      scrollTrigger: {
-        trigger: "#brand-store-section",
-        start: "top 80%",
-        end: "center center",
-        scrub: 0.6,
-        toggleActions: "play none none reverse",
-      },
-    });
-
-    // Simple heading animation - line by line
-    brandStoreTl.fromTo(
-      brandStoreHeading.lines,
-      {
-        opacity: 0,
-        y: 20,
-      },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.5,
-      },
-      0,
-    );
-
-    // Simple description fade-in
-    brandStoreTl.fromTo(
-      "#brand-store-description",
-      {
-        opacity: 0,
-        y: 15,
-      },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.5,
-      },
-      0.3,
-    );
-
-    // Simple image animation - just fade up
-    brandStoreTl.fromTo(
-      "#brand-store-image",
-      {
-        opacity: 0,
-        y: 30,
-      },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.8,
-      },
-      0.5,
-    );
-
-    // Add a simple hover effect on the image
+    // Keep only the hover effect for the image as it's interactive
     const imageWrapper = document.getElementById("brand-store-image-wrapper");
     if (imageWrapper) {
       imageWrapper.addEventListener("mouseenter", () => {
         gsap.to("#brand-store-image", {
           scale: 1.02,
           duration: 0.4,
+          ease: "power2.out",
         });
       });
 
@@ -118,6 +61,7 @@ const { image = DefaultImage } = Astro.props;
         gsap.to("#brand-store-image", {
           scale: 1,
           duration: 0.4,
+          ease: "power2.out",
         });
       });
     }

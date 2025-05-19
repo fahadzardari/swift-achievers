@@ -13,12 +13,15 @@ import Image from "astro/components/Image.astro";
     <h2
       id="consultants-heading"
       class="text-xl font-semibold md:text-2xl lg:text-3xl 2xl:text-4xl"
+      data-anim="fade-up"
     >
       Amazon Advertising Adding Value to Your Business Cycle
     </h2>
     <p
       id="consultants-paragraph"
       class="mx-auto mt-3 w-[90%] text-[11px] md:text-xs lg:text-sm 2xl:text-base"
+      data-anim="fade-up"
+      data-anim-delay="0.2"
     >
       Speak with one of our consultants to evaluate your brand or product
       in-depth and discover how to sell it to the ideal buyers!
@@ -27,137 +30,51 @@ import Image from "astro/components/Image.astro";
     <div
       id="consultants-brands"
       class="mt-10 flex flex-wrap items-center justify-center gap-x-4 md:mt-14 md:justify-between"
+      data-anim-group
+      data-anim-stagger="0.08"
     >
       <Image
         src={Adidas}
         alt="Adidas"
         class="brand-logo h-auto w-20"
         loading={"lazy"}
+        data-anim-item
       />
       <Image
         src={Ideo}
         alt="Ideo"
         class="brand-logo h-auto w-20"
         loading={"lazy"}
+        data-anim-item
       />
       <Image
         src={Stanford}
         alt="Stanford"
         class="brand-logo h-auto w-20"
         loading={"lazy"}
+        data-anim-item
       />
       <Image
         src={Volkswagen}
         alt="Volkswagen"
         class="brand-logo h-auto w-20"
         loading={"lazy"}
+        data-anim-item
       />
       <Image
         src={Netflix}
         alt="Netflix"
         class="brand-logo h-auto w-20"
         loading={"lazy"}
+        data-anim-item
       />
       <Image
         src={Ikea}
         alt="Ikea"
         class="brand-logo h-auto w-20"
         loading={"lazy"}
+        data-anim-item
       />
     </div>
   </div>
 </section>
-
-<script>
-  import { gsap } from "gsap";
-  import { ScrollTrigger } from "gsap/all";
-
-  // Register the ScrollTrigger plugin
-  gsap.registerPlugin(ScrollTrigger);
-
-  // Wait for the DOM to be fully loaded
-  document.addEventListener("DOMContentLoaded", () => {
-    // Create the heading animation timeline
-    const headingTl = gsap.timeline({
-      scrollTrigger: {
-        trigger: "#consultants-section",
-        start: "top 80%",
-        toggleActions: "play none none none",
-        once: true,
-      },
-    });
-
-    // Add heading animation to the timeline
-    headingTl.fromTo(
-      "#consultants-heading",
-      {
-        opacity: 0,
-        y: 20,
-      },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.7,
-        ease: "power2.out",
-      },
-    );
-
-    // Create the paragraph animation timeline
-    const paragraphTl = gsap.timeline({
-      scrollTrigger: {
-        trigger: "#consultants-section",
-        start: "top 70%",
-        toggleActions: "play none none none",
-        once: true,
-      },
-    });
-
-    // Add paragraph animation to the timeline
-    paragraphTl.fromTo(
-      "#consultants-paragraph",
-      {
-        opacity: 0,
-        y: 15,
-      },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.6,
-        delay: 0.2,
-        ease: "power2.out",
-      },
-    );
-
-    // Create the brands animation timeline
-    const brandLogos = document.querySelectorAll(
-      "#consultants-brands .brand-logo",
-    );
-    const brandsTl = gsap.timeline({
-      scrollTrigger: {
-        trigger: "#consultants-brands",
-        start: "top 80%",
-        toggleActions: "play none none none",
-        once: true,
-      },
-    });
-
-    // Add brand logos animation to the timeline
-    brandsTl.fromTo(
-      brandLogos,
-      {
-        opacity: 0,
-        scale: 0.8,
-        y: 30,
-      },
-      {
-        opacity: 1,
-        scale: 1,
-        y: 0,
-        stagger: 0.08,
-        duration: 0.6,
-        ease: "power2.out",
-      },
-    );
-
-  });
-</script>

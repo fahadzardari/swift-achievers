@@ -8,163 +8,96 @@ import QuestionFAQ from "./QuestionFAQ.astro";
   data-section-id={Math.random().toString(36).substr(2, 9)}
 >
   <div class="max-w-[900px]">
-    <Heading id="faqs-heading" title="Frequently Asked Questions" />
-    <p class="faq-description mt-4 text-xs text-white lg:text-sm 2xl:text-base">
+    <div data-anim="fade-up">
+      <Heading id="faqs-heading" title="Frequently Asked Questions" />
+    </div>
+    <p
+      data-anim="fade-in"
+      data-anim-delay="0.2"
+      class="faq-description mt-4 text-xs text-white lg:text-sm 2xl:text-base"
+    >
       We aim to aid your progress online. However, if there's a query not
       addressed on our site, don't hesitate to contact our customer
       representative.
     </p>
   </div>
-  <div class="faq-questions-container my-4 flex flex-col">
-    <QuestionFAQ
-      question="What services are provided by Swyft Achievers?"
-      answer="We at Swyft Achievers create and automate online stores so that our customers can generate passive revenue without doing any work. We take care of everything from A to Z so you can relax and see your company flourish.<br><br>Among the services we offer on Amazon are:<br><br>• Establishment and Administration of Stores<br>• Product Sourcing and Hunting<br>• Optimization of Listings (SEO)<br>• Content Creation at EBC/A+<br>• Management of Amazon PPC (Pay-Per-Click) Ads<br>• Management of Inventory<br>• Comparison of Prices and Products<br>• Support for Virtual Assistants<br>• Complete Automation of Amazon FBA<br><br>We also offer automation services for other major e-commerce platforms, including:<br>• Shopify Store Automation<br>• TikTok Shop Automation<br>• Walmart Automation<br><br>Our objective is to build completely hands-off e-commerce businesses that produce steady income streams so that our clients may concentrate on other important tasks or simply enjoy life."
-    />
+  <div
+    data-anim-group
+    data-anim-stagger="0.08"
+    data-anim-scale="0.97"
+    data-anim-y="40"
+    data-anim-delay="0.4"
+    class="faq-questions-container my-4 flex flex-col"
+  >
+    <div data-anim-item>
+      <QuestionFAQ
+        question="What services are provided by Swyft Achievers?"
+        answer="We at Swyft Achievers create and automate online stores so that our customers can generate passive revenue without doing any work. We take care of everything from A to Z so you can relax and see your company flourish.<br><br>Among the services we offer on Amazon are:<br><br>• Establishment and Administration of Stores<br>• Product Sourcing and Hunting<br>• Optimization of Listings (SEO)<br>• Content Creation at EBC/A+<br>• Management of Amazon PPC (Pay-Per-Click) Ads<br>• Management of Inventory<br>• Comparison of Prices and Products<br>• Support for Virtual Assistants<br>• Complete Automation of Amazon FBA<br><br>We also offer automation services for other major e-commerce platforms, including:<br>• Shopify Store Automation<br>• TikTok Shop Automation<br>• Walmart Automation<br><br>Our objective is to build completely hands-off e-commerce businesses that produce steady income streams so that our clients may concentrate on other important tasks or simply enjoy life."
+      />
+    </div>
 
-    <QuestionFAQ
-      id="faqs-question-2"
-      question="What is Amazon FBA Automation and how does it benefit my business?"
-      answer="Streamlining the process of storing, packing, and shipping your products through Amazon's fulfillment centers is known as Amazon FBA (Fulfillment by Amazon) automation. We assist you in saving time, cutting expenses, and concentrating on growing your company by automating these tasks."
-    />
+    <div data-anim-item>
+      <QuestionFAQ
+        id="faqs-question-2"
+        question="What is Amazon FBA Automation and how does it benefit my business?"
+        answer="Streamlining the process of storing, packing, and shipping your products through Amazon's fulfillment centers is known as Amazon FBA (Fulfillment by Amazon) automation. We assist you in saving time, cutting expenses, and concentrating on growing your company by automating these tasks."
+      />
+    </div>
 
-    <QuestionFAQ
-      id="faqs-question-3"
-      question="Is this business model suitable for beginners?"
-      answer="Of course. Our systems are designed to assist customers with no prior knowledge. We'll create, launch, and scale your store while you learn passively through our transparent reporting, so you don't need to know anything about e-commerce."
-    />
+    <div data-anim-item>
+      <QuestionFAQ
+        id="faqs-question-3"
+        question="Is this business model suitable for beginners?"
+        answer="Of course. Our systems are designed to assist customers with no prior knowledge. We'll create, launch, and scale your store while you learn passively through our transparent reporting, so you don't need to know anything about e-commerce."
+      />
+    </div>
 
-    <QuestionFAQ
-      id="faqs-question-4"
-      question="What makes your automation service better than hiring a freelancer or doing it myself?"
-      answer="Freelancers are transient. Learning to do things yourself takes months. Employing Swyft Achievers means working with a committed group of professionals that have tested supplier networks, marketing plans, and procedures in place to help you create a legitimate, passive business right away. No speculating. No experimenting. Just results!"
-    />
+    <div data-anim-item>
+      <QuestionFAQ
+        id="faqs-question-4"
+        question="What makes your automation service better than hiring a freelancer or doing it myself?"
+        answer="Freelancers are transient. Learning to do things yourself takes months. Employing Swyft Achievers means working with a committed group of professionals that have tested supplier networks, marketing plans, and procedures in place to help you create a legitimate, passive business right away. No speculating. No experimenting. Just results!"
+      />
+    </div>
 
-    <QuestionFAQ
-      id="faqs-question-5"
-      question="What's the difference between Amazon, Shopify, and TikTok Shop automation? Which one should I choose?"
-      answer="Every platform has advantages.<br><br>Amazon: Best for quick traction; built-in traffic and credibility<br>Shopify: Long-term branding potential and custom brand ownership<br>TikTok Shop: Excellent for quick return on investment due to its viral potential and influencer-driven traffic<br><br>Uncertain? We assist you in making decisions based on your objectives, risk tolerance, and budget. For several revenue streams, some clients even do all three."
-    />
+    <div data-anim-item>
+      <QuestionFAQ
+        id="faqs-question-5"
+        question="What's the difference between Amazon, Shopify, and TikTok Shop automation? Which one should I choose?"
+        answer="Every platform has advantages.<br><br>Amazon: Best for quick traction; built-in traffic and credibility<br>Shopify: Long-term branding potential and custom brand ownership<br>TikTok Shop: Excellent for quick return on investment due to its viral potential and influencer-driven traffic<br><br>Uncertain? We assist you in making decisions based on your objectives, risk tolerance, and budget. For several revenue streams, some clients even do all three."
+      />
+    </div>
 
-    <QuestionFAQ
-      id="faqs-question-6"
-      question="Can I still start if I don't have a big budget?"
-      answer="Indeed! We provide multiple financing options and packages. Some of our most prosperous clients began small and quickly expanded. We concentrate on smart investments that bring in a profit without breaking the bank. We'll develop around what works best for you, even if you're starting out lean."
-    />
+    <div data-anim-item>
+      <QuestionFAQ
+        id="faqs-question-6"
+        question="Can I still start if I don't have a big budget?"
+        answer="Indeed! We provide multiple financing options and packages. Some of our most prosperous clients began small and quickly expanded. We concentrate on smart investments that bring in a profit without breaking the bank. We'll develop around what works best for you, even if you're starting out lean."
+      />
+    </div>
 
-    <QuestionFAQ
-      id="faqs-question-7"
-      question="When can I expect to start earning money?"
-      answer="Depending on the platform, many of our clients start seeing sales within the first few weeks and steady earnings within the first 30 to 90 days. We don't start from scratch as other startups do; instead, we leverage tried-and-true technologies and products."
-    />
+    <div data-anim-item>
+      <QuestionFAQ
+        id="faqs-question-7"
+        question="When can I expect to start earning money?"
+        answer="Depending on the platform, many of our clients start seeing sales within the first few weeks and steady earnings within the first 30 to 90 days. We don't start from scratch as other startups do; instead, we leverage tried-and-true technologies and products."
+      />
+    </div>
 
-    <QuestionFAQ
-      id="faqs-question-8"
-      question="Should I be concerned about shipping and storage?"
-      answer="Absolutely not. We collaborate with reputable vendors and fulfillment facilities to manage the logistics of your products. With dropshipping, FBA, Private label, or 3PL integration, you won't ever have to touch a product."
-    />
+    <div data-anim-item>
+      <QuestionFAQ
+        id="faqs-question-8"
+        question="Should I be concerned about shipping and storage?"
+        answer="Absolutely not. We collaborate with reputable vendors and fulfillment facilities to manage the logistics of your products. With dropshipping, FBA, Private label, or 3PL integration, you won't ever have to touch a product."
+      />
+    </div>
 
-    <QuestionFAQ
-      id="faqs-question-9"
-      question="How do I get started with Swyft Achievers?"
-      answer="You can begin by filling out our contact form on the website or reaching out directly via phone at +1 (978) 850-2039 or email at info@swyftachievers.com. Our team will respond within 24 hours to discuss your needs and how we can assist."
-    />
+    <div data-anim-item>
+      <QuestionFAQ
+        id="faqs-question-9"
+        question="How do I get started with Swyft Achievers?"
+        answer="You can begin by filling out our contact form on the website or reaching out directly via phone at +1 (978) 850-2039 or email at info@swyftachievers.com. Our team will respond within 24 hours to discuss your needs and how we can assist."
+      />
+    </div>
   </div>
 </section>
-
-<script>
-  import gsap from "gsap";
-  import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-  // Register ScrollTrigger plugin
-  gsap.registerPlugin(ScrollTrigger);
-
-  // Select all instances of this component (in case there are multiple)
-  const faqSections = document.querySelectorAll(".faq-section");
-
-  faqSections.forEach((section) => {
-    const sectionId = section.dataset.sectionId;
-
-    // Get elements to animate
-    const heading = section.querySelector("#faqs-heading");
-    const description = section.querySelector(".faq-description");
-    const questions = section.querySelectorAll(
-      ".faq-questions-container > div",
-    );
-
-    // Create timeline with ScrollTrigger
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: section,
-        start: "top 80%", // Start when section enters viewport
-        toggleActions: "play none none none", // Play once when entering, don't reverse
-        id: `faq-section-${sectionId}`,
-        once: true, // Animation plays only once
-      },
-      defaults: {
-        ease: "power2.out",
-      },
-    });
-
-    // Animate heading
-    if (heading) {
-      tl.fromTo(
-        heading,
-        { y: 30, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.7 },
-        0,
-      );
-    }
-
-    // Animate description
-    if (description) {
-      tl.fromTo(
-        description,
-        { y: 20, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.6 },
-        0.2,
-      );
-    }
-
-    // Animate FAQ items with staggered effect
-    if (questions.length > 0) {
-      tl.fromTo(
-        questions,
-        {
-          y: 40,
-          opacity: 0,
-          scale: 0.97,
-        },
-        {
-          y: 0,
-          opacity: 1,
-          scale: 1,
-          stagger: 0.08, // Stagger each question appearance
-          duration: 0.6,
-        },
-        0.4,
-      );
-
-      // Add click interaction effects independent of scroll animation
-      questions.forEach((question) => {
-        // Get the question header (the clickable part)
-        const header = question.querySelector(".question-header") || question;
-
-        header.addEventListener("click", () => {
-          // Add a subtle pulse animation when clicked
-          gsap.to(question, {
-            scale: 1.02,
-            duration: 0.2,
-            ease: "power1.out",
-            onComplete: () => {
-              gsap.to(question, {
-                scale: 1,
-                duration: 0.3,
-                ease: "power2.out",
-              });
-            },
-          });
-        });
-      });
-    }
-  });
-</script>

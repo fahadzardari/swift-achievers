@@ -7,15 +7,19 @@ import Heading from "./Heading.astro";
   class="container flex flex-col items-center justify-center gap-y-6 py-12 text-white"
 >
   <div class="max-w-[1100px] text-center">
-    <h1
-      id="scaling-products-heading"
-      class="3xl:text-[46px] mx-auto max-w-[85%] text-2xl font-semibold md:text-3xl lg:text-4xl xl:text-[40px]"
-    >
-      Scaling Mid-To-Large Scale Products Brands On Amazon
-    </h1>
+    <div data-anim="fade-up">
+      <h1
+        id="scaling-products-heading"
+        class="3xl:text-[46px] mx-auto max-w-[85%] text-2xl font-semibold md:text-3xl lg:text-4xl xl:text-[40px]"
+      >
+        Scaling Mid-To-Large Scale Products Brands On Amazon
+      </h1>
+    </div>
     <p
       id="scaling-products-paragraph"
       class="mx-auto mt-4 text-center text-xs lg:text-sm 2xl:text-base"
+      data-anim="fade-up"
+      data-anim-delay="0.2"
     >
       Over the years we have implemented techniques that set the pace of Amazon
       advertising for product brands; aiming for meticulous account management.
@@ -113,58 +117,6 @@ import Heading from "./Heading.astro";
     // Register ScrollTrigger plugin
     gsap.registerPlugin(ScrollTrigger);
 
-    // Initialize SplitType for text elements
-    const scalingHeading = new SplitType("#scaling-products-heading", {
-      types: "words,chars",
-    });
-
-    const scalingParagraph = new SplitType("#scaling-products-paragraph", {
-      types: "lines",
-    });
-
-    // Create a timeline for the text animations with scrub
-    const textTl = gsap.timeline({
-      scrollTrigger: {
-        trigger: "#scaling-products-section",
-        start: "top 80%",
-        end: "center 50%",
-        scrub: 0.6,
-        toggleActions: "play none none reverse",
-      },
-    });
-
-    // Heading animation
-    textTl.fromTo(
-      scalingHeading.chars,
-      {
-        opacity: 0,
-        y: 20,
-      },
-      {
-        opacity: 1,
-        y: 0,
-        stagger: 0.01,
-        duration: 0.5,
-      },
-      0,
-    );
-
-    // Paragraph animation
-    textTl.fromTo(
-      scalingParagraph.lines,
-      {
-        opacity: 0,
-        y: 15,
-      },
-      {
-        opacity: 1,
-        y: 0,
-        stagger: 0.1,
-        duration: 0.5,
-      },
-      0.3,
-    );
-
     // Counter animation that runs once
     const statNumbers = document.querySelectorAll('[id^="stat-number-"]');
 
@@ -207,8 +159,6 @@ import Heading from "./Heading.astro";
         },
       });
     });
-
-    // Rest of the animations...
   });
 </script>
 
@@ -217,6 +167,4 @@ import Heading from "./Heading.astro";
     transition: transform 0.3s ease;
     cursor: pointer;
   }
-
-  /* Removed gradient styling to keep numbers white */
 </style>

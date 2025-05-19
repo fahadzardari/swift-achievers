@@ -19,20 +19,29 @@ const {
       class="h-full w-full object-cover"
       width={1920}
       height={1080}
+      loading="eager"
     />
     <div
       id="hero-gradient"
       class="absolute inset-0 top-auto bottom-0 bg-linear-to-b from-transparent from-90% to-[#040243]"
+      data-anim="fade-up"
+      data-anim-delay="0.2"
     >
     </div>
   </div>
   <div id="hero-content" class="content container">
-    <div id="hero-text-wrapper" class="w-full md:w-3/4 xl:w-[65%]">
+    <div
+      id="hero-text-wrapper"
+      class="w-full md:w-3/4 xl:w-[65%]"
+      data-anim="fade-up"
+    >
       {
         subheading != "" && (
           <h3
             id="hero-subheading"
             class="3xl:text-2xl font-semibold text-white md:text-base lg:text-lg xl:text-xl"
+            data-anim="fade-right"
+            data-anim-delay="0.2"
           >
             {subheading}
           </h3>
@@ -41,6 +50,8 @@ const {
       <h1
         id="hero-title"
         class="3xl:text-[70px] mt-4 text-4xl font-semibold text-white sm:text-5xl lg:text-5xl xl:mt-6 xl:text-6xl xl:leading-[66px] 2xl:text-[64px] 2xl:leading-[74px]"
+        data-anim="fade-up"
+        data-anim-delay="0.4"
       >
         {title}
       </h1>
@@ -49,6 +60,8 @@ const {
           <p
             id="hero-desc-heading"
             class="3xl:text-2xl mt-4 font-semibold text-white md:mt-6 md:text-base lg:text-lg xl:mt-8 xl:text-xl 2xl:mt-10"
+            data-anim="fade-up"
+            data-anim-delay="0.8"
           >
             {descriptionHeading}
           </p>
@@ -57,13 +70,21 @@ const {
       <p
         id="hero-description"
         class="mt-3 max-w-[714px] text-xs text-[#ffffff] md:text-xs lg:mt-5 lg:text-sm xl:text-base"
+        data-anim="fade-up"
+        data-anim-delay="1.0"
       >
         {description}
       </p>
-      <div id="hero-cta" class="mt-4 flex gap-x-4">
+      <div
+        id="hero-cta"
+        class="mt-4 flex gap-x-4"
+        data-anim-group
+        data-anim-stagger="0.2"
+      >
         <button
           id="hero-chat-btn"
           class="open-chat-widget bg-gradient cursor-pointer rounded-full px-6 py-2 text-[11px] text-white md:text-xs lg:text-sm xl:text-base"
+          data-anim-item
         >
           Live Chat
         </button>
@@ -71,6 +92,7 @@ const {
           id="hero-phone-btn"
           class="cursor-pointer rounded-full border px-6 py-2 text-[11px] text-white md:text-xs lg:text-sm xl:text-base"
           href="tel:+19788502039"
+          data-anim-item
         >
           +1 (978) 850-2039
         </a>
@@ -79,6 +101,11 @@ const {
   </div>
 </header>
 
+<script>
+  // No need for direct GSAP imports or animation code here
+  // Animation controller will handle animations based on data attributes
+</script>
+<!-- 
 <script>
   import gsap from "gsap";
   import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -95,6 +122,7 @@ const {
 
     // Create main timeline for initial load animations
     const mainTl = gsap.timeline({ defaults: { ease: "power2.out" } });
+
 
 
     // Add all animations to the main timeline in sequence
@@ -187,4 +215,4 @@ const {
       0.2,
     );
   });
-</script>
+</script> -->

@@ -8,13 +8,11 @@ export default defineConfig({
     build: {
       cssCodeSplit: true,
       minify: true,
-    }
+    },
   },
   site: "https://swyftachievers.com",
   output: "static",
-  integrations: [
-    sitemap(),
-  ],
+  integrations: [sitemap()],
   devToolbar: {
     enabled: false,
   },

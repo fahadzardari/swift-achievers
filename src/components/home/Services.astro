@@ -3,17 +3,26 @@ import Heading from "../common/Heading.astro";
 import ServiceCard from "./ServiceCard.astro";
 ---
 
-<div
-  class="services-section container my-24 text-white"
-  data-section-id={Math.random().toString(36).substr(2, 9)}
->
-  <Heading title="Our Services" id="services-heading" />
+<div class="services-section container my-24 text-white">
+  <div data-anim="fade-up">
+    <Heading title="Our Services" id="services-heading" />
+  </div>
+
   <div class="mt-2 flex items-center justify-between">
-    <p class="services-description max-w-2/3 text-xs lg:text-sm 2xl:text-base">
+    <p
+      data-anim="fade-up"
+      data-anim-delay="0.1"
+      class="services-description max-w-2/3 text-xs lg:text-sm 2xl:text-base"
+    >
       With our Amazon Marketing Services, we assist brands in establishing a
       growing business cycle through a flexible strategy to advertise on Amazon.
     </p>
-    <div class="services-controls item-center flex gap-x-3">
+
+    <div
+      data-anim="fade-left"
+      data-anim-delay="0.1"
+      class="services-controls item-center flex gap-x-3"
+    >
       <button
         id="services-prev-button"
         class="cursor-pointer rounded-md bg-[#bababa]/25 px-1 py-2 opacity-50 disabled:cursor-not-allowed"
@@ -79,11 +88,16 @@ import ServiceCard from "./ServiceCard.astro";
     </div>
   </div>
 
-  <!-- Convert to Swiper structure -->
-  <div id="services-swiper" class="my-14">
+  <!-- Swiper with animation group -->
+  <div
+    id="services-swiper"
+    class="my-14"
+    data-anim-group
+    data-anim-stagger="0.1"
+  >
     <div class="swiper-wrapper">
-      <!-- Wrap each ServiceCard in a swiper-slide -->
-      <div class="swiper-slide">
+      <!-- Each slide gets data-anim-item attribute -->
+      <div class="swiper-slide" data-anim-item>
         <ServiceCard
           title="Amazon Services"
           description="Store Creation, Product Hunting, SEO, PPC Management, FBA Automation, EBC/A+ Content, Inventory Management, Price & Product Comparison, Virtual Assistance."
@@ -91,7 +105,7 @@ import ServiceCard from "./ServiceCard.astro";
           id="card-1"
         />
       </div>
-      <div class="swiper-slide">
+      <div class="swiper-slide" data-anim-item>
         <ServiceCard
           title="Shopify Automation"
           description="Store Setup, Theme Customization, App Integration, Payment Gateway Configuration, Product Importing, Order Fulfillment Automation."
@@ -99,7 +113,7 @@ import ServiceCard from "./ServiceCard.astro";
           id="card-2"
         />
       </div>
-      <div class="swiper-slide">
+      <div class="swiper-slide" data-anim-item>
         <ServiceCard
           title="Walmart Automation"
           description="Launch and automate your Walmart seller account with our expert service, including product uploads, order processing, and policy-compliant growth."
@@ -107,7 +121,7 @@ import ServiceCard from "./ServiceCard.astro";
           id="card-3"
         />
       </div>
-      <div class="swiper-slide">
+      <div class="swiper-slide" data-anim-item>
         <ServiceCard
           title="TikTok Shop Automation"
           description="We handle TikTok Shop setup, identify viral products, and run influencer-driven content strategies to drive consistent organic and paid sales."
@@ -115,7 +129,7 @@ import ServiceCard from "./ServiceCard.astro";
           id="card-4"
         />
       </div>
-      <div class="swiper-slide">
+      <div class="swiper-slide" data-anim-item>
         <ServiceCard
           title="Virtual Assistance"
           description="Get access to trained VAs who take care of daily store tasks like order tracking, product research, customer service, inventory updates, and more."
@@ -123,7 +137,7 @@ import ServiceCard from "./ServiceCard.astro";
           id="card-5"
         />
       </div>
-      <div class="swiper-slide">
+      <div class="swiper-slide" data-anim-item>
         <ServiceCard
           title="Amazon Reinstatement Services"
           description="Recover suspended accounts or listings with our expert appeal drafting, case handling, and compliance consulting to get you selling again fast."
@@ -131,7 +145,7 @@ import ServiceCard from "./ServiceCard.astro";
           id="card-6"
         />
       </div>
-      <div class="swiper-slide">
+      <div class="swiper-slide" data-anim-item>
         <ServiceCard
           title="Content Creation"
           description="Professional lifestyle images, product photography, and UGC-style videos for TikTok, Amazon listings, or social ads."
@@ -139,7 +153,7 @@ import ServiceCard from "./ServiceCard.astro";
           id="card-7"
         />
       </div>
-      <div class="swiper-slide">
+      <div class="swiper-slide" data-anim-item>
         <ServiceCard
           title="Customer Service Management"
           description="Provide 24/7 customer support team for your clients' stores to handle inquiries, refunds, and dispute resolutions."
@@ -147,7 +161,7 @@ import ServiceCard from "./ServiceCard.astro";
           id="card-8"
         />
       </div>
-      <div class="swiper-slide">
+      <div class="swiper-slide" data-anim-item>
         <ServiceCard
           title="Social Media Management"
           description="Grow client brands through daily content, reels, and ads on TikTok, Instagram, and Facebook."
@@ -155,7 +169,7 @@ import ServiceCard from "./ServiceCard.astro";
           id="card-9"
         />
       </div>
-      <div class="swiper-slide">
+      <div class="swiper-slide" data-anim-item>
         <ServiceCard
           title="Branding & Packaging Design"
           description="Custom brand identity creation, logo, packaging design, and brand story to elevate your client's product appeal."
@@ -171,11 +185,6 @@ import ServiceCard from "./ServiceCard.astro";
   import Swiper from "swiper";
   import { Navigation } from "swiper/modules";
   import "swiper/css";
-  import gsap from "gsap";
-  import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-  // Register ScrollTrigger plugin
-  gsap.registerPlugin(ScrollTrigger);
 
   document.addEventListener("DOMContentLoaded", () => {
     // Initialize swiper
@@ -247,108 +256,6 @@ import ServiceCard from "./ServiceCard.astro";
     updateButtonStates();
 
     // Scroll-based animations
-    const serviceSections = document.querySelectorAll(".services-section");
-
-    serviceSections.forEach((section) => {
-      const sectionId = section.dataset.sectionId;
-
-      // Get elements to animate
-      const heading = section.querySelector("#services-heading");
-      const description = section.querySelector(".services-description");
-      const controls = section.querySelector(".services-controls");
-      const serviceCards = section.querySelectorAll(".swiper-slide");
-
-      // Create timeline with ScrollTrigger
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: section,
-          start: "top 80%", // Start when top of section enters bottom 80% of viewport
-          toggleActions: "play none none none", // Play once when entering, don't reverse
-          id: `services-section-${sectionId}`,
-          once: false, // Animation will play every time it enters viewport
-        },
-        defaults: {
-          duration: 0.7,
-          ease: "power2.out",
-        },
-      });
-
-      // Animate heading
-      if (heading) {
-        tl.fromTo(heading, { y: 30, opacity: 0 }, { y: 0, opacity: 1 }, 0);
-      }
-
-      // Animate description and controls
-      if (description) {
-        tl.fromTo(
-          description,
-          { y: 20, opacity: 0 },
-          { y: 0, opacity: 1 },
-          0.2,
-        );
-      }
-
-      if (controls) {
-        tl.fromTo(controls, { y: 20, opacity: 0 }, { y: 0, opacity: 1 }, 0.2);
-      }
-
-      // Animate service cards with a staggered effect
-      if (serviceCards.length > 0) {
-        tl.fromTo(
-          serviceCards,
-          { opacity: 0, y: 30, scale: 0.95 },
-          {
-            opacity: 1,
-            y: 0,
-            scale: 1,
-            stagger: 0.1,
-            duration: 0.5,
-          },
-          0.4,
-        );
-      }
-
-      // Special animation for navigation buttons remains the same
-      const navButtons = [
-        document.getElementById("services-prev-button"),
-        document.getElementById("services-next-button"),
-      ];
-
-      navButtons.forEach((button) => {
-        if (button) {
-          // Add hover effect
-          button.addEventListener("mouseenter", () => {
-            gsap.to(button, {
-              backgroundColor: "rgba(253, 52, 252, 0.2)", // Matches your gradient color
-              scale: 1.05,
-              duration: 0.2,
-            });
-          });
-
-          button.addEventListener("mouseleave", () => {
-            gsap.to(button, {
-              backgroundColor: "rgba(186, 186, 186, 0.25)", // Original color
-              scale: 1,
-              duration: 0.2,
-            });
-          });
-
-          // Add click effect
-          button.addEventListener("click", () => {
-            gsap.to(button, {
-              scale: 0.95,
-              duration: 0.1,
-              onComplete: () => {
-                gsap.to(button, {
-                  scale: 1,
-                  duration: 0.1,
-                });
-              },
-            });
-          });
-        }
-      });
-    });
   });
 </script>
 

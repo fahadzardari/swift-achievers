@@ -13,10 +13,9 @@ import Tag7 from "../../assets/icons/tag7.png";
 import Tag8 from "../../assets/icons/tag8.png";
 ---
 
-<!-- Single section with SVG background -->
+<!-- Use data-anim attributes for animation -->
 <section
   class="whyus-gradient-background relative flex min-h-screen flex-col justify-between overflow-hidden py-8 lg:pt-20"
-  data-section-id={Math.random().toString(36).substr(2, 9)}
 >
   <div class="absolute inset-0 -z-10 h-full w-full">
     <svg
@@ -48,16 +47,25 @@ import Tag8 from "../../assets/icons/tag8.png";
       </defs>
     </svg>
   </div>
+
   <!-- Main content area -->
   <div class="upper-content container lg:pb-10">
-    <Heading id="why-us-heading" title="Why Swyft Achievers?" />
+    <div data-anim="fade-up">
+      <Heading id="why-us-heading" title="Why Swyft Achievers?" />
+    </div>
+
     <h3
+      data-anim="fade-up"
+      data-anim-delay="0.1"
       class="why-us-subtitle 3xl:text-[26px] mt-4 text-[18px] text-white lg:text-[20px] xl:text-[22px] 2xl:text-[24px]"
     >
       Swyft Achievers Unlocks the Potential of a Winning E-Commerce Growth
       Strategy!
     </h3>
+
     <p
+      data-anim="fade-up"
+      data-anim-delay="0.2"
       class="why-us-description mt-4 text-xs text-white lg:text-sm 2xl:text-base"
     >
       Our Amazon Marketing Agency combines intelligent strategies with profit
@@ -66,60 +74,65 @@ import Tag8 from "../../assets/icons/tag8.png";
       assisting brands in reaching, expanding, and leading the e-commerce
       ecosystem.
     </p>
+
+    <!-- Group animation for tags -->
     <div
+      data-anim-group
+      data-anim-stagger="0.12"
       class="why-us-tags item-center mx-auto mt-20 mb-4 grid grid-cols-1 gap-x-4 gap-y-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
     >
       <WhyUsTag
         id="why-us-tag-1"
         title="Amazon SEO"
         description="To grow your Amazon store by increasing product visibility and attracting more customers."
+        data-anim-item
       />
       <WhyUsTag
         id="why-us-tag-2"
         title="Store Management"
         description="To effectively monitor, source, manage, and oversee inventory."
         image={Tag2}
+        data-anim-item
       />
       <WhyUsTag
         id="why-us-tag-3"
         title="Optimized Content"
         description="To enhance product listings and improve rankings on Amazon."
         image={Tag3}
+        data-anim-item
       />
       <WhyUsTag
         id="why-us-tag-4"
         title="Support"
         description="For prompt, customer-focused support in managing Amazon advertising."
         image={Tag4}
+        data-anim-item
       />
       <WhyUsTag
         id="why-us-tag-5"
         title="Amazon Advertising"
         description="To boost sales through targeted and strategic Amazon advertising."
         image={Tag5}
+        data-anim-item
       />
       <WhyUsTag
         id="why-us-tag-6"
         title="Amazon Sales Boost"
         description="To improve product listings and enhance rankings on Amazon."
         image={Tag6}
+        data-anim-item
       />
       <WhyUsTag
         id="why-us-tag-7"
         title="Price & Product Comparison"
         description="To help your company identify the best products and pricing opportunities."
         image={Tag7}
+        data-anim-item
       />
-      <!-- <WhyUsTag
-        id="why-us-tag-8"
-        title="EBC/A+ Content"
-        description="For responsive and customer-centric support help for advertising Amazon"
-        image={Tag8}
-      /> -->
     </div>
   </div>
 
-  <!-- Bottom CTA area aligned with the narrower part of SVG -->
+  <!-- Bottom CTA area -->
   <div
     class="bottom-content 3xl:max-w-[1420px] mx-auto max-w-[400px] px-2 sm:max-w-[600px] lg:max-w-[680px] lg:px-0 xl:max-w-[850px] 2xl:max-w-[1000px]"
   >
@@ -129,28 +142,46 @@ import Tag8 from "../../assets/icons/tag8.png";
       >
         <div class="3xl:max-w-[60%] flex flex-col gap-4 lg:max-w-3/4">
           <h1
+            data-anim="fade-up"
             id="why-us-secondary-heading"
             class="3xl:text-[56px] text-3xl leading-[1.2] font-semibold text-white md:text-4xl xl:text-5xl"
           >
             Take advantage of the expanding e-commerce ecosystem.
           </h1>
           <p
+            data-anim="fade-up"
+            data-anim-delay="0.1"
             class="why-us-cta-subtitle 3xl:text-xl text-xs font-semibold text-white md:text-sm lg:text-base xl:text-lg"
           >
             Connect with our senior consultants!
           </p>
         </div>
+
         <div class="why-us-buttons flex w-fit flex-col gap-6">
           <button
+            data-anim="fade-left"
+            data-anim-delay="0.2"
             class="crusor-pointer open-chat-widget why-us-call-btn 3xl:text-xl flex items-center justify-center gap-2 rounded-full bg-white px-5 py-1 text-left text-xs font-semibold whitespace-nowrap text-[#120136] md:text-sm xl:text-base"
           >
-            <Image src={CallIcon} alt="Call Icon" class="h-4 w-4" loading={"lazy"} />
+            <Image
+              src={CallIcon}
+              alt="Call Icon"
+              class="h-4 w-4"
+              loading={"lazy"}
+            />
             <span>Call Now</span>
           </button>
           <button
+            data-anim="fade-left"
+            data-anim-delay="0.3"
             class="open-contact-modal why-us-chat-btn 3xl:text-xl flex cursor-pointer items-center justify-center gap-2 rounded-full bg-white px-5 py-1 text-left text-xs font-semibold whitespace-nowrap text-[#120136] md:text-sm xl:text-base"
           >
-            <Image src={ChatIcon} alt="Chat Icon" class="h-4 w-4" loading={"lazy"} />
+            <Image
+              src={ChatIcon}
+              alt="Chat Icon"
+              class="h-4 w-4"
+              loading={"lazy"}
+            />
             <span>Get a Quote</span>
           </button>
         </div>
@@ -175,7 +206,7 @@ import Tag8 from "../../assets/icons/tag8.png";
   }
 </style>
 
-<script>
+<!-- <script>
   import gsap from "gsap";
   import { ScrollTrigger } from "gsap/ScrollTrigger";
   import SplitType from "split-type";
@@ -365,4 +396,4 @@ import Tag8 from "../../assets/icons/tag8.png";
       0.4,
     );
   });
-</script>
+</script> -->

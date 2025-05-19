@@ -9,15 +9,21 @@ import client3 from "../../assets/home/testimonials/3.png";
 <section
   id="testimonials-section"
   class="container flex flex-col gap-y-6 py-12"
+  data-anim="fade-in"
+  data-anim-delay="0.2"
 >
   <div id="testimonials-content" class="max-w-[1024px]">
-    <Heading
-      id="testimonials-heading"
-      title="Looking For More Information About Swyft Achievers?"
-    />
+    <div data-anim="fade-up">
+      <Heading
+        id="testimonials-heading"
+        title="Looking For More Information About Swyft Achievers?"
+      />
+    </div>
     <p
       id="testimonials-description"
       class="mt-4 text-xs text-white lg:text-sm 2xl:text-base"
+      data-anim="fade-up"
+      data-anim-delay="0.2"
     >
       Learning from others' experiences will help you make better decisions for
       your business online. Here are our value-driven customers' feedbacks.
@@ -27,159 +33,52 @@ import client3 from "../../assets/home/testimonials/3.png";
   <div
     id="testimonials-grid"
     class="mx-auto mt-12 grid grid-cols-1 gap-x-12 gap-y-8 md:grid-cols-2 xl:grid-cols-3"
+    data-anim-group
+    data-anim-stagger="0.15"
+    data-anim-y="50"
+    data-anim-duration="0.8"
   >
-    <TestimonialCard
-      id="testimonials-card-1"
-      name="Anjie Roberts"
-      country="United States"
-      description=" I'm glad you had a positive experience with their services. Thorough understanding, cooperation, and high-quality work made it a worthwhile investment. Delighted with their job and the results achieved."
-      stars={5}
-      image={client1}
-    />
-    <TestimonialCard
-      id="testimonials-card-2"
-      name="Joan Smith"
-      country="Canada"
-      description=" I'm glad you had a positive experience with their services. Thorough understanding, cooperation, and high-quality work made it a worthwhile investment. Delighted with their job and the results achieved."
-      stars={5}
-      image={client2}
-    />
-    <TestimonialCard
-      id="testimonials-card-3"
-      name="Alice Johnson"
-      country="UK"
-      description=" I'm glad you had a positive experience with their services. Thorough understanding, cooperation, and high-quality work made it a worthwhile investment. Delighted with their job and the results achieved."
-      stars={5}
-      image={client3}
-    />
+    <div
+      data-anim-item
+      class="testimonial-card-wrapper"
+      id="testimonials-card-1-wrapper"
+    >
+      <TestimonialCard
+        id="testimonials-card-1"
+        name="Anjie Roberts"
+        country="United States"
+        description=" I'm glad you had a positive experience with their services. Thorough understanding, cooperation, and high-quality work made it a worthwhile investment. Delighted with their job and the results achieved."
+        stars={5}
+        image={client1}
+      />
+    </div>
+    <div
+      data-anim-item
+      class="testimonial-card-wrapper"
+      id="testimonials-card-2-wrapper"
+    >
+      <TestimonialCard
+        id="testimonials-card-2"
+        name="Joan Smith"
+        country="Canada"
+        description=" I'm glad you had a positive experience with their services. Thorough understanding, cooperation, and high-quality work made it a worthwhile investment. Delighted with their job and the results achieved."
+        stars={5}
+        image={client2}
+      />
+    </div>
+    <div
+      data-anim-item
+      class="testimonial-card-wrapper"
+      id="testimonials-card-3-wrapper"
+    >
+      <TestimonialCard
+        id="testimonials-card-3"
+        name="Alice Johnson"
+        country="UK"
+        description=" I'm glad you had a positive experience with their services. Thorough understanding, cooperation, and high-quality work made it a worthwhile investment. Delighted with their job and the results achieved."
+        stars={5}
+        image={client3}
+      />
+    </div>
   </div>
 </section>
-
-<script>
-  import gsap from "gsap";
-  import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-  document.addEventListener("DOMContentLoaded", () => {
-    // Register ScrollTrigger plugin
-    gsap.registerPlugin(ScrollTrigger);
-
-    // Animate heading as a single element
-    gsap.fromTo(
-      "#testimonials-heading",
-      {
-        opacity: 0,
-        y: 25,
-      },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.7,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: "#testimonials-heading",
-          start: "top 80%",
-          toggleActions: "play none none none",
-          once: true,
-          id: "testimonials-heading-anim",
-        },
-      },
-    );
-
-    // Animate description
-    gsap.fromTo(
-      "#testimonials-description",
-      {
-        opacity: 0,
-        y: 20,
-      },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.7,
-        delay: 0.2,
-        scrollTrigger: {
-          trigger: "#testimonials-description",
-          start: "top 75%",
-          toggleActions: "play none none none",
-          once: true,
-          id: "testimonials-desc-anim",
-        },
-      },
-    );
-
-    // Animate testimonial cards with staggered effect
-    const cards = [
-      "#testimonials-card-1",
-      "#testimonials-card-2",
-      "#testimonials-card-3",
-    ];
-
-    gsap.fromTo(
-      cards,
-      {
-        opacity: 0,
-        y: 50,
-        scale: 0.95,
-      },
-      {
-        opacity: 1,
-        y: 0,
-        scale: 1,
-        stagger: 0.15,
-        duration: 0.8,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: "#testimonials-grid",
-          start: "top 75%",
-          toggleActions: "play none none none",
-          once: true,
-          id: "testimonials-cards-anim",
-        },
-      },
-    );
-
-    // Add hover animations for cards
-    cards.forEach((cardId) => {
-      const card = document.querySelector(cardId);
-      if (!card) return;
-
-      card.addEventListener("mouseenter", () => {
-        gsap.to(card, {
-          y: -8,
-          scale: 1.03,
-          boxShadow: "0 20px 30px rgba(0, 0, 0, 0.2)",
-          duration: 0.3,
-          ease: "power2.out",
-        });
-      });
-
-      card.addEventListener("mouseleave", () => {
-        gsap.to(card, {
-          y: 0,
-          scale: 1,
-          boxShadow: "0 10px 20px rgba(0, 0, 0, 0.1)",
-          duration: 0.3,
-          ease: "power2.in",
-        });
-      });
-    });
-
-    // Add a subtle background effect (non-parallax, just a one-time animation)
-    gsap.fromTo(
-      "#testimonials-section",
-      { backgroundPositionY: "0%" },
-      {
-        backgroundPositionY: "10%",
-        duration: 2.5,
-        ease: "power1.inOut",
-        scrollTrigger: {
-          trigger: "#testimonials-section",
-          start: "top 80%",
-          toggleActions: "play none none none",
-          once: true,
-          id: "testimonials-bg-anim",
-        },
-      },
-    );
-  });
-</script>

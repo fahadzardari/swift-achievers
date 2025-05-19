@@ -32,10 +32,13 @@ const {
       class="h-full w-full object-cover"
       width={1920}
       height={1080}
+      loading={"eager"}
     />
     <div
       id="service-hero-gradient"
       class="absolute inset-0 top-auto bottom-0 bg-linear-to-b from-transparent from-90% to-[#040243]"
+      data-anim="fade-up"
+      data-anim-delay="0.2"
     >
     </div>
   </div>
@@ -48,6 +51,7 @@ const {
           <h3
             id="service-hero-subheading"
             class="3xl:text-2xl font-semibold text-white md:text-base lg:text-lg xl:text-xl"
+            data-anim="fade-left"
           >
             {subheading}
           </h3>
@@ -56,6 +60,8 @@ const {
       <h1
         id="service-hero-title"
         class="3xl:text-[70px] text-4xl font-semibold text-white sm:text-5xl lg:text-5xl xl:text-6xl xl:leading-[66px] 2xl:text-[64px] 2xl:leading-[74px]"
+        data-anim="fade-up"
+        data-anim-delay="0.3"
       >
         {title}
       </h1>
@@ -64,6 +70,8 @@ const {
           <p
             id="service-hero-desc-heading"
             class="3xl:text-2xl mt-4 font-semibold text-white md:mt-6 md:text-base lg:text-lg xl:mt-8 xl:text-xl 2xl:mt-10"
+            data-anim="fade-up"
+            data-anim-delay="0.5"
           >
             {descriptionHeading}
           </p>
@@ -73,15 +81,20 @@ const {
         id="service-hero-description"
         class="mt-3 max-w-[714px] text-xs text-[#ffffff] md:text-xs lg:mt-5 lg:text-sm xl:text-base"
         set:html={description}
+        data-anim="fade-up"
+        data-anim-delay="0.7"
       />
       {
         bulletPoints.length > 0 && (
           <div
             id="service-hero-bullets"
             class="mt-8 mb-16 grid w-fit grid-cols-2 gap-x-4 gap-y-4"
+            data-anim-group
+            data-anim-stagger="0.1"
           >
             {bulletPoints.map((point, index) => (
               <div
+                data-anim-item
                 id={`service-hero-bullet-${index}`}
                 class="flex items-center gap-x-2"
               >
@@ -108,10 +121,18 @@ const {
           </div>
         )
       }
-      <div id="service-hero-cta" class="mt-4 flex gap-x-4">
+      <div
+        id="service-hero-cta"
+        class="mt-4 flex gap-x-4"
+        data-anim-group
+        data-anim-stagger="0.15"
+        data-anim-scale="0.9"
+        data-anim-y="30"
+      >
         <button
           id="service-hero-chat-btn"
           class="open-chat-widget bg-gradient cursor-pointer rounded-full px-6 py-2 text-[11px] text-white md:text-xs lg:text-sm xl:text-base"
+          data-anim-item
         >
           Live Chat
         </button>
@@ -119,6 +140,7 @@ const {
           id="service-hero-phone-btn"
           class="cursor-pointer rounded-full border px-6 py-2 text-[11px] text-white md:text-xs lg:text-sm xl:text-base"
           href="tel:+19788502039"
+          data-anim-item
         >
           +1 (978) 850-2039
         </a>
@@ -129,6 +151,8 @@ const {
         <div
           id="service-hero-form-container"
           class="border-gradient max-w-[450px] rounded-md px-4 py-8 backdrop-blur-xl md:p-8"
+          data-anim="fade-right"
+          data-anim-delay="0.5"
         >
           <h1 class="mb-2 text-center text-2xl font-semibold text-white lg:text-3xl">
             Get In Touch
@@ -144,7 +168,11 @@ const {
           />
 
           <form id="service-hero-form" class="flex w-full flex-col gap-y-4">
-            <div id="service-hero-form-name-container">
+            <div
+              id="service-hero-form-name-container"
+              data-anim="fade-up"
+              data-anim-delay="0.6"
+            >
               <input
                 type="text"
                 id="service-hero-form-name"
@@ -154,7 +182,11 @@ const {
                 required
               />
             </div>
-            <div id="service-hero-form-email-container">
+            <div
+              id="service-hero-form-email-container"
+              data-anim="fade-up"
+              data-anim-delay="0.7"
+            >
               <input
                 type="email"
                 id="service-hero-form-email"
@@ -163,7 +195,11 @@ const {
                 placeholder="Email"
               />
             </div>
-            <div id="service-hero-form-phone-container">
+            <div
+              id="service-hero-form-phone-container"
+              data-anim="fade-up"
+              data-anim-delay="0.8"
+            >
               <input
                 type="text"
                 id="service-hero-form-phone"
@@ -172,7 +208,11 @@ const {
                 placeholder="Phone"
               />
             </div>
-            <div id="service-hero-form-message-container">
+            <div
+              id="service-hero-form-message-container"
+              data-anim="fade-up"
+              data-anim-delay="0.9"
+            >
               <textarea
                 id="service-hero-form-message"
                 rows="8"
@@ -185,6 +225,8 @@ const {
               id="service-hero-form-submit"
               type="submit"
               class="bg-gradient w-full cursor-pointer rounded-full px-6 py-2 text-[11px] text-white md:text-xs lg:text-sm xl:text-base"
+              data-anim="scale-bounce"
+              data-anim-delay="1.0"
             >
               Get Free Consultation
             </button>
@@ -198,6 +240,8 @@ const {
           src={FBAImage}
           alt={"fba image"}
           class={"w-auto max-w-[756px] md:w-1/2"}
+          data-anim="fade-left"
+          data-anim-delay="0.5"
         />
       )
     }
@@ -205,179 +249,9 @@ const {
 </header>
 
 <script>
-  import gsap from "gsap";
-  import { ScrollTrigger } from "gsap/ScrollTrigger";
-  import SplitType from "split-type";
-
-  // Register ScrollTrigger plugin
-  gsap.registerPlugin(ScrollTrigger);
+  import { gsap } from "gsap";
 
   document.addEventListener("DOMContentLoaded", () => {
-    // Check if we're on mobile
-    const isMobile = window.innerWidth < 768; // 768px is the md breakpoint in Tailwind
-
-    // Initialize SplitType for text elements
-    const heroTitle = new SplitType("#service-hero-title", {
-      types: "words,chars",
-    });
-    const heroSubheading = document.getElementById("service-hero-subheading");
-    const heroDescHeading = document.getElementById(
-      "service-hero-desc-heading",
-    );
-    const heroDescription = new SplitType("#service-hero-description", {
-      types: "lines",
-    });
-
-    // Create main timeline for initial load animations
-    const mainTl = gsap.timeline({ defaults: { ease: "power2.out" } });
-
-    // Add all animations to the main timeline in sequence
-
-    // Start with subheading if it exists
-    if (heroSubheading) {
-      mainTl.fromTo(
-        "#service-hero-subheading",
-        isMobile
-          ? { opacity: 0, y: -10 } // Mobile: vertical motion only
-          : { opacity: 0, x: -30 }, // Desktop: horizontal motion
-        isMobile
-          ? { opacity: 1, y: 0, duration: 0.6 }
-          : { opacity: 1, x: 0, duration: 0.6 },
-        0,
-      );
-    }
-
-    // Animate title with staggered characters
-    mainTl.fromTo(
-      heroTitle.chars,
-      { opacity: 0, y: 50 },
-      { opacity: 1, y: 0, stagger: 0.02, duration: 0.8 },
-      0.3,
-    );
-
-    // Animate description heading if it exists
-    if (heroDescHeading) {
-      mainTl.fromTo(
-        "#service-hero-desc-heading",
-        { opacity: 0, y: 20 },
-        { opacity: 1, y: 0, duration: 0.7 },
-        0.7,
-      );
-    }
-
-    // Animate description lines
-    mainTl.fromTo(
-      heroDescription.lines,
-      { opacity: 0, y: 20 },
-      { opacity: 1, y: 0, stagger: 0.1, duration: 0.7 },
-      0.9,
-    );
-
-    // Animate bullet points (adjusted for mobile)
-    const bulletPoints = document.querySelectorAll(
-      "[id^='service-hero-bullet-']",
-    );
-    mainTl.fromTo(
-      bulletPoints,
-      isMobile
-        ? { opacity: 0, y: 10 } // Mobile: vertical motion only
-        : { opacity: 0, x: -20 }, // Desktop: horizontal motion
-      isMobile
-        ? { opacity: 1, y: 0, stagger: 0.1, duration: 0.5 }
-        : { opacity: 1, x: 0, stagger: 0.1, duration: 0.5 },
-      1.2,
-    );
-
-    // Animate CTA buttons
-    mainTl.fromTo(
-      ["#service-hero-chat-btn", "#service-hero-phone-btn"],
-      { opacity: 0, y: 30, scale: 0.9 },
-      { opacity: 1, y: 0, scale: 1, stagger: 0.15, duration: 0.6 },
-      1.4,
-    );
-
-    // Check if the FBA image exists and animate it
-    const fbaImage = document.querySelector(".content > img");
-    if (fbaImage) {
-      mainTl.fromTo(
-        fbaImage,
-        isMobile
-          ? {
-              opacity: 0,
-              scale: 0.95,
-              // No x-translation or rotation on mobile to prevent layout shift
-            }
-          : {
-              opacity: 0,
-              x: 50,
-              scale: 0.9,
-              rotate: -3,
-            },
-        isMobile
-          ? {
-              opacity: 1,
-              scale: 1,
-              duration: 0.8,
-              ease: "power2.out",
-            }
-          : {
-              opacity: 1,
-              x: 0,
-              scale: 1,
-              rotate: 0,
-              duration: 1,
-              ease: "elastic.out(1, 0.5)",
-            },
-        0.7, // Start slightly after the title animation begins
-      );
-    }
-
-    // Animate form container (only if FBA image is not present)
-    const formContainer = document.getElementById(
-      "service-hero-form-container",
-    );
-    if (formContainer) {
-      mainTl.fromTo(
-        "#service-hero-form-container",
-        isMobile
-          ? { opacity: 0, scale: 0.98 } // Mobile: no x-translation
-          : { opacity: 0, x: 50, scale: 0.95 },
-        isMobile
-          ? { opacity: 1, scale: 1, duration: 0.8 }
-          : { opacity: 1, x: 0, scale: 1, duration: 0.8 },
-        0.5,
-      );
-
-      // Animate form fields
-      mainTl.fromTo(
-        [
-          "#service-hero-form-name-container",
-          "#service-hero-form-email-container",
-          "#service-hero-form-phone-container",
-          "#service-hero-form-message-container",
-          "#service-hero-form-submit",
-        ],
-        { opacity: 0, y: 20 },
-        { opacity: 1, y: 0, stagger: 0.1, duration: 0.5 },
-        1.0,
-      );
-    }
-
-    // Handle resize events
-    window.addEventListener("resize", () => {
-      // Get current mobile status
-      const currentMobile = window.innerWidth < 768;
-
-      // If status changed, reset animations that might cause layout issues
-      if (currentMobile !== isMobile) {
-        if (currentMobile) {
-          // Reset any transforms that might cause layout issues on mobile
-          if (fbaImage) gsap.set(fbaImage, { x: 0, rotate: 0 });
-          if (formContainer) gsap.set(formContainer, { x: 0 });
-        }
-      }
-    });
-
     // Form submission handler
     const form = document.getElementById("service-hero-form");
     const feedbackElement = document.getElementById("service-hero-feedback");
