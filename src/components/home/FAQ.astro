@@ -16,14 +16,58 @@ import QuestionFAQ from "./QuestionFAQ.astro";
     </p>
   </div>
   <div class="faq-questions-container my-4 flex flex-col">
-    <QuestionFAQ />
-    <QuestionFAQ id="faqs-question-2" />
-    <QuestionFAQ id="faqs-question-3" />
-    <QuestionFAQ id="faqs-question-4" />
-    <QuestionFAQ id="faqs-question-5" />
-    <QuestionFAQ id="faqs-question-6" />
-    <QuestionFAQ id="faqs-question-7" />
-    <QuestionFAQ id="faqs-question-8" />
+    <QuestionFAQ
+      question="What services are provided by Swyft Achievers?"
+      answer="We at Swyft Achievers create and automate online stores so that our customers can generate passive revenue without doing any work. We take care of everything from A to Z so you can relax and see your company flourish.<br><br>Among the services we offer on Amazon are:<br><br>• Establishment and Administration of Stores<br>• Product Sourcing and Hunting<br>• Optimization of Listings (SEO)<br>• Content Creation at EBC/A+<br>• Management of Amazon PPC (Pay-Per-Click) Ads<br>• Management of Inventory<br>• Comparison of Prices and Products<br>• Support for Virtual Assistants<br>• Complete Automation of Amazon FBA<br><br>We also offer automation services for other major e-commerce platforms, including:<br>• Shopify Store Automation<br>• TikTok Shop Automation<br>• Walmart Automation<br><br>Our objective is to build completely hands-off e-commerce businesses that produce steady income streams so that our clients may concentrate on other important tasks or simply enjoy life."
+    />
+
+    <QuestionFAQ
+      id="faqs-question-2"
+      question="What is Amazon FBA Automation and how does it benefit my business?"
+      answer="Streamlining the process of storing, packing, and shipping your products through Amazon's fulfillment centers is known as Amazon FBA (Fulfillment by Amazon) automation. We assist you in saving time, cutting expenses, and concentrating on growing your company by automating these tasks."
+    />
+
+    <QuestionFAQ
+      id="faqs-question-3"
+      question="Is this business model suitable for beginners?"
+      answer="Of course. Our systems are designed to assist customers with no prior knowledge. We'll create, launch, and scale your store while you learn passively through our transparent reporting, so you don't need to know anything about e-commerce."
+    />
+
+    <QuestionFAQ
+      id="faqs-question-4"
+      question="What makes your automation service better than hiring a freelancer or doing it myself?"
+      answer="Freelancers are transient. Learning to do things yourself takes months. Employing Swyft Achievers means working with a committed group of professionals that have tested supplier networks, marketing plans, and procedures in place to help you create a legitimate, passive business right away. No speculating. No experimenting. Just results!"
+    />
+
+    <QuestionFAQ
+      id="faqs-question-5"
+      question="What's the difference between Amazon, Shopify, and TikTok Shop automation? Which one should I choose?"
+      answer="Every platform has advantages.<br><br>Amazon: Best for quick traction; built-in traffic and credibility<br>Shopify: Long-term branding potential and custom brand ownership<br>TikTok Shop: Excellent for quick return on investment due to its viral potential and influencer-driven traffic<br><br>Uncertain? We assist you in making decisions based on your objectives, risk tolerance, and budget. For several revenue streams, some clients even do all three."
+    />
+
+    <QuestionFAQ
+      id="faqs-question-6"
+      question="Can I still start if I don't have a big budget?"
+      answer="Indeed! We provide multiple financing options and packages. Some of our most prosperous clients began small and quickly expanded. We concentrate on smart investments that bring in a profit without breaking the bank. We'll develop around what works best for you, even if you're starting out lean."
+    />
+
+    <QuestionFAQ
+      id="faqs-question-7"
+      question="When can I expect to start earning money?"
+      answer="Depending on the platform, many of our clients start seeing sales within the first few weeks and steady earnings within the first 30 to 90 days. We don't start from scratch as other startups do; instead, we leverage tried-and-true technologies and products."
+    />
+
+    <QuestionFAQ
+      id="faqs-question-8"
+      question="Should I be concerned about shipping and storage?"
+      answer="Absolutely not. We collaborate with reputable vendors and fulfillment facilities to manage the logistics of your products. With dropshipping, FBA, Private label, or 3PL integration, you won't ever have to touch a product."
+    />
+
+    <QuestionFAQ
+      id="faqs-question-9"
+      question="How do I get started with Swyft Achievers?"
+      answer="You can begin by filling out our contact form on the website or reaching out directly via phone at +1 (978) 850-2039 or email at info@swyftachievers.com. Our team will respond within 24 hours to discuss your needs and how we can assist."
+    />
   </div>
 </section>
 
@@ -51,13 +95,13 @@ import QuestionFAQ from "./QuestionFAQ.astro";
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: section,
-        start: "top bottom", // Start animation when the top of the section hits the bottom of viewport
-        end: "center center", // End animation when the center of the section is at center of viewport
-        scrub: 1, // Smooth scrubbing effect tied to scroll position
-        toggleActions: "restart none none reverse",
+        start: "top 80%", // Start when section enters viewport
+        toggleActions: "play none none none", // Play once when entering, don't reverse
         id: `faq-section-${sectionId}`,
-        // markers: true, // Uncomment for debugging
-        once: false, // Animation plays every time user scrolls to section
+        once: true, // Animation plays only once
+      },
+      defaults: {
+        ease: "power2.out",
       },
     });
 
@@ -66,7 +110,7 @@ import QuestionFAQ from "./QuestionFAQ.astro";
       tl.fromTo(
         heading,
         { y: 30, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.4 },
+        { y: 0, opacity: 1, duration: 0.7 },
         0,
       );
     }
@@ -76,8 +120,8 @@ import QuestionFAQ from "./QuestionFAQ.astro";
       tl.fromTo(
         description,
         { y: 20, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.4 },
-        0.1,
+        { y: 0, opacity: 1, duration: 0.6 },
+        0.2,
       );
     }
 
@@ -96,9 +140,8 @@ import QuestionFAQ from "./QuestionFAQ.astro";
           scale: 1,
           stagger: 0.08, // Stagger each question appearance
           duration: 0.6,
-          ease: "power2.out",
         },
-        0.2,
+        0.4,
       );
 
       // Add click interaction effects independent of scroll animation

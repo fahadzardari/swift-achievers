@@ -144,13 +144,13 @@ import Tag8 from "../../assets/icons/tag8.png";
           <button
             class="crusor-pointer open-chat-widget why-us-call-btn 3xl:text-xl flex items-center justify-center gap-2 rounded-full bg-white px-5 py-1 text-left text-xs font-semibold whitespace-nowrap text-[#120136] md:text-sm xl:text-base"
           >
-            <Image src={CallIcon} alt="Call Icon" class="h-4 w-4" />
+            <Image src={CallIcon} alt="Call Icon" class="h-4 w-4" loading={"lazy"} />
             <span>Call Now</span>
           </button>
           <button
             class="open-contact-modal why-us-chat-btn 3xl:text-xl flex cursor-pointer items-center justify-center gap-2 rounded-full bg-white px-5 py-1 text-left text-xs font-semibold whitespace-nowrap text-[#120136] md:text-sm xl:text-base"
           >
-            <Image src={ChatIcon} alt="Chat Icon" class="h-4 w-4" />
+            <Image src={ChatIcon} alt="Chat Icon" class="h-4 w-4" loading={"lazy"} />
             <span>Get a Quote</span>
           </button>
         </div>
@@ -212,7 +212,7 @@ import Tag8 from "../../assets/icons/tag8.png";
         start: "top 85%",
         end: "top 40%",
         scrub: 0.8,
-        toggleActions: "play none none reverse",
+        toggleActions: "play none none none",
       },
     });
 
@@ -271,13 +271,13 @@ import Tag8 from "../../assets/icons/tag8.png";
         trigger: ".why-us-tags",
         start: "top 75%", // Adjusted to start animation earlier
         end: "center 40%", // Adjusted to give more time to complete the animation
-        scrub: 0.8,
-        toggleActions: "play none none reverse",
+        // scrub: 0.8,
+        toggleActions: "play none none none",
       },
     });
 
     // Make sure to target all tags even if some don't have proper IDs
-    const allTags = document.querySelectorAll(".why-us-tags > div");
+    const allTags = document.querySelectorAll(".why-us-tags > article");
 
     // More visually impressive animation with rotation and better staggering
     tagsTl.fromTo(
@@ -304,37 +304,14 @@ import Tag8 from "../../assets/icons/tag8.png";
       0,
     );
 
-    // Enhanced hover effects for tags
-    allTags.forEach((tag) => {
-      tag.addEventListener("mouseenter", () => {
-        gsap.to(tag, {
-          y: -10,
-          scale: 1.05,
-          boxShadow: "0 10px 25px rgba(0,0,0,0.15)", // Add shadow on hover
-          duration: 0.35,
-          ease: "power2.out",
-        });
-      });
-
-      tag.addEventListener("mouseleave", () => {
-        gsap.to(tag, {
-          y: 0,
-          scale: 1,
-          boxShadow: "0 0px 0px rgba(0,0,0,0)",
-          duration: 0.4,
-          ease: "power2.in",
-        });
-      });
-    });
-
     // Create timeline for bottom content
     const bottomTl = gsap.timeline({
       scrollTrigger: {
         trigger: ".bottom-content",
         start: "top 85%",
         end: "top 65%",
-        scrub: 0.8,
-        toggleActions: "play none none reverse",
+        // scrub: 0.8,
+        toggleActions: "play none none none",
       },
     });
 
@@ -387,45 +364,5 @@ import Tag8 from "../../assets/icons/tag8.png";
       },
       0.4,
     );
-
-    // Add hover effects for tags
-    tags.forEach((tag) => {
-      tag.addEventListener("mouseenter", () => {
-        gsap.to(tag, {
-          y: -8,
-          scale: 1.03,
-          duration: 0.3,
-          ease: "power2.out",
-        });
-      });
-
-      tag.addEventListener("mouseleave", () => {
-        gsap.to(tag, {
-          y: 0,
-          scale: 1,
-          duration: 0.3,
-          ease: "power2.in",
-        });
-      });
-    });
-
-    // Add click animation for buttons
-    const buttons = document.querySelectorAll(
-      ".why-us-call-btn, .why-us-chat-btn",
-    );
-    buttons.forEach((button) => {
-      button.addEventListener("click", () => {
-        gsap.to(button, {
-          scale: 0.95,
-          duration: 0.1,
-          onComplete: () => {
-            gsap.to(button, {
-              scale: 1,
-              duration: 0.1,
-            });
-          },
-        });
-      });
-    });
   });
 </script>

@@ -12,6 +12,23 @@ import ContactModal from "../components/common/ContactModal.astro";
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    
+    <!-- Preload critical font files -->
+    <link 
+      rel="preload" 
+      href="/fonts/poppins/poppins-v23-latin-regular.woff2" 
+      as="font" 
+      type="font/woff2" 
+      crossorigin 
+    />
+    <link 
+      rel="preload" 
+      href="/fonts/poppins/poppins-v23-latin-500.woff2" 
+      as="font" 
+      type="font/woff2" 
+      crossorigin 
+    />
+    
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
   </head>
@@ -19,15 +36,19 @@ import ContactModal from "../components/common/ContactModal.astro";
     <Navbar />
     <slot />
     <ContactModal />
+    
+    <!-- Central animation initialization -->
     <script>
-      // Global initialization for modal triggers
+      import { setupAnimations } from "../js/animation-controller.js";
+      
+      // Initialize animations once DOM is ready
       document.addEventListener("DOMContentLoaded", () => {
-        // Automatically attach event listeners to any elements with specific classes
-        document
-          .querySelectorAll('.open-contact-modal, [data-modal="contact"]')
+        setupAnimations();
+        
+        // Modal initialization
+        document.querySelectorAll('.open-contact-modal, [data-modal="contact"]')
           .forEach((element) => {
             element.addEventListener("click", () => {
-              // Find and dispatch custom event to open modal
               const event = new CustomEvent("openContactModal");
               document.dispatchEvent(event);
             });
@@ -35,36 +56,45 @@ import ContactModal from "../components/common/ContactModal.astro";
       });
     </script>
 
-    <!--Start of Tawk.to Script-->
+    <!-- Lazy load chat widget -->
     <script type="text/javascript">
-      var Tawk_API = Tawk_API || {},
-        Tawk_LoadStart = new Date();
-      (function () {
-        var s1 = document.createElement("script"),
-          s0 = document.getElementsByTagName("script")[0];
+      // Defer chat widget loading
+      let chatLoaded = false;
+      
+      function loadChatWidget() {
+        if (chatLoaded) return;
+        chatLoaded = true;
+        
+        var s1 = document.createElement("script");
         s1.async = true;
         s1.src = "https://embed.tawk.to/6826ef913aaa97190d877f28/1irc1lmgd";
         s1.charset = "UTF-8";
         s1.setAttribute("crossorigin", "*");
-        s0.parentNode.insertBefore(s1, s0);
-      })();
+        document.head.appendChild(s1);
+        
+        window.Tawk_API = window.Tawk_API || {};
+        window.Tawk_LoadStart = new Date();
+      }
+      
+      // Load chat after user interaction or after 3 seconds
+      document.addEventListener("click", loadChatWidget, {once: true});
+      document.addEventListener("scroll", loadChatWidget, {once: true});
+      setTimeout(loadChatWidget, 3000);
+      
       document.addEventListener("DOMContentLoaded", () => {
-        // For any elements with class 'open-chat-widget'
         document.querySelectorAll(".open-chat-widget").forEach((element) => {
           element.addEventListener("click", (e) => {
             e.preventDefault();
-
+            loadChatWidget(); // Force load if not loaded yet
+            
             // Check if Tawk_API is loaded
             if (typeof Tawk_API !== "undefined") {
               Tawk_API.maximize();
-            } else {
-              console.warn("Tawk.to API not loaded yet");
             }
           });
         });
       });
     </script>
-    <!--End of Tawk.to Script-->
   </body>
   <Footer />
 </html>

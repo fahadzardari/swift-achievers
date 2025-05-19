@@ -3,7 +3,7 @@ import Heading from "../common/Heading.astro";
 import ServiceCard from "./ServiceCard.astro";
 ---
 
-<section
+<div
   class="services-section container my-24 text-white"
   data-section-id={Math.random().toString(36).substr(2, 9)}
 >
@@ -85,39 +85,87 @@ import ServiceCard from "./ServiceCard.astro";
       <!-- Wrap each ServiceCard in a swiper-slide -->
       <div class="swiper-slide">
         <ServiceCard
-          title="Amazon Store Creation"
-          description="We create and strengthen a smart Amazon presence that positions your storefront as a strong competitor in the marketplace."
-          link="/services/amazon-store-creation"
+          title="Amazon Services"
+          description="Store Creation, Product Hunting, SEO, PPC Management, FBA Automation, EBC/A+ Content, Inventory Management, Price & Product Comparison, Virtual Assistance."
+          link="/services/amazon-services"
           id="card-1"
         />
       </div>
       <div class="swiper-slide">
         <ServiceCard
-          title="Amazon Product Hunting"
-          description="We conduct thorough market research to identify and recommend a high-potential, profitable product based on its value and demand in the market."
-          link="/services/amazon-product-hunting"
+          title="Shopify Automation"
+          description="Store Setup, Theme Customization, App Integration, Payment Gateway Configuration, Product Importing, Order Fulfillment Automation."
+          link="/services/shopify-automation"
           id="card-2"
         />
       </div>
       <div class="swiper-slide">
         <ServiceCard
-          title="Amazon PPC"
-          description="Our forward-looking Amazon marketing strategy ensures your brand remains visible and impactful at every stage of the business cycle."
-          link="/services/amazon-ppc"
+          title="Walmart Automation"
+          description="Launch and automate your Walmart seller account with our expert service, including product uploads, order processing, and policy-compliant growth."
+          link="/services/walmart-automation"
           id="card-3"
         />
       </div>
       <div class="swiper-slide">
         <ServiceCard
-          title="Virtual Assistant"
-          description="We leverage our Virtual Assistance expertise to support brands with store management, inventory control, and product listing optimization."
-          link="/services/virtual-assistant"
+          title="TikTok Shop Automation"
+          description="We handle TikTok Shop setup, identify viral products, and run influencer-driven content strategies to drive consistent organic and paid sales."
+          link="/services/tiktok-shop-automation"
           id="card-4"
+        />
+      </div>
+      <div class="swiper-slide">
+        <ServiceCard
+          title="Virtual Assistance"
+          description="Get access to trained VAs who take care of daily store tasks like order tracking, product research, customer service, inventory updates, and more."
+          link="/services/virtual-assistance"
+          id="card-5"
+        />
+      </div>
+      <div class="swiper-slide">
+        <ServiceCard
+          title="Amazon Reinstatement Services"
+          description="Recover suspended accounts or listings with our expert appeal drafting, case handling, and compliance consulting to get you selling again fast."
+          link="/services/amazon-reinstatement-services"
+          id="card-6"
+        />
+      </div>
+      <div class="swiper-slide">
+        <ServiceCard
+          title="Content Creation"
+          description="Professional lifestyle images, product photography, and UGC-style videos for TikTok, Amazon listings, or social ads."
+          link="/services/content-creation"
+          id="card-7"
+        />
+      </div>
+      <div class="swiper-slide">
+        <ServiceCard
+          title="Customer Service Management"
+          description="Provide 24/7 customer support team for your clients' stores to handle inquiries, refunds, and dispute resolutions."
+          link="/services/customer-service-management"
+          id="card-8"
+        />
+      </div>
+      <div class="swiper-slide">
+        <ServiceCard
+          title="Social Media Management"
+          description="Grow client brands through daily content, reels, and ads on TikTok, Instagram, and Facebook."
+          link="/services/social-media-management"
+          id="card-9"
+        />
+      </div>
+      <div class="swiper-slide">
+        <ServiceCard
+          title="Branding & Packaging Design"
+          description="Custom brand identity creation, logo, packaging design, and brand story to elevate your client's product appeal."
+          link="/services/branding-packaging-design"
+          id="card-10"
         />
       </div>
     </div>
   </div>
-</section>
+</div>
 
 <script>
   import Swiper from "swiper";
@@ -214,24 +262,20 @@ import ServiceCard from "./ServiceCard.astro";
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: section,
-          start: "top bottom", // Start when top of section hits bottom of viewport
-          end: "center center", // End when center of section hits center of viewport
-          scrub: 1, // Smooth scrubbing effect tied to scroll position
-          toggleActions: "restart none none reverse",
+          start: "top 80%", // Start when top of section enters bottom 80% of viewport
+          toggleActions: "play none none none", // Play once when entering, don't reverse
           id: `services-section-${sectionId}`,
-          // markers: true, // Uncomment for debugging
-          once: false, // Animation plays every time
+          once: false, // Animation will play every time it enters viewport
+        },
+        defaults: {
+          duration: 0.7,
+          ease: "power2.out",
         },
       });
 
       // Animate heading
       if (heading) {
-        tl.fromTo(
-          heading,
-          { y: 30, opacity: 0 },
-          { y: 0, opacity: 1, duration: 0.4 },
-          0,
-        );
+        tl.fromTo(heading, { y: 30, opacity: 0 }, { y: 0, opacity: 1 }, 0);
       }
 
       // Animate description and controls
@@ -239,47 +283,32 @@ import ServiceCard from "./ServiceCard.astro";
         tl.fromTo(
           description,
           { y: 20, opacity: 0 },
-          { y: 0, opacity: 1, duration: 0.4 },
-          0.1,
+          { y: 0, opacity: 1 },
+          0.2,
         );
       }
 
       if (controls) {
-        tl.fromTo(
-          controls,
-          { y: 20, opacity: 0 },
-          { y: 0, opacity: 1, duration: 0.4 },
-          0.1,
-        );
+        tl.fromTo(controls, { y: 20, opacity: 0 }, { y: 0, opacity: 1 }, 0.2);
       }
 
       // Animate service cards with a staggered effect
-      // We need special handling because of the Swiper
       if (serviceCards.length > 0) {
-        // Initially hide all cards
-        gsap.set(serviceCards, { opacity: 0, y: 30, scale: 0.95 });
-
-        // Create a separate timeline for the cards to ensure they animate properly
-        tl.add(() => {
-          const cardsTl = gsap.timeline();
-
-          cardsTl.to(serviceCards, {
+        tl.fromTo(
+          serviceCards,
+          { opacity: 0, y: 30, scale: 0.95 },
+          {
             opacity: 1,
             y: 0,
             scale: 1,
             stagger: 0.1,
             duration: 0.5,
-            ease: "power2.out",
-            onComplete: () => {
-              // Add hover effects after initial animation
-            },
-          });
-
-          return cardsTl;
-        }, 0.2);
+          },
+          0.4,
+        );
       }
 
-      // Special animation for navigation buttons
+      // Special animation for navigation buttons remains the same
       const navButtons = [
         document.getElementById("services-prev-button"),
         document.getElementById("services-next-button"),

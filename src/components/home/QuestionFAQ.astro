@@ -52,73 +52,95 @@ const {
   </div>
   <p
     class="faq-answer hidden text-xs text-white transition-colors duration-300 lg:text-sm 2xl:text-base"
-  >
-    {answer}
-  </p>
-</article>
+    set:html={answer}
+  />
 
-<script define:vars={{ id }}>
-  document.addEventListener("DOMContentLoaded", () => {
-    const faqArticle = document.getElementById(id);
-    const faqHeader = faqArticle.querySelector(".faq-header");
-    const faqQuestion = faqArticle.querySelector(".faq-question");
-    const faqAnswer = faqArticle.querySelector(".faq-answer");
-    const iconClosed = faqArticle.querySelector(".faq-icon-closed");
-    const iconOpen = faqArticle.querySelector(".faq-icon-open");
+  <script define:vars={{ id }}>
+    document.addEventListener("DOMContentLoaded", () => {
+      const faqArticle = document.getElementById(id);
+      const faqHeader = faqArticle.querySelector(".faq-header");
+      const faqQuestion = faqArticle.querySelector(".faq-question");
+      const faqAnswer = faqArticle.querySelector(".faq-answer");
+      const iconClosed = faqArticle.querySelector(".faq-icon-closed");
+      const iconOpen = faqArticle.querySelector(".faq-icon-open");
 
-    faqHeader.addEventListener("click", () => {
-      const isOpen = faqArticle.classList.contains("faq-open");
+      // Create a custom event for FAQ toggling
+      const toggleEvent = new CustomEvent("faq-toggle", {
+        bubbles: true,
+        detail: { id },
+      });
 
-      // Toggle open class
-      if (!isOpen) {
-        faqArticle.classList.add("faq-open");
+      // Function to close this FAQ item
+      const closeFaq = () => {
+        if (faqArticle.classList.contains("faq-open")) {
+          faqArticle.classList.remove("faq-open");
+          faqArticle.style.backgroundColor = "transparent";
+          faqQuestion.style.color = "white";
+          faqAnswer.classList.add("hidden");
+          iconClosed.classList.remove("hidden");
+          iconOpen.classList.add("hidden");
+          faqAnswer.style.maxHeight = "0";
+          faqAnswer.style.opacity = "0";
+        }
+      };
 
-        faqArticle.style.backgroundColor = "white";
-        faqQuestion.style.color = "#040243";
-        faqAnswer.style.color = "#040243";
-        faqAnswer.classList.remove("hidden");
-        iconClosed.classList.add("hidden");
-        iconOpen.classList.remove("hidden");
-      } else {
-        faqArticle.classList.remove("faq-open");
-        faqArticle.style.backgroundColor = "transparent";
-        faqQuestion.style.color = "white";
-        faqAnswer.classList.add("hidden");
-        iconClosed.classList.remove("hidden");
-        iconOpen.classList.add("hidden");
-      }
+      // Listen for toggle events from other FAQs
+      document.addEventListener("faq-toggle", (event) => {
+        if (event.detail.id !== id) {
+          closeFaq();
+        }
+      });
 
-      // Animation for smooth transition
-      if (!isOpen) {
-        faqAnswer.style.maxHeight = "0";
-        faqAnswer.style.opacity = "0";
+      faqHeader.addEventListener("click", () => {
+        const isOpen = faqArticle.classList.contains("faq-open");
 
-        // Use setTimeout to create a delayed animation effect
-        setTimeout(() => {
-          faqAnswer.style.maxHeight = "500px";
-          faqAnswer.style.opacity = "1";
-        }, 10);
-      }
+        // Dispatch the event to close other FAQs
+        document.dispatchEvent(toggleEvent);
+
+        // Toggle open class
+        if (!isOpen) {
+          faqArticle.classList.add("faq-open");
+
+          faqArticle.style.backgroundColor = "white";
+          faqQuestion.style.color = "#040243";
+          faqAnswer.style.color = "#040243";
+          faqAnswer.classList.remove("hidden");
+          iconClosed.classList.add("hidden");
+          iconOpen.classList.remove("hidden");
+
+          // Animation for smooth transition
+          faqAnswer.style.maxHeight = "0";
+          faqAnswer.style.opacity = "0";
+
+          // Use setTimeout to create a delayed animation effect
+          setTimeout(() => {
+            faqAnswer.style.maxHeight = "500px";
+            faqAnswer.style.opacity = "1";
+          }, 10);
+        } else {
+          closeFaq();
+        }
+      });
     });
-  });
-</script>
+  </script>
 
-<style>
-  .faq-article {
-    transition: background-color 0.3s ease-in-out;
-  }
+  <style>
+    .faq-article {
+      transition: background-color 0.3s ease-in-out;
+    }
 
-  .faq-answer {
-    max-height: 0;
-    opacity: 0;
-    transition:
-      max-height 0.5s ease-in-out,
-      opacity 0.5s ease-in-out;
-    overflow: hidden;
-  }
+    .faq-answer {
+      max-height: 0;
+      opacity: 0;
+      transition:
+        max-height 0.5s ease-in-out,
+        opacity 0.5s ease-in-out;
+      overflow: hidden;
+    }
 
-  .faq-open .faq-answer {
-    max-height: 500px;
-    opacity: 1;
-  }
-</style>
+    .faq-open .faq-answer {
+      max-height: 500px;
+      opacity: 1;
+    }
+  </style>
+</article>

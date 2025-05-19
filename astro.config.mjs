@@ -1,15 +1,20 @@
-// @ts-check
 import { defineConfig } from "astro/config";
 import tailwindcss from "@tailwindcss/vite";
 import sitemap from "@astrojs/sitemap";
-// https://astro.build/config
+
 export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
+    build: {
+      cssCodeSplit: true,
+      minify: true,
+    }
   },
-  // site: "https://nixxontech.com",
+  site: "https://swyftachievers.com",
   output: "static",
-  integrations: [sitemap()],
+  integrations: [
+    sitemap(),
+  ],
   devToolbar: {
     enabled: false,
   },

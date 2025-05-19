@@ -58,44 +58,32 @@ import client3 from "../../assets/home/testimonials/3.png";
 <script>
   import gsap from "gsap";
   import { ScrollTrigger } from "gsap/ScrollTrigger";
-  import SplitType from "split-type";
 
   document.addEventListener("DOMContentLoaded", () => {
     // Register ScrollTrigger plugin
     gsap.registerPlugin(ScrollTrigger);
 
-    // Initialize SplitType for the heading
-    const testimonialsHeadingText = document.querySelector(
+    // Animate heading as a single element
+    gsap.fromTo(
       "#testimonials-heading",
+      {
+        opacity: 0,
+        y: 25,
+      },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.7,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: "#testimonials-heading",
+          start: "top 80%",
+          toggleActions: "play none none none",
+          once: true,
+          id: "testimonials-heading-anim",
+        },
+      },
     );
-    if (testimonialsHeadingText) {
-      const headingSplit = new SplitType(testimonialsHeadingText, {
-        types: "chars,words",
-      });
-
-      // Animate heading characters
-      gsap.fromTo(
-        headingSplit.chars,
-        {
-          opacity: 0,
-          y: 25,
-        },
-        {
-          opacity: 1,
-          y: 0,
-          stagger: 0.02,
-          duration: 0.5,
-          scrollTrigger: {
-            trigger: "#testimonials-heading",
-            start: "top 80%",
-            end: "top 40%",
-            scrub: 0.6,
-            toggleActions: "play none none reverse",
-            id: "testimonials-heading-anim",
-          },
-        },
-      );
-    }
 
     // Animate description
     gsap.fromTo(
@@ -108,12 +96,12 @@ import client3 from "../../assets/home/testimonials/3.png";
         opacity: 1,
         y: 0,
         duration: 0.7,
+        delay: 0.2,
         scrollTrigger: {
           trigger: "#testimonials-description",
           start: "top 75%",
-          end: "top 45%",
-          scrub: 0.5,
-          toggleActions: "play none none reverse",
+          toggleActions: "play none none none",
+          once: true,
           id: "testimonials-desc-anim",
         },
       },
@@ -143,9 +131,8 @@ import client3 from "../../assets/home/testimonials/3.png";
         scrollTrigger: {
           trigger: "#testimonials-grid",
           start: "top 75%",
-          end: "center 40%",
-          scrub: 0.8,
-          toggleActions: "play none none reverse",
+          toggleActions: "play none none none",
+          once: true,
           id: "testimonials-cards-anim",
         },
       },
@@ -177,19 +164,20 @@ import client3 from "../../assets/home/testimonials/3.png";
       });
     });
 
-    // Add a subtle parallax effect for the entire section
+    // Add a subtle background effect (non-parallax, just a one-time animation)
     gsap.fromTo(
       "#testimonials-section",
       { backgroundPositionY: "0%" },
       {
-        backgroundPositionY: "20%",
-        ease: "none",
+        backgroundPositionY: "10%",
+        duration: 2.5,
+        ease: "power1.inOut",
         scrollTrigger: {
           trigger: "#testimonials-section",
-          start: "top bottom",
-          end: "bottom top",
-          scrub: true,
-          id: "testimonials-parallax",
+          start: "top 80%",
+          toggleActions: "play none none none",
+          once: true,
+          id: "testimonials-bg-anim",
         },
       },
     );

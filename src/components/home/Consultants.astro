@@ -3,7 +3,7 @@ import Adidas from "../../assets/home/consultants/adidas.png";
 import Ideo from "../../assets/home/consultants/ideo.png";
 import Netflix from "../../assets/home/consultants/netflix.png";
 import Stanford from "../../assets/home/consultants/stanford.png";
-import Volkswagen from "../../assets/home/consultants/volkswagen.png";
+import Volkswagen from "../../assets/home/consultants/volkswagen.svg";
 import Ikea from "../../assets/home/consultants/ikea.png";
 import Image from "astro/components/Image.astro";
 ---
@@ -26,14 +26,44 @@ import Image from "astro/components/Image.astro";
 
     <div
       id="consultants-brands"
-      class="mt-10 flex flex-wrap items-center justify-between gap-x-4 md:mt-14"
+      class="mt-10 flex flex-wrap items-center justify-center gap-x-4 md:mt-14 md:justify-between"
     >
-      <Image src={Adidas} alt="Adidas" class="brand-logo h-auto w-20" />
-      <Image src={Ideo} alt="Ideo" class="brand-logo h-auto w-20" />
-      <Image src={Stanford} alt="Stanford" class="brand-logo h-auto w-20" />
-      <Image src={Volkswagen} alt="Volkswagen" class="brand-logo h-auto w-20" />
-      <Image src={Netflix} alt="Netflix" class="brand-logo h-auto w-20" />
-      <Image src={Ikea} alt="Ikea" class="brand-logo h-auto w-20" />
+      <Image
+        src={Adidas}
+        alt="Adidas"
+        class="brand-logo h-auto w-20"
+        loading={"lazy"}
+      />
+      <Image
+        src={Ideo}
+        alt="Ideo"
+        class="brand-logo h-auto w-20"
+        loading={"lazy"}
+      />
+      <Image
+        src={Stanford}
+        alt="Stanford"
+        class="brand-logo h-auto w-20"
+        loading={"lazy"}
+      />
+      <Image
+        src={Volkswagen}
+        alt="Volkswagen"
+        class="brand-logo h-auto w-20"
+        loading={"lazy"}
+      />
+      <Image
+        src={Netflix}
+        alt="Netflix"
+        class="brand-logo h-auto w-20"
+        loading={"lazy"}
+      />
+      <Image
+        src={Ikea}
+        alt="Ikea"
+        class="brand-logo h-auto w-20"
+        loading={"lazy"}
+      />
     </div>
   </div>
 </section>
@@ -41,44 +71,34 @@ import Image from "astro/components/Image.astro";
 <script>
   import { gsap } from "gsap";
   import { ScrollTrigger } from "gsap/all";
-  import SplitType from "split-type";
 
   // Register the ScrollTrigger plugin
   gsap.registerPlugin(ScrollTrigger);
 
   // Wait for the DOM to be fully loaded
   document.addEventListener("DOMContentLoaded", () => {
-    // Initialize SplitType for heading and paragraph text
-    const headingText = new SplitType("#consultants-heading", {
-      types: "words,chars",
-    });
-    const paragraphText = new SplitType("#consultants-paragraph", {
-      types: "lines",
-    });
-
     // Create the heading animation timeline
     const headingTl = gsap.timeline({
       scrollTrigger: {
         trigger: "#consultants-section",
         start: "top 80%",
-        end: "top 40%",
-        scrub: 0.6,
-        toggleActions: "play none none reverse",
+        toggleActions: "play none none none",
+        once: true,
       },
     });
 
     // Add heading animation to the timeline
     headingTl.fromTo(
-      headingText.chars,
+      "#consultants-heading",
       {
-        opacity: 0.1,
+        opacity: 0,
         y: 20,
       },
       {
         opacity: 1,
         y: 0,
-        stagger: 0.02,
-        duration: 0.5,
+        duration: 0.7,
+        ease: "power2.out",
       },
     );
 
@@ -87,15 +107,14 @@ import Image from "astro/components/Image.astro";
       scrollTrigger: {
         trigger: "#consultants-section",
         start: "top 70%",
-        end: "top 30%",
-        scrub: 0.6,
-        toggleActions: "play none none reverse",
+        toggleActions: "play none none none",
+        once: true,
       },
     });
 
     // Add paragraph animation to the timeline
     paragraphTl.fromTo(
-      paragraphText.lines,
+      "#consultants-paragraph",
       {
         opacity: 0,
         y: 15,
@@ -103,8 +122,9 @@ import Image from "astro/components/Image.astro";
       {
         opacity: 1,
         y: 0,
-        stagger: 0.1,
-        duration: 0.5,
+        duration: 0.6,
+        delay: 0.2,
+        ease: "power2.out",
       },
     );
 
@@ -116,9 +136,8 @@ import Image from "astro/components/Image.astro";
       scrollTrigger: {
         trigger: "#consultants-brands",
         start: "top 80%",
-        end: "top 50%",
-        scrub: 0.8,
-        toggleActions: "play none none reverse",
+        toggleActions: "play none none none",
+        once: true,
       },
     });
 
@@ -140,22 +159,5 @@ import Image from "astro/components/Image.astro";
       },
     );
 
-    // Add a subtle pulse animation to the section background
-    gsap.fromTo(
-      "#consultants-section",
-      {
-        backgroundPosition: "0% 0%",
-      },
-      {
-        backgroundPosition: "100% 100%",
-        ease: "none",
-        scrollTrigger: {
-          trigger: "#consultants-section",
-          start: "top bottom",
-          end: "bottom top",
-          scrub: true,
-        },
-      },
-    );
   });
 </script>

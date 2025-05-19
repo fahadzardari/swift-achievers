@@ -7,17 +7,13 @@ const {
 } = Astro.props;
 ---
 
-<div
-  class="border-gradient flex h-full py-8 flex-col rounded-lg px-7"
-  id={id}
->
+<div class="border-gradient flex h-full flex-col rounded-lg px-7 py-8" id={id}>
   <h1
-    class="text-center text-sm font-semibold whitespace-nowrap text-white lg:text-base xl:text-lg min-h-[24px] lg:min-h-[28px] mb-6"
-  >
-    {title}
-  </h1>
+    class="mb-6 min-h-[24px] text-center text-sm font-semibold whitespace-nowrap text-white lg:min-h-[28px] lg:text-base"
+    set:html={title}
+  />
   <p
-    class="text-center text-xs text-[#ffffff] md:text-xs lg:text-xs 2xl:text-sm flex-grow"
+    class="flex-grow text-center text-xs text-[#ffffff] md:text-xs lg:text-xs 2xl:text-sm"
   >
     {description}
   </p>

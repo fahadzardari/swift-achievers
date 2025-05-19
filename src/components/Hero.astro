@@ -82,38 +82,20 @@ const {
 <script>
   import gsap from "gsap";
   import { ScrollTrigger } from "gsap/ScrollTrigger";
-  import SplitType from "split-type";
 
   // Register ScrollTrigger plugin
   gsap.registerPlugin(ScrollTrigger);
 
   document.addEventListener("DOMContentLoaded", () => {
-    // Initialize SplitType for text elements
-    const heroTitle = new SplitType("#hero-title", { types: "words,chars" });
+    // Get DOM elements directly without SplitType
+    const heroTitle = document.getElementById("hero-title");
     const heroSubheading = document.getElementById("hero-subheading");
     const heroDescHeading = document.getElementById("hero-desc-heading");
-    const heroDescription = new SplitType("#hero-description", {
-      types: "lines",
-    });
+    const heroDescription = document.getElementById("hero-description");
 
     // Create main timeline for initial load animations
     const mainTl = gsap.timeline({ defaults: { ease: "power2.out" } });
 
-    // Add slight parallax effect on scroll for background
-    gsap.fromTo(
-      "#hero-bg",
-      { y: 0 },
-      {
-        y: 100,
-        ease: "none",
-        scrollTrigger: {
-          trigger: "#hero-section",
-          start: "top top",
-          end: "bottom top",
-          scrub: 0.8,
-        },
-      },
-    );
 
     // Add all animations to the main timeline in sequence
 
@@ -128,36 +110,45 @@ const {
     // Start with subheading if it exists
     if (heroSubheading) {
       mainTl.fromTo(
-        "#hero-subheading",
+        heroSubheading,
         { opacity: 0, x: -30 },
         { opacity: 1, x: 0, duration: 0.6 },
         0.2,
       );
     }
 
-    // Animate title with staggered characters for emphasis
+    // Animate title as a whole element with a clip-path animation for a reveal effect
     mainTl.fromTo(
-      heroTitle.chars,
-      { opacity: 0, y: 50 },
-      { opacity: 1, y: 0, stagger: 0.02, duration: 0.8 },
+      heroTitle,
+      {
+        opacity: 0,
+        y: 20,
+        clipPath: "polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)",
+      },
+      {
+        opacity: 1,
+        y: 0,
+        clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
+        duration: 0.8,
+      },
       0.4,
     );
 
     // Animate description heading if it exists
     if (heroDescHeading) {
       mainTl.fromTo(
-        "#hero-desc-heading",
+        heroDescHeading,
         { opacity: 0, y: 20 },
         { opacity: 1, y: 0, duration: 0.7 },
         0.8,
       );
     }
 
-    // Animate description lines with staggered effect
+    // Animate description as a whole element
     mainTl.fromTo(
-      heroDescription.lines,
+      heroDescription,
       { opacity: 0, y: 20 },
-      { opacity: 1, y: 0, stagger: 0.1, duration: 0.7 },
+      { opacity: 1, y: 0, duration: 0.7 },
       1.0,
     );
 
