@@ -1,0 +1,139 @@
+---
+import Image from "astro/components/Image.astro";
+import A from "../../assets/partners/a.webp";
+import B from "../../assets/partners/b.webp";
+import C from "../../assets/partners/c.webp";
+import D from "../../assets/partners/d.webp";
+import E from "../../assets/partners/e.webp";
+import F from "../../assets/partners/f.webp";
+import G from "../../assets/partners/g.webp";
+import Heading from "./Heading.astro";
+
+const partners = [A, B, C, D, E, F, G];
+---
+
+<div class="bg-gradient py-4">
+  <section
+    class="partners-section container flex flex-col items-center justify-center"
+    data-anim="fade-in"
+  >
+    <div data-anim="fade-up" class="text-center">
+      <Heading title="Our Partners" id="partners-heading" />
+    </div>
+
+    <div class="ticker-wrapper" data-anim="fade-up" data-anim-delay="0.2">
+      <div class="ticker">
+        <div class="ticker-track">
+          {
+            partners.map((partner, i) => (
+              <div class="ticker-item">
+                <Image
+                  src={partner}
+                  alt={`Partner ${i + 1}`}
+                  class="partner-logo"
+                  loading="lazy"
+                />
+              </div>
+            ))
+          }
+          {/* Duplicate logos for seamless loop */}
+          {
+            partners.map((partner, i) => (
+              <div class="ticker-item">
+                <Image
+                  src={partner}
+                  alt={`Partner ${i + 1}`}
+                  class="partner-logo"
+                  loading="lazy"
+                />
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<style>
+  .ticker-wrapper {
+    width: 100%;
+    overflow: hidden;
+    margin: 2rem 0;
+    padding: 1rem 0;
+    border-radius: 8px;
+  }
+
+  .ticker {
+    white-space: nowrap;
+    overflow: hidden;
+    width: 100%;
+  }
+
+  .ticker-track {
+    display: inline-block;
+    white-space: nowrap;
+    animation: ticker 30s linear infinite;
+    will-change: transform;
+  }
+
+  .ticker-track:hover {
+    animation-play-state: paused;
+  }
+
+  .ticker-item {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 2rem;
+    vertical-align: middle;
+  }
+
+  .partner-logo {
+    height: 100px;
+    width: auto;
+    object-fit: contain;
+    transition:
+      opacity 0.3s ease,
+      transform 0.3s ease;
+  }
+
+  .partner-logo:hover {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+
+  @keyframes ticker {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%); /* Move exactly one set of logos */
+    }
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .ticker-item {
+      padding: 0 1.5rem;
+    }
+
+    .partner-logo {
+      height: 50px;
+    }
+
+    @keyframes ticker {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-100%);
+      }
+    }
+  }
+
+  /* Optional pause on hover */
+  .ticker-track:hover {
+    animation-play-state: paused;
+  }
+</style>

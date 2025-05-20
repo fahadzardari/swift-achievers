@@ -11,17 +11,13 @@ import BrandStoreEstablished from "../../components/services/BrandStoreEstablish
 import BrandImage from "../../assets/services/amazon-product-hunting/brand-store.png";
 import PPCImage from "../../assets/services/amazon-ppc/ppc.png";
 
-import GrowthImage from "../../assets/services/upscaling/growth.png";
-import OperationalImage from "../../assets/services/upscaling/operational.png";
-import StrategyImage from "../../assets/services/upscaling/strategy.png";
-import CostImage from "../../assets/services/upscaling/cost.png";
-import DreamImage from "../../assets/services/upscaling/dream.png";
-
 import PPC1 from "../../assets/services/upscaling/ppc-1.png";
 import PPC2 from "../../assets/services/upscaling/ppc-2.png";
 import PPC3 from "../../assets/services/upscaling/ppc-3.png";
 import PPC4 from "../../assets/services/upscaling/ppc-4.png";
 import PPC5 from "../../assets/services/upscaling/ppc-5.png";
+import OurPartners from "../../components/common/OurPartners.astro";
+import OurSuccessStats from "../../components/common/OurSuccessStats.astro";
 
 const cards = [
   {
@@ -159,6 +155,8 @@ const cards = [
     />
   </div>
   <WhyUs />
+  <OurSuccessStats />
+  <OurPartners />
   <UpscaleBusiness cards={cards} />
   <BrandStoreEstablished image={BrandImage} />
   <Testimonials />

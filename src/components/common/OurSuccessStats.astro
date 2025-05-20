@@ -1,0 +1,190 @@
+---
+import Heading from "../common/Heading.astro";
+import Stats1 from "../../assets/stats/stats-1.png";
+import Stats2 from "../../assets/stats/stats-2.png";
+import Stats3 from "../../assets/stats/stats-3.png";
+import Stats4 from "../../assets/stats/stats-4.png";
+import Stats5 from "../../assets/stats/stats-5.png";
+import Stats6 from "../../assets/stats/stats-6.png";
+import Stats7 from "../../assets/stats/stats-7.png";
+import Stats8 from "../../assets/stats/stats-8.png";
+import Stats9 from "../../assets/stats/stats-9.png";
+import Stats10 from "../../assets/stats/stats-10.png";
+import Image from "astro/components/Image.astro";
+---
+
+<div class="success-stats-section container my-24 text-white">
+  <div data-anim="fade-up" class="text-center">
+    <Heading title="Our Success Stats" id="success-stats-heading" />
+  </div>
+
+  <div class="mt-2">
+    <p
+      data-anim="fade-up"
+      data-anim-delay="0.1"
+      class="success-stats-description text-center text-xs lg:text-sm 2xl:text-base"
+    >
+      Our Amazon success numbers speak for themselves.
+    </p>
+  </div>
+
+  <!-- Swiper with animation group -->
+  <div
+    id="success-stats-swiper"
+    class="my-14"
+    data-anim-group
+    data-anim-stagger="0.1"
+  >
+    <div class="swiper-wrapper">
+      <!-- Each slide gets data-anim-item attribute -->
+      <div class="swiper-slide" data-anim-item>
+        <Image
+          src={Stats1}
+          alt="Success Stats 1"
+          class="h-auto w-full rounded-md"
+          loading="lazy"
+        />
+      </div>
+
+      <div class="swiper-slide" data-anim-item>
+        <Image
+          src={Stats2}
+          alt="Success Stats 2"
+          class="h-auto w-full rounded-md"
+          loading="lazy"
+        />
+      </div>
+      <div class="swiper-slide" data-anim-item>
+        <Image
+          src={Stats3}
+          alt="Success Stats 3"
+          class="h-auto w-full rounded-md"
+          loading="lazy"
+        />
+      </div>
+      <div class="swiper-slide" data-anim-item>
+        <Image
+          src={Stats4}
+          alt="Success Stats 4"
+          class="h-auto w-full rounded-md"
+          loading="lazy"
+        />
+      </div>
+      <div class="swiper-slide" data-anim-item>
+        <Image
+          src={Stats5}
+          alt="Success Stats 5"
+          class="h-auto w-full rounded-md"
+          loading="lazy"
+        />
+      </div>
+      <div class="swiper-slide" data-anim-item>
+        <Image
+          src={Stats6}
+          alt="Success Stats 6"
+          class="h-auto w-full rounded-md"
+          loading="lazy"
+        />
+      </div>
+      <div class="swiper-slide" data-anim-item>
+        <Image
+          src={Stats7}
+          alt="Success Stats 7"
+          class="h-auto w-full rounded-md"
+          loading="lazy"
+        />
+      </div>
+      <div class="swiper-slide" data-anim-item>
+        <Image
+          src={Stats8}
+          alt="Success Stats 8"
+          class="h-auto w-full rounded-md"
+          loading="lazy"
+        />
+      </div>
+      <div class="swiper-slide" data-anim-item>
+        <Image
+          src={Stats9}
+          alt="Success Stats 9"
+          class="h-auto w-full rounded-md"
+          loading="lazy"
+        />
+      </div>
+      <div class="swiper-slide" data-anim-item>
+        <Image
+          src={Stats10}
+          alt="Success Stats 10"
+          class="h-auto w-full rounded-md"
+          loading="lazy"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  import Swiper from "swiper";
+  import { Navigation, Autoplay } from "swiper/modules"; // Added Autoplay module
+  import "swiper/css";
+
+  document.addEventListener("DOMContentLoaded", () => {
+    // Initialize swiper
+    const swiper = new Swiper("#success-stats-swiper", {
+      modules: [Navigation, Autoplay], // Added Autoplay to modules array
+      slidesPerView: 1,
+      spaceBetween: 10,
+      observer: true,
+      observeParents: true,
+
+      // Enhanced autoplay configuration
+      autoplay: {
+        delay: 1500,
+        disableOnInteraction: false,
+        pauseOnMouseEnter: false,
+        waitForTransition: true,
+      },
+
+      loop: true, // Enable infinite looping for continuous autoplay
+
+      speed: 500, // Control the speed of transitions
+
+      breakpoints: {
+        640: {
+          slidesPerView: 3,
+          spaceBetween: 15,
+        },
+        1024: {
+          slidesPerView: 4,
+          spaceBetween: 20,
+        },
+        1536: {
+          slidesPerView: 5,
+          spaceBetween: 20,
+        },
+      },
+
+      grabCursor: true,
+    });
+  });
+</script>
+
+<style is:global>
+  /* Required Swiper styles */
+  #success-stats-swiper {
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    position: relative;
+  }
+
+  #success-stats-swiper .swiper-wrapper {
+    display: flex;
+    width: 100%;
+  }
+
+  #success-stats-swiper .swiper-slide {
+    flex-shrink: 0;
+    height: auto;
+    position: relative;
+  }
+</style>
