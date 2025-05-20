@@ -29,19 +29,14 @@ import Image from "astro/components/Image.astro";
   </div>
 
   <!-- Swiper with animation group -->
-  <div
-    id="success-stats-swiper"
-    class="my-14"
-    data-anim-group
-    data-anim-stagger="0.1"
-  >
+  <div id="success-stats-swiper" class="my-8">
     <div class="swiper-wrapper">
       <!-- Each slide gets data-anim-item attribute -->
-      <div class="swiper-slide" data-anim-item>
+      <div class="swiper-slide">
         <Image
           src={Stats1}
           alt="Success Stats 1"
-          class="h-auto w-full rounded-md"
+          class="h-auto rounded-md"
           loading="lazy"
         />
       </div>
@@ -50,7 +45,7 @@ import Image from "astro/components/Image.astro";
         <Image
           src={Stats2}
           alt="Success Stats 2"
-          class="h-auto w-full rounded-md"
+          class="h-auto rounded-md"
           loading="lazy"
         />
       </div>
@@ -58,7 +53,7 @@ import Image from "astro/components/Image.astro";
         <Image
           src={Stats3}
           alt="Success Stats 3"
-          class="h-auto w-full rounded-md"
+          class="h-auto rounded-md"
           loading="lazy"
         />
       </div>
@@ -66,7 +61,7 @@ import Image from "astro/components/Image.astro";
         <Image
           src={Stats4}
           alt="Success Stats 4"
-          class="h-auto w-full rounded-md"
+          class="h-auto rounded-md"
           loading="lazy"
         />
       </div>
@@ -74,7 +69,7 @@ import Image from "astro/components/Image.astro";
         <Image
           src={Stats5}
           alt="Success Stats 5"
-          class="h-auto w-full rounded-md"
+          class="h-auto rounded-md"
           loading="lazy"
         />
       </div>
@@ -82,7 +77,7 @@ import Image from "astro/components/Image.astro";
         <Image
           src={Stats6}
           alt="Success Stats 6"
-          class="h-auto w-full rounded-md"
+          class="h-auto rounded-md"
           loading="lazy"
         />
       </div>
@@ -90,7 +85,7 @@ import Image from "astro/components/Image.astro";
         <Image
           src={Stats7}
           alt="Success Stats 7"
-          class="h-auto w-full rounded-md"
+          class="h-auto rounded-md"
           loading="lazy"
         />
       </div>
@@ -98,7 +93,7 @@ import Image from "astro/components/Image.astro";
         <Image
           src={Stats8}
           alt="Success Stats 8"
-          class="h-auto w-full rounded-md"
+          class="h-auto rounded-md"
           loading="lazy"
         />
       </div>
@@ -106,7 +101,7 @@ import Image from "astro/components/Image.astro";
         <Image
           src={Stats9}
           alt="Success Stats 9"
-          class="h-auto w-full rounded-md"
+          class="h-auto rounded-md"
           loading="lazy"
         />
       </div>
@@ -114,7 +109,7 @@ import Image from "astro/components/Image.astro";
         <Image
           src={Stats10}
           alt="Success Stats 10"
-          class="h-auto w-full rounded-md"
+          class="h-auto rounded-md"
           loading="lazy"
         />
       </div>
@@ -124,31 +119,46 @@ import Image from "astro/components/Image.astro";
 
 <script>
   import Swiper from "swiper";
-  import { Navigation, Autoplay } from "swiper/modules"; // Added Autoplay module
+  import { Navigation, Autoplay } from "swiper/modules";
   import "swiper/css";
 
   document.addEventListener("DOMContentLoaded", () => {
-    // Initialize swiper
+    // Ensure container is visible with minimum height before initialization
+    const swiperEl = document.getElementById("success-stats-swiper");
+    if (swiperEl) {
+      // Force a minimum visible height on the container
+      swiperEl.style.minHeight = "200px";
+    }
+
+    // Initialize swiper with mobile-friendly settings
     const swiper = new Swiper("#success-stats-swiper", {
-      modules: [Navigation, Autoplay], // Added Autoplay to modules array
+      modules: [Navigation, Autoplay],
       slidesPerView: 1,
-      spaceBetween: 10,
+      spaceBetween: 20,
       observer: true,
       observeParents: true,
 
-      // Enhanced autoplay configuration
+      // More noticeable autoplay for improved mobile viewing
       autoplay: {
-        delay: 1500,
+        delay: 2500,
         disableOnInteraction: false,
         pauseOnMouseEnter: false,
         waitForTransition: true,
       },
 
-      loop: true, // Enable infinite looping for continuous autoplay
+      loop: true,
+      speed: 800,
 
-      speed: 500, // Control the speed of transitions
-
+      // Mobile-first approach to breakpoints
       breakpoints: {
+        320: {
+          slidesPerView: 1,
+          spaceBetween: 10,
+        },
+        480: {
+          slidesPerView: 2,
+          spaceBetween: 15,
+        },
         640: {
           slidesPerView: 3,
           spaceBetween: 15,
@@ -165,6 +175,9 @@ import Image from "astro/components/Image.astro";
 
       grabCursor: true,
     });
+
+    // Debug logging for mobile
+    console.log("Swiper initialized with slides:", swiper.slides.length);
   });
 </script>
 
@@ -182,9 +195,9 @@ import Image from "astro/components/Image.astro";
     width: 100%;
   }
 
-  #success-stats-swiper .swiper-slide {
+  /* #success-stats-swiper .swiper-slide {
     flex-shrink: 0;
     height: auto;
     position: relative;
-  }
+  } */
 </style>
