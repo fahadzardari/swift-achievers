@@ -1,0 +1,273 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Hero from "../components/Hero.astro";
+import Testimonials from "../components/home/Testimonials.astro";
+import HeroBG from "../assets/hero/contact-us.png";
+import ScalingProducts from "../components/common/ScalingProducts.astro";
+import ContactInfo from "../components/common/ContactInfo.astro";
+import Image from "astro/components/Image.astro";
+---
+
+<Layout title="Privacy Policy | Swyft Achievers">
+  <header
+    id="hero-section"
+    class="relative flex min-h-[60vh] items-center justify-center pt-7"
+  >
+    <div class="absolute inset-0 -z-50">
+      <Image
+        id="hero-bg"
+        src={HeroBG}
+        alt="Hero background"
+        class="h-full w-full object-cover"
+        width={1920}
+        height={1080}
+        loading="eager"
+      />
+      <div
+        id="hero-gradient"
+        class="absolute inset-0 top-auto bottom-0 bg-linear-to-b from-transparent from-90% to-[#040243]"
+        data-anim="fade-up"
+        data-anim-delay="0.2"
+      >
+      </div>
+    </div>
+    <div id="hero-content" class="content container text-center">
+      <div
+        id="hero-text-wrapper"
+        class="w-full text-center"
+        data-anim="fade-up"
+      >
+        <h1
+          id="hero-title"
+          class="3xl:text-[70px] mt-4 text-4xl font-semibold text-white sm:text-5xl lg:text-5xl xl:mt-6 xl:text-6xl xl:leading-[66px] 2xl:text-[64px] 2xl:leading-[74px]"
+          data-anim="fade-up"
+          data-anim-delay="0.4"
+        >
+          Privacy Policy
+        </h1>
+      </div>
+    </div>
+  </header>
+  <section
+    id="privacy-policy"
+    class="container mx-auto my-12 flex flex-col px-4 text-white md:my-16"
+  >
+    <div class="policy-content mx-auto w-full max-w-4xl">
+      <div class="policy-section mb-8">
+        <h2 class="mb-4 text-2xl font-semibold">Privacy Policy</h2>
+        <p class="mb-4">
+          This Privacy Policy explains how <strong>Swyft Achievers</strong> ("Company",
+          "we", "us", or "our") collects, uses, and protects information that you
+          provide when you visit our website or use any of our services.
+        </p>
+        <p class="mb-4">
+          By accessing or using our services, you agree to this Privacy Policy
+          and our practices surrounding the collection and use of your personal
+          data.
+        </p>
+      </div>
+
+      <div class="policy-section mb-8">
+        <h2 class="mb-4 text-2xl font-semibold">
+          <strong>1. Information We Collect</strong>
+        </h2>
+        <p class="mb-3">We may collect the following types of information:</p>
+        <ul class="mb-4 list-disc space-y-2 pl-6">
+          <li>
+            <strong>Personal Information:</strong> Name, email, phone number, address,
+            company name.
+          </li>
+          <li>
+            <strong>Technical Data:</strong> IP address, browser type, time zone,
+            operating system, device type, referral source, browsing behavior, and
+            usage data.
+          </li>
+          <li>
+            <strong>Communication Data:</strong> Any data shared when you contact
+            us via form, email, phone, or messaging.
+          </li>
+          <li>
+            <strong>Optional Third-Party Data:</strong> If you share data of third
+            parties (like referrals), you confirm you have their permission.
+          </li>
+        </ul>
+        <p class="mb-4">
+          We also collect information through cookies, tracking technologies,
+          web beacons, and analytics tools to improve user experience and
+          platform functionality.
+        </p>
+      </div>
+
+      <div class="policy-section mb-8">
+        <h2 class="mb-4 text-2xl font-semibold">
+          <strong>2. How We Use Your Information</strong>
+        </h2>
+        <p class="mb-3">
+          We use the information collected for the following purposes:
+        </p>
+        <ul class="mb-4 list-disc space-y-2 pl-6">
+          <li>Responding to your inquiries and providing support.</li>
+          <li>
+            Improving the performance, usability, and security of our website.
+          </li>
+          <li>
+            Conducting internal data analysis and product/service optimization.
+          </li>
+          <li>
+            Sending updates, promotional materials, or relevant information
+            (only when you've opted in).
+          </li>
+          <li>Facilitating transactions and service delivery.</li>
+          <li>
+            Ensuring compliance with legal obligations and internal policies.
+          </li>
+        </ul>
+      </div>
+
+      <div class="policy-section mb-8">
+        <h2 class="mb-4 text-2xl font-semibold">
+          <strong>3. Your Mobile & SMS Privacy</strong>
+        </h2>
+
+        <p class="mb-4">
+          We respect your privacy when it comes to mobile information.
+          <br />
+          <span class="font-bold">
+            We respect your privacy when it comes to mobile information. No
+            mobile information will be shared with third parties/affiliates for
+            marketing/promotional purposes.
+          </span>
+          <br />
+          All other categories exclude text messaging originator opt-in data and
+          consent; <span class="font-bold">
+            this information will not be shared with any third parties.
+          </span>
+          <br /><br />
+          You may opt-out of SMS communication at any time by replying "STOP" or
+          get help by replying "HELP." Standard message and data rates may apply.
+        </p>
+      </div>
+
+      <div class="policy-section mb-8">
+        <h2 class="mb-4 text-2xl font-semibold">
+          <strong>4. Data Security</strong>
+        </h2>
+        <p class="mb-4">
+          We take your data protection seriously. We employ industry-standard
+          measures to protect your information from unauthorized access,
+          alteration, disclosure, or destruction.
+        </p>
+      </div>
+
+      <div class="policy-section mb-8">
+        <h2 class="mb-4 text-2xl font-semibold">
+          <strong>5. Cookies & Tracking</strong>
+        </h2>
+        <p class="mb-3">
+          Our site may use cookies and similar tracking technologies to:
+        </p>
+        <ul class="mb-4 list-disc space-y-2 pl-6">
+          <li>Enhance your experience;</li>
+          <li>Understand how users navigate our site;</li>
+          <li>Improve performance and content delivery.</li>
+        </ul>
+        <p class="mb-4">
+          You can disable cookies through your browser settings.
+        </p>
+      </div>
+
+      <div class="policy-section mb-8">
+        <h2 class="mb-4 text-2xl font-semibold">
+          <strong>6. Who This Applies To</strong>
+        </h2>
+        <p class="mb-3">We may process personal data from:</p>
+        <ul class="mb-4 list-disc space-y-2 pl-6">
+          <li>Clients, vendors, or interested parties.</li>
+          <li>Users of our services or platforms.</li>
+          <li>Individuals contacting us for business purposes.</li>
+          <li>Job applicants or contractors.</li>
+          <li>Visitors of our website.</li>
+        </ul>
+      </div>
+
+      <div class="policy-section mb-8">
+        <h2 class="mb-4 text-2xl font-semibold">
+          <strong>7. Your Rights</strong>
+        </h2>
+        <p class="mb-3">You have the right to:</p>
+        <ul class="mb-4 list-disc space-y-2 pl-6">
+          <li>Access your data.</li>
+          <li>Correct or update your information.</li>
+          <li>Request deletion of your data.</li>
+          <li>Opt out of marketing communications.</li>
+        </ul>
+        <p class="mb-4">
+          You can exercise these rights by contacting us at the details provided
+          below.
+        </p>
+      </div>
+
+      <div class="policy-section mb-8">
+        <h2 class="mb-4 text-2xl font-semibold">
+          <strong>8. Policy Updates</strong>
+        </h2>
+        <p class="mb-4">
+          We may revise this Privacy Policy periodically. All updates will be
+          posted on this page along with the revised date. Continued use of our
+          services implies acceptance of any changes.
+        </p>
+      </div>
+
+      <div class="policy-section mb-8">
+        <h2 class="mb-4 text-2xl font-semibold">
+          <strong>9. How to Contact Us</strong>
+        </h2>
+        <p class="mb-4">
+          If you have questions about this Privacy Policy or your personal data,
+          please contact us:
+        </p>
+        <p class="mb-2">
+          <strong>📧 Email:</strong> info@swyftachievers.com
+        </p>
+        <p class="mb-4">
+          <strong>📞 Phone:</strong> (307)-204-0804
+        </p>
+        <p class="mb-4">
+          By submitting your information through our website, you consent to be
+          contacted via phone, email, or SMS for relevant service information.
+          Message frequency varies based on your interaction. Standard rates
+          apply.
+        </p>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .policy-section h2 {
+    color: white;
+  }
+
+  .policy-content p,
+  .policy-content li {
+    color: #e0e0e0;
+    line-height: 1.7;
+  }
+  ul {
+    list-style-type: disc;
+    padding-left: 4.5rem;
+  }
+
+  @media (max-width: 768px) {
+    .policy-content {
+      font-size: 0.9rem;
+    }
+
+    .policy-section h2 {
+      font-size: 1.5rem;
+    }
+    ul {
+      padding-left: 2rem;
+    }
+  }
+</style>
